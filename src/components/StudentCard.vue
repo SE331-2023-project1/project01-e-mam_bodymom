@@ -13,16 +13,19 @@ const props = defineProps({
 
 <template>
     <div class="student-class flex flex-col items-center justify-center ">
-        <div class="grid gap-5 grid-cols-2 p-5 w-80 h-[130px] cursor-pointer
+        <div class="grid gap-5 grid-cols-2 p-3 w-80 h-[120px] cursor-pointer
         border border-gray-700 rounded-lg mb-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-md hover:bg-blue-100">
 
+            <div class="flex justify-center items-center">
             <img :src="student?.profileimage"
                 alt="" class="w-24 h-24 object-cover rounded-full ">
 
-            <div class=" ml-4">
+            </div>
+            <div class="">
+                <span class="text-xs text-gray-500">ID: {{ student?.studentid }}</span> <br>
                 <span class="font-bold"> {{ student?.name }} {{ student?.surname }}</span>
-            <ul class="mt-2 list-disc list-inside">
-                <li v-for="course in student?.courselist" :key="course" class="text-gray-700">{{ course }}</li>
+            <ul class=" list-disc list-inside">
+                <li v-for="course in student?.courselist" :key="course" class="text-gray-700 text-sm">{{ course }}</li>
             </ul>
             </div>
 
