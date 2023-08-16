@@ -4,7 +4,7 @@
         "name": "John",
         "surname": "Doe",
         "studentid": "123456",
-        "profileimage": "john_doe.jpg",
+        "profileimage": "https://rebrand.ly/xz81uz9",
         "courselist": ["Math", "Science"],
         "teacherID": "T123",
         "comment": "A dedicated student."
@@ -13,7 +13,7 @@
         "name": "Jane",
         "surname": "Smith",
         "studentid": "789012",
-        "profileimage": "jane_smith.jpg",
+        "profileimage": "https://rb.gy/1jp8m",
         "courselist": ["History", "English"],
         "teacherID": "T456",
         "comment": "Active participant in class discussions."
@@ -22,7 +22,7 @@
         "name": "Michael",
         "surname": "Johnson",
         "studentid": "345678",
-        "profileimage": "michael_johnson.jpg",
+        "profileimage": "https://rebrand.ly/4ajq3lg",
         "courselist": ["Physics", "ComSci"],
         "teacherID": "T789",
         "comment": "Shows great problem-solving skills."
@@ -31,7 +31,7 @@
         "name": "Emily",
         "surname": "Brown",
         "studentid": "456789",
-        "profileimage": "emily_brown.jpg",
+        "profileimage": "https://rb.gy/44kto",
         "courselist": ["Art", "Music"],
         "teacherID": "T101",
         "comment": "Very creative and talented."
@@ -40,7 +40,7 @@
         "name": "David",
         "surname": "Wilson",
         "studentid": "567890",
-        "profileimage": "david_wilson.jpg",
+        "profileimage": "https://rebrand.ly/ul1z0wk",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T112",
         "comment": "Curious and eager to learn."
@@ -49,7 +49,7 @@
         "name": "Olivia",
         "surname": "Martinez",
         "studentid": "678901",
-        "profileimage": "olivia_martinez.jpg",
+        "profileimage": "https://rb.gy/p5upi",
         "courselist": ["Spanish", "History"],
         "teacherID": "T123",
         "comment": "Fluent in multiple languages."
@@ -58,7 +58,7 @@
         "name": "Ethan",
         "surname": "Anderson",
         "studentid": "789012",
-        "profileimage": "ethan_anderson.jpg",
+        "profileimage": "https://rebrand.ly/paj3pl5",
         "courselist": ["Math", "Physics"],
         "teacherID": "T234",
         "comment": "Strong analytical thinking."
@@ -67,7 +67,7 @@
         "name": "Sophia",
         "surname": "Taylor",
         "studentid": "890123",
-        "profileimage": "sophia_taylor.jpg",
+        "profileimage": "https://rb.gy/v5fjc",
         "courselist": ["English", "Literature"],
         "teacherID": "T345",
         "comment": "Expresses ideas eloquently."
@@ -76,8 +76,8 @@
         "name": "Daniel",
         "surname": "Thomas",
         "studentid": "901234",
-        "profileimage": "daniel_thomas.jpg",
-        "courselist": ["History", "Political Science"],
+        "profileimage": "https://rebrand.ly/35uqc75",
+        "courselist": ["History", "PolSci"],
         "teacherID": "T456",
         "comment": "Engages in thoughtful debates."
       },
@@ -85,7 +85,7 @@
         "name": "Ava",
         "surname": "Jackson",
         "studentid": "123450",
-        "profileimage": "ava_jackson.jpg",
+        "profileimage": "https://rb.gy/pbyzw",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T567",
         "comment": "Aspires to be a scientist."
@@ -94,7 +94,7 @@
         "name": "William",
         "surname": "Lee",
         "studentid": "234561",
-        "profileimage": "william_lee.jpg",
+        "profileimage": "https://rebrand.ly/l27gc2a",
         "courselist": ["History", "Philosophy"],
         "teacherID": "T678",
         "comment": "Deep thinker and philosopher."
@@ -103,17 +103,17 @@
         "name": "Sofia",
         "surname": "Garcia",
         "studentid": "345612",
-        "profileimage": "sofia_garcia.jpg",
-        "courselist": ["Math", "Computer Science"],
+        "profileimage": "https://rebrand.ly/h7bb0gj",
+        "courselist": ["Math", "ComSci"],
         "teacherID": "T789",
         "comment": "Exceptional problem-solving skills."
       },
       {
         "name": "James",
-        "surname": "Rodriguez",
+        "surname": "Pee",
         "studentid": "456123",
-        "profileimage": "james_rodriguez.jpg",
-        "courselist": ["Sports", "Physical Education"],
+        "profileimage": "https://rebrand.ly/d3776b",
+        "courselist": ["Sports", "PE"],
         "teacherID": "T890",
         "comment": "Incredibly talented in sports."
       },
@@ -121,7 +121,7 @@
         "name": "Isabella",
         "surname": "Lopez",
         "studentid": "567234",
-        "profileimage": "isabella_lopez.jpg",
+        "profileimage": "https://rebrand.ly/mqqbv3v",
         "courselist": ["Art", "Drama"],
         "teacherID": "T901",
         "comment": "Expresses emotions through art."
@@ -130,26 +130,26 @@
         "name": "Elijah",
         "surname": "Harris",
         "studentid": "678345",
-        "profileimage": "elijah_harris.jpg",
+        "profileimage": "https://rebrand.ly/dy9uhoc",
         "courselist": ["Science", "Astronomy"],
         "teacherID": "T112",
         "comment": "Fascinated by the universe."
       },
       {
-        "name": "Mia",
+        "name": "Robin",
         "surname": "Clark",
         "studentid": "789456",
-        "profileimage": "mia_clark.jpg",
+        "profileimage": "https://rebrand.ly/nvnjnhm",
         "courselist": ["English", "Literature"],
         "teacherID": "T234",
         "comment": "Enjoys reading and analyzing."
       },
       {
         "name": "Benjamin",
-        "surname": "Young",
+        "surname": "Yui",
         "studentid": "890567",
-        "profileimage": "benjamin_young.jpg",
-        "courselist": ["History", "Political Science"],
+        "profileimage": "https://shorturl.at/nyLT7",
+        "courselist": ["History", "PolSci"],
         "teacherID": "T345",
         "comment": "Interest in political affairs."
       },
@@ -157,7 +157,7 @@
         "name": "Charlotte",
         "surname": "White",
         "studentid": "901678",
-        "profileimage": "charlotte_white.jpg",
+        "profileimage": "https://rebrand.ly/29e9h93",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T456",
         "comment": "Passion for biological sciences."
@@ -166,7 +166,7 @@
         "name": "Henry",
         "surname": "Martin",
         "studentid": "123789",
-        "profileimage": "henry_martin.jpg",
+        "profileimage": "https://shorturl.at/mryF2",
         "courselist": ["Math", "Physics"],
         "teacherID": "T567",
         "comment": "Enthusiastic about physics."
@@ -175,7 +175,7 @@
         "name": "Amelia",
         "surname": "Adams",
         "studentid": "234890",
-        "profileimage": "amelia_adams.jpg",
+        "profileimage": "https://rebrand.ly/amihee8",
         "courselist": ["Languages", "Literature"],
         "teacherID": "T678",
         "comment": "Loves exploring different cultures."
@@ -184,7 +184,7 @@
         "name": "Liam",
         "surname": "Walker",
         "studentid": "345901",
-        "profileimage": "liam_walker.jpg",
+        "profileimage": "https://shorturl.at/tyzB9",
         "courselist": ["Music", "History"],
         "teacherID": "T789",
         "comment": "Musically inclined and creative."
