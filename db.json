@@ -1,0 +1,194 @@
+{
+    "students": [
+      {
+        "name": "John",
+        "surname": "Doe",
+        "studentid": "123456",
+        "profileimage": "john_doe.jpg",
+        "courselist": ["Math", "Science"],
+        "teacherID": "T123",
+        "comment": "A dedicated student."
+      },
+      {
+        "name": "Jane",
+        "surname": "Smith",
+        "studentid": "789012",
+        "profileimage": "jane_smith.jpg",
+        "courselist": ["History", "English"],
+        "teacherID": "T456",
+        "comment": "Active participant in class discussions."
+      },
+      {
+        "name": "Michael",
+        "surname": "Johnson",
+        "studentid": "345678",
+        "profileimage": "michael_johnson.jpg",
+        "courselist": ["Physics", "Computer Science"],
+        "teacherID": "T789",
+        "comment": "Shows great problem-solving skills."
+      },
+      {
+        "name": "Emily",
+        "surname": "Brown",
+        "studentid": "456789",
+        "profileimage": "emily_brown.jpg",
+        "courselist": ["Art", "Music"],
+        "teacherID": "T101",
+        "comment": "Very creative and talented."
+      },
+      {
+        "name": "David",
+        "surname": "Wilson",
+        "studentid": "567890",
+        "profileimage": "david_wilson.jpg",
+        "courselist": ["Biology", "Chemistry"],
+        "teacherID": "T112",
+        "comment": "Curious and eager to learn."
+      },
+      {
+        "name": "Olivia",
+        "surname": "Martinez",
+        "studentid": "678901",
+        "profileimage": "olivia_martinez.jpg",
+        "courselist": ["Spanish", "History"],
+        "teacherID": "T123",
+        "comment": "Fluent in multiple languages."
+      },
+      {
+        "name": "Ethan",
+        "surname": "Anderson",
+        "studentid": "789012",
+        "profileimage": "ethan_anderson.jpg",
+        "courselist": ["Math", "Physics"],
+        "teacherID": "T234",
+        "comment": "Strong analytical thinking."
+      },
+      {
+        "name": "Sophia",
+        "surname": "Taylor",
+        "studentid": "890123",
+        "profileimage": "sophia_taylor.jpg",
+        "courselist": ["English", "Literature"],
+        "teacherID": "T345",
+        "comment": "Expresses ideas eloquently."
+      },
+      {
+        "name": "Daniel",
+        "surname": "Thomas",
+        "studentid": "901234",
+        "profileimage": "daniel_thomas.jpg",
+        "courselist": ["History", "Political Science"],
+        "teacherID": "T456",
+        "comment": "Engages in thoughtful debates."
+      },
+      {
+        "name": "Ava",
+        "surname": "Jackson",
+        "studentid": "123450",
+        "profileimage": "ava_jackson.jpg",
+        "courselist": ["Biology", "Chemistry"],
+        "teacherID": "T567",
+        "comment": "Aspires to be a scientist."
+      },
+      {
+        "name": "William",
+        "surname": "Lee",
+        "studentid": "234561",
+        "profileimage": "william_lee.jpg",
+        "courselist": ["History", "Philosophy"],
+        "teacherID": "T678",
+        "comment": "Deep thinker and philosopher."
+      },
+      {
+        "name": "Sofia",
+        "surname": "Garcia",
+        "studentid": "345612",
+        "profileimage": "sofia_garcia.jpg",
+        "courselist": ["Math", "Computer Science"],
+        "teacherID": "T789",
+        "comment": "Exceptional problem-solving skills."
+      },
+      {
+        "name": "James",
+        "surname": "Rodriguez",
+        "studentid": "456123",
+        "profileimage": "james_rodriguez.jpg",
+        "courselist": ["Sports", "Physical Education"],
+        "teacherID": "T890",
+        "comment": "Incredibly talented in sports."
+      },
+      {
+        "name": "Isabella",
+        "surname": "Lopez",
+        "studentid": "567234",
+        "profileimage": "isabella_lopez.jpg",
+        "courselist": ["Art", "Drama"],
+        "teacherID": "T901",
+        "comment": "Expresses emotions through art."
+      },
+      {
+        "name": "Elijah",
+        "surname": "Harris",
+        "studentid": "678345",
+        "profileimage": "elijah_harris.jpg",
+        "courselist": ["Science", "Astronomy"],
+        "teacherID": "T112",
+        "comment": "Fascinated by the universe."
+      },
+      {
+        "name": "Mia",
+        "surname": "Clark",
+        "studentid": "789456",
+        "profileimage": "mia_clark.jpg",
+        "courselist": ["English", "Literature"],
+        "teacherID": "T234",
+        "comment": "Enjoys reading and analyzing."
+      },
+      {
+        "name": "Benjamin",
+        "surname": "Young",
+        "studentid": "890567",
+        "profileimage": "benjamin_young.jpg",
+        "courselist": ["History", "Political Science"],
+        "teacherID": "T345",
+        "comment": "Interest in political affairs."
+      },
+      {
+        "name": "Charlotte",
+        "surname": "White",
+        "studentid": "901678",
+        "profileimage": "charlotte_white.jpg",
+        "courselist": ["Biology", "Chemistry"],
+        "teacherID": "T456",
+        "comment": "Passion for biological sciences."
+      },
+      {
+        "name": "Henry",
+        "surname": "Martin",
+        "studentid": "123789",
+        "profileimage": "henry_martin.jpg",
+        "courselist": ["Math", "Physics"],
+        "teacherID": "T567",
+        "comment": "Enthusiastic about physics."
+      },
+      {
+        "name": "Amelia",
+        "surname": "Adams",
+        "studentid": "234890",
+        "profileimage": "amelia_adams.jpg",
+        "courselist": ["Languages", "Literature"],
+        "teacherID": "T678",
+        "comment": "Loves exploring different cultures."
+      },
+      {
+        "name": "Liam",
+        "surname": "Walker",
+        "studentid": "345901",
+        "profileimage": "liam_walker.jpg",
+        "courselist": ["Music", "History"],
+        "teacherID": "T789",
+        "comment": "Musically inclined and creative."
+      }
+    ]
+  }
+  
