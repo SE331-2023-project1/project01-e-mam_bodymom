@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
+
 </script>
 
 <template>
-  <header>
-  
-
+<Navbar />
+   
+  <!-- <header>
     <div class="wrapper">
-     
-
       <nav>
         <RouterLink to="/students">Students</RouterLink>
         <RouterLink to="/teachers">Teachers</RouterLink>
@@ -17,7 +17,8 @@ import HelloWorld from './components/HelloWorld.vue'
     </div>
   </header>
 
-  <RouterView />
+
+  <RouterView /> -->
 </template>
 
 <style scoped>

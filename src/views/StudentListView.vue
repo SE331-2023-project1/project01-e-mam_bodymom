@@ -52,7 +52,7 @@ const hasNextPage = computed(() => {
 
 <template>
 
-    <StudentCard v-for="student in students" :key="student.studentId" :student="student"></StudentCard>
+    <StudentCard v-for="student in students" :key="student.studentid" :student="student"></StudentCard>
 
     <div class="pagination">
         <RouterLink :to="{ name: 'student-list', query: { page: page - 1, limit: limit } }" rel="prev" v-if="page != 1"

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import StudentList from '../views/StudentListView.vue'
+import TeacherList from '../views/TeacherListView.vue'
 import NProgress from 'nprogress'
 
 const router = createRouter({
@@ -13,9 +14,9 @@ const router = createRouter({
       props : (route) => ({page: parseInt(route.query?.page as string || '1'),limit: parseInt(route.query?.limit as string || '2')})
     },
     {
-      path: '/teacher',
+      path: '/teachers',
       name: 'teacher-list',
-      component: StudentList,
+      component: TeacherList,
       props : (route) => ({page: parseInt(route.query?.page as string || '1'),limit: parseInt(route.query?.limit as string || '2')})
     }
   ]

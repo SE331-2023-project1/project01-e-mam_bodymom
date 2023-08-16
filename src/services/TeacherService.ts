@@ -1,6 +1,6 @@
 import axios from 'axios'
 import type { AxiosInstance, AxiosResponse } from 'axios'
-import type { StudentItem } from '@/type'
+import type { TeacherItem } from '@/type'
 
 const apiClient: AxiosInstance = axios.create({
   baseURL: 'http://localhost:3004',
@@ -12,12 +12,12 @@ const apiClient: AxiosInstance = axios.create({
 })
 
 export default {
-  getStudents(perPage: number, page: number): Promise<AxiosResponse<StudentItem[]>> {
+  getTeachers(perPage: number, page: number): Promise<AxiosResponse<TeacherItem[]>> {
     // perPage is limit
     // page is number of pages
-    return apiClient.get<StudentItem[]>('/students?_limit=' + perPage + '&_page=' + page)
+    return apiClient.get<TeacherItem[]>('/teachers?_limit=' + perPage + '&_page=' + page)
   },
-  getStudentById(id : number) : Promise<AxiosResponse<StudentItem>>{
-    return apiClient.get<StudentItem>('students/'+ '?studentid='+id.toString())
+  getTeacherById(id : number) : Promise<AxiosResponse<TeacherItem>>{
+    return apiClient.get<TeacherItem>('teachers/'+ '?teacherID='+id.toString())
   }
 }

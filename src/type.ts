@@ -1,8 +1,16 @@
 export interface StudentItem {
     name: string;
     surname: string;
-    studentId: string;
-    profileImage: string;
-    courseList: string[];
-    teacherId: string;
+    studentid: string;
+    profileimage: string;
+    courselist: string[];
+    teacherID: string;
+}
+
+
+export interface TeacherItem {
+    name: string;
+    surname: string;
+    profileimage: string;
+    teacherID: string;
 }

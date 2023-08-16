@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { StudentItem } from '@/type';
+import type { TeacherItem } from '@/type';
 import type { PropType } from 'vue';
 
 const props = defineProps({
-    student: {
-        type: Object as PropType<StudentItem>
+    teacher: {
+        type: Object as PropType<TeacherItem>
         , require: true
     }
 })
@@ -12,17 +12,15 @@ const props = defineProps({
 
 
 <template>
-    <div class="student-class">
+    <div class="teacher-class">
         <div class="p-5 w-72 cursor-pointer border border-gray-700 mb-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-md">
 
             <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
                 alt="" class="w-24 h-24 object-cover rounded-full ">
 
             <div class="ml-4">
-                <span class="" text-lg> {{ student?.name }} {{ student?.surname }}</span>
-            <ul class="mt-2 list-disc list-inside">
-                <li v-for="course in student?.courselist" :key="course" class="text-gray-700">{{ course }}</li>
-            </ul>
+                <span class="" text-lg> {{ teacher?.name }} {{ teacher?.surname }}</span>
+            
             </div>
 
         </div> 
