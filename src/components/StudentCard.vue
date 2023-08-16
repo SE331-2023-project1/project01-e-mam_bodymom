@@ -17,7 +17,7 @@ const props = defineProps({
 
             <span> {{ student?.name }} {{ student?.surname }}</span>
             <ul>
-                <li v-for="course in student.courselist" :key="course">{{ course }}</li>
+                <li v-for="course in student?.courselist" :key="course">{{ course }}</li>
             </ul>
 
             <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
