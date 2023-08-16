@@ -35,7 +35,7 @@ StudentService.getStudents(6, props.page).then((response) => {
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = Number(to.query.page)
-    StudentService.getStudents(4, toPage).then((response: AxiosResponse<StudentItem[]>) => {
+    StudentService.getStudents(6, toPage).then((response: AxiosResponse<StudentItem[]>) => {
         students.value = response.data
         totalStudent.value = response.headers['x-total-count']
         next()
@@ -58,17 +58,32 @@ const hasNextPage = computed(() => {
                 <StudentCard v-for="student in students" :key="student.studentid" :student="student"></StudentCard>
             </div>
 
-                <div class="flex flex-col items-center">
-                    <div class="pagination">
-                        <RouterLink :to="{ name: 'student-list', query: { page: page - 1, limit: limit } }" rel="prev"
-                            v-if="page != 1" id="page-prev"> Prev Page |
-                        </RouterLink>
-                        <RouterLink :to="{ name: 'student-list', query: { page: page + 1, limit: limit } }" rel="next"
-                            v-if="hasNextPage" id="page-next">
-                            Next Page
-                        </RouterLink>
-                    </div>
+            <div class="flex flex-col items-center">
+                <div class="pagination flex">
+                    <RouterLink :to="{ name: 'student-list', query: { page: page - 1, limit: limit } }" rel="prev"
+                        v-if="page != 1"
+                        class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        id="page-prev">
+                        <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 5H1m0 0 4 4M1 5l4-4" />
+                        </svg>
+                        Prev Page
+                    </RouterLink>
+                    <RouterLink :to="{ name: 'student-list', query: { page: page + 1, limit: limit } }" rel="next"
+                        v-if="hasNextPage"
+                        class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        id="page-next">
+                        Next Page
+                        <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </RouterLink>
                 </div>
+            </div>
         </main>
     </div>
 </template>
