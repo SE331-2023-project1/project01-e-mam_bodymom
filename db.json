@@ -23,7 +23,7 @@
         "surname": "Johnson",
         "studentid": "345678",
         "profileimage": "michael_johnson.jpg",
-        "courselist": ["Physics", "Computer Science"],
+        "courselist": ["Physics", "ComSci"],
         "teacherID": "T789",
         "comment": "Shows great problem-solving skills."
       },
