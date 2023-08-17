@@ -3,7 +3,7 @@
   }
   
   #nprogress .bar {
-    background: green; /* Changed to green */
+    background: green;
     position: fixed;
     z-index: 1031;
     top: 0;
