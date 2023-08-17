@@ -3,7 +3,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
- <main class="flex flex-col items-center justify-center my-5">
+ <main class="flex flex-col items-center justify-center my-5 font-black">
     <h1 class="text-3xl font-bold  px-4 py-2">SE331 TERM PROJECT I</h1>
     <p class="font-mono">Component-Based Software Development</p>
     <h2 class="my-2 font-bold">Team Members</h2>
