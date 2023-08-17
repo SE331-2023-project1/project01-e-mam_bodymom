@@ -2,11 +2,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import StudentList from '../views/StudentListView.vue'
 import TeacherList from '../views/TeacherListView.vue'
+import HomePage from '../views/HomeView.vue'
 import NProgress from 'nprogress'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      name: 'home-page',
+      component: HomePage
+    },
     {
       path: '/students',
       name: 'student-list',
