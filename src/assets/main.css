@@ -1,8 +1,7 @@
 @import './base.css';
 body {
-  background-color: white;
+  background: linear-gradient(135deg, rgb(243, 198, 255) , rgb(189, 242, 255) , rgb(253, 255, 206));
 }
-
 /* #app {
   max-width: 1280px;
   margin: 0 auto;
