@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosResponse } from 'axios'
 import type { StudentItem } from '@/type'
 
 const apiClient: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3004',
+  baseURL: import.meta.env.VITE_BASE_URL_STUDENT,
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -21,3 +21,9 @@ export default {
     return apiClient.get<StudentItem>('students/'+ '?studentid='+id.toString())
   }
 }
+
+// export default {
+//   getStudents(): Promise<AxiosResponse<StudentItem[]>> {
+//     return apiClient.get<StudentItem[]>('')
+//   },
+// }
