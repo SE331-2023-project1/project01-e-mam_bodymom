@@ -23,7 +23,7 @@ const props = defineProps({
             </div>
             <div class="">
                 <span class="text-xs text-gray-500">ID: {{ student?.studentid }}</span> <br>
-                <span class="font-bold"> {{ student?.name }} {{ student?.surname }}</span>
+                <span class="font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
             <ul class=" list-disc list-inside">
                 <li v-for="course in student?.courselist" :key="course" class="text-gray-700 text-sm">{{ course }}</li>
             </ul>

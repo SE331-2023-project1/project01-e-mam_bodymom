@@ -9,11 +9,11 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 <template>
 
-<nav class="bg-white shadow-md border-gray-200 dark:bg-gray-900">
+<nav class="bg-white shadow-md border-gray-200 ">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="" class="flex items-center">
+    <a href="/" class="flex items-center">
         <img src="../assets/logo.png" class="h-14 mr-3" alt="Logo" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BodyMom</span>
+        <span class="self-center text-2xl font-semibold whitespace-nowrap text-black">BodyMom</span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
@@ -22,11 +22,11 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
         </svg>
     </button>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li class="mb-2 hover:bg-blue-100">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-500 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white text-black">
+        <li class="mb-2 hover:bg-blue-600 p-3 rounded-md">
             <RouterLink to="/students" >Students</RouterLink>
         </li>
-        <li class="hover:bg-blue-100">
+        <li class="mb-2 hover:bg-blue-600 p-3 rounded-md">
             <RouterLink to="/teachers">Teachers</RouterLink>
         </li>
         
