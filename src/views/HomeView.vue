@@ -4,7 +4,8 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
  <main class="flex flex-col items-center justify-center my-5">
-    <h1 class="text-3xl font-bold  px-4 py-2">SE331 PROJECT 1</h1>
+    <h1 class="text-3xl font-bold  px-4 py-2">SE331 TERM PROJECT I</h1>
+    <p class="font-mono">Component-Based Software Development</p>
     <h2 class="my-2 font-bold">Team Members</h2>
     <div class="grid lg:grid-cols-3 md:grid-cols-1 gap-24 gap-y-12 mt-10">
       <div class="member flex flex-col items-center justify-center">
