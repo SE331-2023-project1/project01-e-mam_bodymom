@@ -35,11 +35,11 @@ defineProps({
             </li>
           </ul>
 
-          <div>
-            <br><button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-1 px-2 rounded-xl font-fig">Teacher ID: {{ student.teacherID }}</button>          
-          </div>
-
-          <span class="text-base text-gray-500">TeacherID: {{ teacher?.id }}</span> <br />
+          <RouterLink :to="{name: 'teacher-detail', params:{ id: teacher?.id }}">
+            <div>
+              <br><button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-1 px-2 rounded-xl font-fig">Teacher ID: {{ student.teacherID }}</button>          
+            </div>
+          </RouterLink>
 
         </div>
       </div>
