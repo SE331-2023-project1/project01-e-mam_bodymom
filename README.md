@@ -1,6 +1,6 @@
 ## SE331 TERM PROJECT I
 ## Component-Based Software Development
-## Grop Name: E-Mam BodyMom
+## Grop Name: E-Mam_BodyMom
 
 ## Contributors :
 1. 642115020 Thiwakon Sakunchao
@@ -40,6 +40,6 @@
 - [ ]  Store the codebase on a Github Repository
 
 6. README.md :
-- [ ]  Specify group name
+- [x]  Specify group name
 - [ ]  Detail all group members
 - [ ]  Include the URL of the deployed website

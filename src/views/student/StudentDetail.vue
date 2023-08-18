@@ -28,6 +28,7 @@ defineProps({
           <span class="text-base text-gray-500 font-fig">ID: {{ student?.id }}</span> <br />
           <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
           <ul class="list-disc list-inside">
+            <span class="font-fig font-bold text-xl">Course List</span>
             <li v-for="course in student?.courselist" :key="course" class="text-xl font-fig">
               {{ course }}
             </li>
