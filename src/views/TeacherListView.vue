@@ -25,7 +25,7 @@ const props = defineProps({
         required: true
     }
 })
-TeacherService.getTeachers(3, props.page).then((response) => {
+TeacherService.getTeachers(6, props.page).then((response) => {
     teachers.value = response.data
     totalTeacher.value = response.headers['x-total-count']
     console.log(teachers.value)
@@ -35,7 +35,7 @@ TeacherService.getTeachers(3, props.page).then((response) => {
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = Number(to.query.page)
-    TeacherService.getTeachers(3, toPage).then((response: AxiosResponse<TeacherItem[]>) => {
+    TeacherService.getTeachers(6, toPage).then((response: AxiosResponse<TeacherItem[]>) => {
         teachers.value = response.data
         totalTeacher.value = response.headers['x-total-count']
         next()
@@ -44,7 +44,7 @@ onBeforeRouteUpdate((to, from, next) => {
     })
 })
 const hasNextPage = computed(() => {
-    const totalPages = Math.ceil(totalTeacher.value / 4)
+    const totalPages = Math.ceil(totalTeacher.value / 6)
     return props.page.valueOf() < totalPages
 })
 
@@ -64,7 +64,7 @@ const hasNextPage = computed(() => {
                 <div class="pagination flex">
                     <RouterLink :to="{ name: 'teacher-list', query: { page: page - 1, limit: limit } }" rel="prev"
                         v-if="page != 1"
-                        class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        class="font-fig-base flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                         id="page-prev">
                         <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 10">
@@ -75,7 +75,7 @@ const hasNextPage = computed(() => {
                     </RouterLink>
                     <RouterLink :to="{ name: 'teacher-list', query: { page: page + 1, limit: limit } }" rel="next"
                         v-if="hasNextPage"
-                        class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        class="font-fig-base flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                         id="page-next">
                         Next Page
                         <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"

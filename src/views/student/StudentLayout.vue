@@ -11,7 +11,7 @@ const store = useStudentStore()
 
 const students = storeToRefs(store).students
 
-const id = ref(students?.value?.studentid)
+const id = ref(students?.value?.id)
 
 
 // console.log(students.value)
@@ -21,7 +21,7 @@ const id = ref(students?.value?.studentid)
 <template>
     <div v-if="students">
         <div class="text-lg text-center text-black font-sans hover:font-serif flex flex-col p-4">
-            <RouterLink :to="{name: 'student-detail', params: { id }}">Details</RouterLink>
+            <!-- <RouterLink :to="{name: 'student-detail', params: { id }}">Details</RouterLink> -->
         </div>
         <RouterView :student="students"></RouterView>
 

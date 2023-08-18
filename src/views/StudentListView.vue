@@ -62,7 +62,7 @@ const hasNextPage = computed(() => {
                 <div class="pagination flex">
                     <RouterLink :to="{ name: 'student-list', query: { page: page - 1, limit: limit } }" rel="prev"
                         v-if="page != 1"
-                        class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 "
+                        class="font-fig-base font-base flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 "
                         id="page-prev">
                         <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 10">
@@ -73,7 +73,7 @@ const hasNextPage = computed(() => {
                     </RouterLink>
                     <RouterLink :to="{ name: 'student-list', query: { page: page + 1, limit: limit } }" rel="next"
                         v-if="hasNextPage"
-                        class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 "
+                        class="font-fig-base flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 "
                         id="page-next">
                         Next Page
                         <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"

@@ -22,9 +22,9 @@ const props = defineProps({
                 <img :src="teacher?.profileimage" alt="" class="w-24 h-24 object-cover rounded-full ">
             </div>
             <div class="">
-                <span class="text-xs text-gray-500">ID: {{ teacher?.teacherID }}</span> <br>
+                <span class="text-xs text-gray-500 font-fig">ID: {{ teacher?.teacherID }}</span> <br>
 
-                <span class="font-bold"> {{ teacher?.name }} {{ teacher?.surname }}</span>
+                <span class="font-bold font-fig"> {{ teacher?.name }} {{ teacher?.surname }}</span>
             </div>
 
         </div>

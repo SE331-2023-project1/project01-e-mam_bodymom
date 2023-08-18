@@ -1,7 +1,7 @@
 @import './base.css';
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Borel&family=DM+Sans:opsz@9..40&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Borel&family=Caprasimo&family=DM+Sans:opsz@9..40&family=Shrikhand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400&display=swap');
 
 body {
   background: linear-gradient(135deg, rgb(243, 198, 255) , rgb(189, 242, 255) , rgb(253, 255, 206));
@@ -19,6 +19,36 @@ body {
   font-family: 'Caprasimo', cursive;
 }
 
+.crop {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+}
+
+.name {
+  font-size: 40px;
+}
+
+@media (min-width: 1024px) {
+  .crop {
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+  }
+
+  .name {
+    font-size: 45px;
+  }
+  
+}
+
+.font-noto {
+  font-family: 'Noto Serif', serif;
+}
+
+.font-fig {
+  font-family: 'Figtree', sans-serif;
+}
 /* #app {
   max-width: 1280px;
   margin: 0 auto;
