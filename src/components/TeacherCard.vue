@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import type { TeacherItem } from '@/type';
-import type { PropType } from 'vue';
+import type { TeacherItem } from '@/type'
+import type { PropType } from 'vue'
 
-const props = defineProps({
-    teacher: {
-        type: Object as PropType<TeacherItem>
-        , require: true
-    }
+defineProps({
+  teacher: {
+    type: Object as PropType<TeacherItem>,
+    require: true
+  }
 })
 </script>
-
 
 <template>
     <div class="teacher-class flex flex-col items-center justify-center ">
@@ -27,6 +26,14 @@ const props = defineProps({
                 <span class="font-bold font-fig"> {{ teacher?.name }} {{ teacher?.surname }}</span>
             </div>
 
+
         </div>
+        <div class="">
+          <span class="text-xs text-gray-500">ID: {{ teacher?.id }}</span> <br />
+
+          <span class="font-bold"> {{ teacher?.name }} {{ teacher?.surname }}</span>
+        </div>
+      </div>
     </div>
+  </RouterLink>
 </template>
