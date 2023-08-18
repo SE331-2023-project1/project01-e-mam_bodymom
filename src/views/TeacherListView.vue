@@ -56,7 +56,7 @@ const hasNextPage = computed(() => {
 
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
 
-                <TeacherCard v-for="teacher in teachers" :key="teacher.teacherID" :teacher="teacher"></TeacherCard>
+                <TeacherCard v-for="teacher in teachers" :key="teacher.id" :teacher="teacher"></TeacherCard>
             </div>
 
             <div class="flex flex-col items-center">

@@ -12,5 +12,5 @@ export interface TeacherItem {
     name: string;
     surname: string;
     profileimage: string;
-    teacherID: string;
+    id: string;
 }

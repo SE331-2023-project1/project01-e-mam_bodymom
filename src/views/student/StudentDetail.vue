@@ -24,7 +24,7 @@ defineProps({
           <img :src="student?.profileimage" alt="" class="object-cover rounded-lg" />
         </div>
         <div class="">
-          <span class="text-base text-gray-500">ID: {{ student?.studentid }}</span> <br />
+          <span class="text-base text-gray-500">ID: {{ student?.id }}</span> <br />
           <span class="text-5xl font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
           <ul class="list-disc list-inside">
             <li v-for="course in student?.courselist" :key="course" class="text-gray-700 text-xl">

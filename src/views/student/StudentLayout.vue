@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import {ref} from 'vue'
-import { type StudentItem } from '@/type';
-import type { PropType } from 'vue'
-import StudentService from '@/services/StudentService';
-import { useRouter } from 'vue-router';
 import { useStudentStore } from '@/stores/student'
 import { storeToRefs } from 'pinia'
 
@@ -11,7 +7,7 @@ const store = useStudentStore()
 
 const students = storeToRefs(store).students
 
-const id = ref(students?.value?.studentid)
+const id = ref(students.value?.id)
 
 
 // console.log(students.value)
