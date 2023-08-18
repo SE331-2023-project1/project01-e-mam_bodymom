@@ -3,7 +3,7 @@
       {
         "name": "John",
         "surname": "Doe",
-        "studentid": "123456",
+        "id": "123456",
         "profileimage": "https://rebrand.ly/xz81uz9",
         "courselist": ["Math", "Science"],
         "teacherID": "T123",
@@ -12,7 +12,7 @@
       {
         "name": "Jane",
         "surname": "Smith",
-        "studentid": "789012",
+        "id": "789012",
         "profileimage": "https://rb.gy/1jp8m",
         "courselist": ["History", "English"],
         "teacherID": "T456",
@@ -21,7 +21,7 @@
       {
         "name": "Michael",
         "surname": "Johnson",
-        "studentid": "345678",
+        "id": "345678",
         "profileimage": "https://rebrand.ly/4ajq3lg",
         "courselist": ["Physics", "ComSci"],
         "teacherID": "T789",
@@ -30,7 +30,7 @@
       {
         "name": "Emily",
         "surname": "Brown",
-        "studentid": "456789",
+        "id": "456789",
         "profileimage": "https://rb.gy/44kto",
         "courselist": ["Art", "Music"],
         "teacherID": "T101",
@@ -39,7 +39,7 @@
       {
         "name": "David",
         "surname": "Wilson",
-        "studentid": "567890",
+        "id": "567890",
         "profileimage": "https://rebrand.ly/ul1z0wk",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T112",
@@ -48,7 +48,7 @@
       {
         "name": "Olivia",
         "surname": "Martinez",
-        "studentid": "678901",
+        "id": "678901",
         "profileimage": "https://rb.gy/p5upi",
         "courselist": ["Spanish", "History"],
         "teacherID": "T123",
@@ -57,7 +57,7 @@
       {
         "name": "Ethan",
         "surname": "Anderson",
-        "studentid": "789012",
+        "id": "789012",
         "profileimage": "https://shorturl.at/aEU38",
         "courselist": ["Math", "Physics"],
         "teacherID": "T234",
@@ -66,7 +66,7 @@
       {
         "name": "Sophia",
         "surname": "Taylor",
-        "studentid": "890123",
+        "id": "890123",
         "profileimage": "https://rb.gy/v5fjc",
         "courselist": ["English", "Literature"],
         "teacherID": "T345",
@@ -75,7 +75,7 @@
       {
         "name": "Daniel",
         "surname": "Thomas",
-        "studentid": "901234",
+        "id": "901234",
         "profileimage": "https://rebrand.ly/35uqc75",
         "courselist": ["History", "PolSci"],
         "teacherID": "T456",
@@ -84,7 +84,7 @@
       {
         "name": "Ava",
         "surname": "Jackson",
-        "studentid": "123450",
+        "id": "123450",
         "profileimage": "https://rb.gy/pbyzw",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T567",
@@ -93,7 +93,7 @@
       {
         "name": "William",
         "surname": "Lee",
-        "studentid": "234561",
+        "id": "234561",
         "profileimage": "https://rebrand.ly/l27gc2a",
         "courselist": ["History", "Philosophy"],
         "teacherID": "T678",
@@ -102,7 +102,7 @@
       {
         "name": "Sofia",
         "surname": "Garcia",
-        "studentid": "345612",
+        "id": "345612",
         "profileimage": "https://rebrand.ly/h7bb0gj",
         "courselist": ["Math", "ComSci"],
         "teacherID": "T789",
@@ -111,7 +111,7 @@
       {
         "name": "James",
         "surname": "Pee",
-        "studentid": "456123",
+        "id": "456123",
         "profileimage": "https://rebrand.ly/d3776b",
         "courselist": ["Sports", "PE"],
         "teacherID": "T890",
@@ -120,7 +120,7 @@
       {
         "name": "Isabella",
         "surname": "Lopez",
-        "studentid": "567234",
+        "id": "567234",
         "profileimage": "https://rebrand.ly/mqqbv3v",
         "courselist": ["Art", "Drama"],
         "teacherID": "T901",
@@ -129,7 +129,7 @@
       {
         "name": "Elijah",
         "surname": "Harris",
-        "studentid": "678345",
+        "id": "678345",
         "profileimage": "https://rebrand.ly/dy9uhoc",
         "courselist": ["Science", "Astronomy"],
         "teacherID": "T112",
@@ -138,7 +138,7 @@
       {
         "name": "Robin",
         "surname": "Clark",
-        "studentid": "789456",
+        "id": "789456",
         "profileimage": "https://rebrand.ly/nvnjnhm",
         "courselist": ["English", "Literature"],
         "teacherID": "T234",
@@ -147,7 +147,7 @@
       {
         "name": "Benjamin",
         "surname": "Yui",
-        "studentid": "890567",
+        "id": "890567",
         "profileimage": "https://shorturl.at/nyLT7",
         "courselist": ["History", "PolSci"],
         "teacherID": "T345",
@@ -156,7 +156,7 @@
       {
         "name": "Charlotte",
         "surname": "White",
-        "studentid": "901678",
+        "id": "901678",
         "profileimage": "https://rebrand.ly/29e9h93",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T456",
@@ -165,7 +165,7 @@
       {
         "name": "Henry",
         "surname": "Martin",
-        "studentid": "123789",
+        "id": "123789",
         "profileimage": "https://shorturl.at/mryF2",
         "courselist": ["Math", "Physics"],
         "teacherID": "T567",
@@ -174,7 +174,7 @@
       {
         "name": "Amelia",
         "surname": "Adams",
-        "studentid": "234890",
+        "id": "234890",
         "profileimage": "https://rebrand.ly/amihee8",
         "courselist": ["Languages", "Literature"],
         "teacherID": "T678",
@@ -183,7 +183,7 @@
       {
         "name": "Liam",
         "surname": "Walker",
-        "studentid": "345901",
+        "id": "345901",
         "profileimage": "https://shorturl.at/tyzB9",
         "courselist": ["Music", "History"],
         "teacherID": "T789",

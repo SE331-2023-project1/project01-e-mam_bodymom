@@ -8,8 +8,11 @@ import { useStudentStore } from '@/stores/student'
 import { storeToRefs } from 'pinia'
 
 const store = useStudentStore()
+
 const students = storeToRefs(store).students
+
 const id = ref(students?.value?.studentid)
+
 
 // console.log(students.value)
 // console.log(students.value?.surname)
@@ -20,6 +23,7 @@ const id = ref(students?.value?.studentid)
         <div class="text-lg text-center text-black font-sans hover:font-serif flex flex-col p-4">
             <RouterLink :to="{name: 'student-detail', params: { id }}">Details</RouterLink>
         </div>
-        <RouterView :student="students[0]" ></RouterView>
+        <RouterView :student="students[0]"></RouterView>
+
     </div>
 </template>
