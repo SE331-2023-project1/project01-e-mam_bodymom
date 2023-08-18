@@ -11,28 +11,8 @@ const store = useStudentStore()
 const students = storeToRefs(store).students
 const id = ref(students?.value?.studentid)
 
-console.log(students.value)
-console.log(students.value[0]?.surname)
-
-// defineProps({
-//     student: {
-//         type: Object as PropType<StudentItem>,
-//         require: true
-//     }
-// })
-
-// const student = ref<StudentItem | null>(null)
-// const props = defineProps({
-//     id: String
-// })
-
-// StudentService.getStudentById(Number(props.id))
-// .then((response) => {
-//     student.value = response.data
-//     console.log(student.value)
-// }).catch(error =>{
-//     console.log(error)
-// })
+// console.log(students.value)
+// console.log(students.value?.surname)
 </script>
 
 <template>
@@ -40,6 +20,6 @@ console.log(students.value[0]?.surname)
         <div class="text-lg text-center text-black font-sans hover:font-serif flex flex-col p-4">
             <RouterLink :to="{name: 'student-detail', params: { id }}">Details</RouterLink>
         </div>
-        <RouterView :student="students" ></RouterView>
+        <RouterView :student="students[0]" ></RouterView>
     </div>
 </template>
