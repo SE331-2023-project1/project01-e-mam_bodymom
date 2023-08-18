@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type StudentItem } from '@/type';
-import { computed, ref, type Ref } from 'vue';
+import { computed, ref, watchEffect, type Ref } from 'vue';
 import StudentService from '@/services/StudentService';
 import StudentCard from '@/components/StudentCard.vue';
 import NProgress from 'nprogress'
@@ -31,7 +31,7 @@ StudentService.getStudents(6, props.page).then((response) => {
     console.log(students.value)
 })
 
-
+console.log(students)
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = Number(to.query.page)
@@ -50,7 +50,7 @@ const hasNextPage = computed(() => {
 
 </script>
 
-<template>
+<template> 
     <div class="my-5">
         <main class="flex flex-col items-center justify-center">
 
