@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { type StudentItem } from '@/type'
+import type { StudentItem, TeacherItem } from '@/type'
 import type { PropType } from 'vue'
-import StudentService from '@/services/StudentService'
 
 defineProps({
     student: {
         type: Object as PropType<StudentItem>,
+        require: true
+    },
+    teacher: {
+        type: Object as PropType<TeacherItem>,
         require: true
     }
 })
@@ -31,9 +34,13 @@ defineProps({
               {{ course }}
             </li>
           </ul>
+
           <div>
             <br><button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-1 px-2 rounded-xl font-fig">Teacher ID: {{ student.teacherID }}</button>          
           </div>
+
+          <span class="text-base text-gray-500">TeacherID: {{ teacher?.id }}</span> <br />
+
         </div>
       </div>
     </div>
