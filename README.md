@@ -16,8 +16,8 @@
 - [ ]  Ability to add student data
 - [ ]  Ability to view a list of all students
 - [ ]  Ability to create advisor details
-- [ ]  View student list and click on a student's name to route to student details:
-- [ ]  Student Detail Page :
+- [x]  View student list and click on a student's name to route to student details:
+- [x]  Student Detail Page :
     - Student 
     - Teacher
     - Student and Teacher Profile images
