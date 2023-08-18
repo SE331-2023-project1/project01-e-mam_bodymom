@@ -23,7 +23,7 @@ const id = ref(students?.value?.studentid)
         <div class="text-lg text-center text-black font-sans hover:font-serif flex flex-col p-4">
             <RouterLink :to="{name: 'student-detail', params: { id }}">Details</RouterLink>
         </div>
-        <RouterView :student="students[0]"></RouterView>
+        <RouterView :student="students"></RouterView>
 
     </div>
 </template>
