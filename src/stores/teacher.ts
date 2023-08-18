@@ -4,11 +4,11 @@ import { defineStore } from "pinia";
 
 export const useTeacherStore = defineStore('teacher', {
     state: () => ({
-        teacher: null as TeacherItem | null
+        teachers: null as TeacherItem | null
     }),
     actions: {
-        setTeacher(teacher: TeacherItem) {
-            this.teacher = teacher
+        setTeacher(teachers: TeacherItem) {
+            this.teachers = teachers
         }
     }
 })

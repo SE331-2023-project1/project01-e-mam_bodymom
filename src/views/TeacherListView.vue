@@ -31,7 +31,7 @@ TeacherService.getTeachers(3, props.page).then((response) => {
     console.log(teachers.value)
 })
 
-
+console.log(teachers)
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = Number(to.query.page)

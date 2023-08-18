@@ -38,8 +38,9 @@ const router = createRouter({
       name: 'teacher-layout',
       component: TeacherLayout,
       beforeEnter: (to) => {
-        const id: number = parseInt(to.params.id as string)
+        const id: string = to.params.id as string
         const teacherStore = useTeacherStore()
+        console.log("TeacherId: " + to.params.id)
         return TeacherService.getTeacherById(id)
         .then((response) => {
           teacherStore.setTeacher(response.data)
@@ -70,6 +71,7 @@ const router = createRouter({
       beforeEnter: (to) => {
         const id: number = parseInt(to.params.id as string)
         const studentStore = useStudentStore()
+        console.log("StudentId: " + id)
         return StudentService.getStudentById(id)
         .then((response) => {
           studentStore.setStudent(response.data)
