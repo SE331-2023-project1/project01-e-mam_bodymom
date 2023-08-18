@@ -71,10 +71,15 @@ const router = createRouter({
       beforeEnter: (to) => {
         const id: number = parseInt(to.params.id as string)
         const studentStore = useStudentStore()
+        const teacherStore = useTeacherStore()
         console.log("StudentId: " + id)
         return StudentService.getStudentById(id)
         .then((response) => {
           studentStore.setStudent(response.data)
+          return TeacherService.getTeacherById(response.data.teacherID)
+        })
+        .then((response) => {
+          teacherStore.setTeacher(response.data)
         })
         .catch((error) => {
           if(error.response && error.response.status === 404) {
