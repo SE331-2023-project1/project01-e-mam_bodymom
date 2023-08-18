@@ -21,11 +21,11 @@
     - Student 
     - Teacher
     - Student and Teacher Profile images
-- []  Comments section where admin can enter comments given by the teacher to the student
+- [ ]  Comments section where admin can enter comments given by the teacher to the student
 
 3. Storage and State Management :
-- []  Save comments to Pinia
-- []  Save student and teacher data to Pinia
+- [ ]  Save comments to Pinia
+- [ ]  Save student and teacher data to Pinia
 
 4. User Interface :
 - [x]  Student list
@@ -41,5 +41,5 @@
 
 6. README.md :
 - [x]  Specify group name
-- [ ]  Detail all group members
+- [x]  Detail all group members
 - [ ]  Include the URL of the deployed website
