@@ -2,7 +2,7 @@
 import type { StudentItem } from '@/type'
 import type { PropType } from 'vue'
 
-const props = defineProps({
+defineProps({
   student: {
     type: Object as PropType<StudentItem>,
     require: true

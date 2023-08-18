@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {ref} from 'vue'
-import { type StudentItem } from '@/type';
+import { ref } from 'vue'
+import { type StudentItem } from '@/type'
 import type { PropType } from 'vue'
+import StudentService from '@/services/StudentService'
 
 defineProps({
     student: {
@@ -12,41 +13,39 @@ defineProps({
 
 // const student = ref<StudentItem | null>(null)
 // const props = defineProps({
-//     id: String
+//   id: String
 // })
 
 // StudentService.getStudentById(Number(props.id))
-// .then((response) => {
+//   .then((response) => {
 //     student.value = response.data
 //     console.log(student.value)
-// }).catch(error =>{
+//   })
+//   .catch((error) => {
 //     console.log(error)
-// })
+//   })
 </script>
 
 <template>
-        <div class="student-class flex flex-col items-center justify-center">
+
+  <div v-if="student">
+    <div class="student-class flex flex-col items-center justify-center">
       <div
-        class="grid gap-5 grid-cols-2 p-3 w-80 h-[120px] cursor-pointer border border-gray-700 rounded-lg mb-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-md hover:bg-gray-100 bg-white"
+        class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700 rounded-lg mb-4 bg-white"
       >
         <div class="flex justify-center items-center">
-          <img :src="student?.profileimage" alt="" class="w-24 h-24 object-cover rounded-full" />
+          <img :src="student[0]?.profileimage" alt="" class="object-cover rounded-lg" />
         </div>
         <div class="">
-          <span class="text-xs text-gray-500">ID: {{ student?.studentid }}</span> <br />
-          <span class="font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
+          <span class="text-base text-gray-500">ID: {{ student[0]?.studentid }}</span> <br />
+          <span class="text-5xl font-bold text-black"> {{ student[0]?.name }} {{ student[0]?.surname }}</span>
           <ul class="list-disc list-inside">
-            <li v-for="course in student?.courselist" :key="course" class="text-gray-700 text-sm">
+            <li v-for="course in student[0]?.courselist" :key="course" class="text-gray-700 text-xl">
               {{ course }}
             </li>
           </ul>
         </div>
       </div>
     </div>
-    {{ typeof student.student }}
-    <div v-if="student">
-        <h1 class="text-black"> {{ student?.name }} </h1>
-        <h1> {{ student?.surname }} </h1>
-        <h1> {{ student?.teacherID }} </h1>
-    </div>
+  </div>
 </template>

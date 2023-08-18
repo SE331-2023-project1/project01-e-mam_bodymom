@@ -6,6 +6,8 @@ import StudentLayout from '../views/student/StudentLayout.vue'
 import StudentDetail from '../views/student/StudentDetail.vue'
 import HomePage from '../views/HomeView.vue'
 import NProgress from 'nprogress'
+import StudentService from '@/services/StudentService'
+import { useStudentStore } from '@/stores/student'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,13 +33,29 @@ const router = createRouter({
       path: '/students/:id',
       name: 'student-layout',
       component: StudentLayout,
-      props: true,
+      beforeEnter: (to) => {
+        const id: number = parseInt(to.params.id as string)
+        const studentStore = useStudentStore()
+        return StudentService.getStudentById(id)
+        .then((response) => {
+          studentStore.setStudent(response.data)
+        })
+        .catch((error) => {
+          if(error.response && error.response.status === 404) {
+            return {
+              name: '404-resource',
+              params: { resource: 'event' }
+            }
+          } else {
+            return { name: 'network-error' }
+          }
+        })
+      },
       children: [
         {
           path: '',
           name: 'student-detail',
           component: StudentDetail,
-          props: true
         }
       ]
     }
