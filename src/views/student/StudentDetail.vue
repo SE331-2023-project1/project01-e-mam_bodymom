@@ -28,15 +28,16 @@ defineProps({
           <span class="text-base text-gray-500 font-fig">ID: {{ student?.id }}</span> <br />
           <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
           <ul class="list-disc list-inside">
-            <span class="font-fig font-bold text-xl course">Course List</span>
-            <li v-for="course in student?.courselist" :key="course" class="text-xl course font-fig">
+            <span class="font-fig font-bold text-black text-xl course">Course List</span>
+            <li v-for="course in student?.courselist" :key="course" class="text-xl course font-fig text-black">
               {{ course }}
             </li>
           </ul>
 
           <br>
           <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.id } }">
-            <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-5 rounded-xl font-fig">
+            <button class="bg-amber-300 hover:bg-amber-400 text-black shadow-md
+            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
               <div class="flex items-center">
                 <img :src="teacher?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
                 <div class="flex flex-col">

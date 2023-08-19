@@ -41,7 +41,7 @@ defineProps({
         rounded-lg bg-white shadow-md mb-3">
         <div class="flex items-center">
           <img src="../../assets/list.png" class="list mr-1">
-          <span class="detail font-fig font-bold">Student List</span>
+          <span class="detail text-list text-black font-fig font-bold">Student List</span>
 
         </div>
 
@@ -49,7 +49,7 @@ defineProps({
           <div v-for="studentId in teacher.studentsId" :key="studentId">
             <RouterLink :to="{ name: 'student-detail', params: { id: studentId } }">
 
-              <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-5
+              <button class="w-full bg-amber-200 shadow-lg hover:bg-amber-300 text-white font-bold py-2 px-5
                 rounded-xl font-fig my-2 hover:transform hover:scale-[1.01] transition-transform duration-300">
                 <div class="flex items-center">
                   <!-- Picture on the left -->
@@ -57,11 +57,11 @@ defineProps({
 
                   <!-- Text on the right in a flex column -->
                   <!-- <div class="flex flex-col"> -->
-                    <!-- <p class="font-fig detail">ชื่อนามสกุลไม่มาครับ ผมต้องทำไง{{ student?.name }} {{ student?.surname }}
+                    <!-- <p class="font-fig detail">{{ student?.name }} {{ student?.surname }}
                     </p> -->
 
                     <!-- Create separation and place Student ID on a new line -->
-                    <p class="font-fig text-left">Student ID: {{ studentId }}</p>
+                    <p class="font-fig text-left text-black">Student ID: {{ studentId }}</p>
                   <!-- </div> -->
                 </div>
               </button>
