@@ -102,9 +102,9 @@ const addComment = () => {
       </div>
       <div>
         <form @submit.prevent="addComment">
-          <label for="name">Comment:</label>
+          <label for="name" class="text-black">Comment:</label>
           <input v-model="comment_input" type="text" id="name" required>
-          <button type="submit" class="submit-btn">Add Comment</button>
+          <button type="submit" class="submit-btn text-black">Add Comment</button>
         </form>
       </div>
  
