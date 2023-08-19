@@ -37,9 +37,12 @@ defineProps({
           <br>
           <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.id } }">
             <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-5 rounded-xl font-fig">
-              <div class="flex justify-center items-center">
+              <div class="flex items-center">
                 <img :src="teacher?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
-                <span class="teacherid">Teacher ID: {{ student.teacherID }}</span>
+                <div class="flex flex-col">
+                  <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
+                  <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacherID }}</span>
+                </div>
               </div>
             </button>
           </RouterLink>
