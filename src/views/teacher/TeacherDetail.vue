@@ -39,18 +39,24 @@ defineProps({
     <div class="student-class flex flex-col mb-2 items-center justify-center">
       <div class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg bg-white shadow-md">
-        <span class="font-fig font-bold">Student List:</span>
+        <span class="detail font-fig font-bold">Student List:</span>
         <div class="justify-center items-center ">
           <div v-for="studentId in teacher.studentsId" :key="studentId">
             <RouterLink :to="{ name: 'student-detail', params: { id: studentId } }">
 
-              <button
-                class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-5
+              <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-5
                 rounded-xl font-fig my-2 hover:transform hover:scale-[1.01] transition-transform duration-300">
                 <div class="flex items-center">
+                  <!-- Picture on the left -->
                   <img :src="student?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
 
-                  <span class="font-fig ">Student ID: {{ studentId }}</span>
+                  <!-- Text on the right in a flex column -->
+                  <div class="flex flex-col">
+                    <p class="font-fig detail">ชื่อนามสกุลไม่มาครับ ผมต้องทำไง{{ student?.name }} {{ student?.surname }}</p>
+
+                    <!-- Create separation and place Student ID on a new line -->
+                    <p class="font-fig text-left">Student ID: {{ studentId }}</p>
+                  </div>
                 </div>
               </button>
             </RouterLink>
