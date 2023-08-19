@@ -112,18 +112,19 @@ const addComment = () => {
         <div class="my-3">
           <form @submit.prevent="addComment">
             <!-- label -->
-            <div>
+            <div class="mx-3 mb-1">
               <label for="name" class="text-black font-bold font-fig">Comment:</label>
             </div>
             <!-- input -->
-            <div>
+            <div class="mx-2">
               <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
             focus:ring-fuchsia-500 focus:border-fuchsia-500 block p-2.5" placeholder="Write your comment here..."></textarea>
             </div>
 
             <!-- button -->
             <div class="flex justify-center mt-3">
-              <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 text-black py-1 px-2 rounded-xl font-fig">Add Comment</button>
+              <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
+               text-black py-1 px-2 rounded-xl font-fig font-semibold">Add Comment</button>
             </div>
           </form>
         </div>
