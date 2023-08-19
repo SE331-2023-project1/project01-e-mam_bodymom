@@ -6,6 +6,8 @@ import StudentLayout from '../views/student/StudentLayout.vue'
 import StudentDetail from '../views/student/StudentDetail.vue'
 import TeacherLayout from '../views/teacher/TeacherLayout.vue'
 import TeacherDetail from '../views/teacher/TeacherDetail.vue'
+import NetworkErrorView from '../views/NetworkErrorView.vue'
+import NotFoundView from '../views/NotFoundView.vue'
 import HomePage from '../views/HomeView.vue'
 import NProgress from 'nprogress'
 import StudentService from '@/services/StudentService'
@@ -43,32 +45,73 @@ const router = createRouter({
         const teacherStore = useTeacherStore()
         const studentStore = useStudentStore()
         try {
-          const teacher = await teacherStore.getTeacherById(id)
-          if (teacher) {
-              // console.log("Teacher Object:", teacher)
-              teacherStore.setTeacher(teacher)
-          } else {
-              console.log("Teacher not found.");
-              return {
-                  name: '404-resource',
-                  params: { resource: 'teacher' }
-              };
-          }
+          // const teacher = await teacherStore.getTeacherById(id)
+          // if (teacher) {
+          //     // console.log("Teacher Object:", teacher)
+          //     teacherStore.setTeacher(teacher)
+          // } else {
+          //     console.log("Teacher not found.")
+          //     router.push({
+          //       name: '404-resource',
+          //       params: { resource: 'teacher' }
+          //     })
+          //     // return {
+          //     //     name: '404-resource',
+          //     //     params: { resource: 'teacher' }
+          //     // }
+          // }
 
-          // console.log(teacher.studentsId)
-          if (teacher.studentsId && teacher.studentsId.length > 0) {
-            const studentPromises = teacher.studentsId.map(async studentId => {
-              const student = await studentStore.getStudentById(studentId)
-              return student
-            });
-            const students = await Promise.all(studentPromises)
-            // console.log(studentPromises)
-            studentStore.setStudent(students.filter(student => student !== null) as StudentItem[]);
-          }
-      } catch (error) {
-          return {
-              name: 'network-error'
-          };
+          // // console.log(teacher.studentsId)
+          // if (teacher.studentsId && teacher.studentsId.length > 0) {
+          //   const studentPromises = teacher.studentsId.map(async studentId => {
+          //     const student = await studentStore.getStudentById(studentId)
+          //     return student
+          //   });
+          //   const students = await Promise.all(studentPromises)
+          //   // console.log(studentPromises)
+          //   studentStore.setStudent(students.filter(student => student !== null) as StudentItem[]);
+          // } else {
+          //   router.push({
+          //     name: '404-resource',
+          //     params: { resource: 'student' }
+          // })
+          // }
+          const teacher = await teacherStore.getTeacherById(id)
+          teacherStore.setTeacher(teacher)
+          const studentPromises = teacher.studentsId.map(async studentId => {
+            const student = await studentStore.getStudentById(studentId)
+            return student
+          });
+          const students = await Promise.all(studentPromises)
+          // console.log(studentPromises)
+          studentStore.setStudent(students.filter(student => student !== null) as StudentItem[]);
+      } catch (error: any) {
+        if (error.response && error.response.status === 404) {
+          // const errorUrl = error.response.config.url;
+          // const resource = errorUrl.includes('teachers') ? 'teachers' : 'students';
+
+          // console.log(`Resource '${resource}' not found.`);
+          // console.log("Resource not found")
+  
+          const errorUrl = error.response.config.url
+          console.log("Error URL:", errorUrl)
+      
+          const resourceIdentifier = errorUrl.split('/').pop() // Get the last segment
+          console.log("Resource Identifier:", resourceIdentifier)
+      
+          const isTeacher = resourceIdentifier.charAt(0) === 'T' // Check the first character
+          console.log("Is Teacher:", isTeacher)
+      
+          const resource = isTeacher ? 'teacher' : 'student'
+          console.log("Resource:", resource)
+
+          router.push({
+            name: '404-resource',
+            params: { resource }
+        })
+        } else {
+          router.push({ name: 'network-error'})
+        }
       }
       },
       children: [
@@ -88,38 +131,76 @@ const router = createRouter({
         const studentStore = useStudentStore()
         const teacherStore = useTeacherStore()
         // console.log("StudentId: " + studentStore.getStudentById(id))
+        
+        // const student = await studentStore.getStudentById(id)
+        // try {
+        //   studentStore.setStudent(student)
+        // } catch (error: any) {
+        //   if (error.response && error.response.status === 404) {
+        //     router.push({
+        //       name: '404-resource',
+        //       params: { resource: 'student' }
+        //   })
+        //   } else {
+        //     router.push({ name: 'network-error' })
+        //   }
+        //   return
+        // }
+
+        // try {
+        //   const teacher = await teacherStore.getTeacherById(student.teacherID)
+        //   teacherStore.setTeacher(teacher)
+        //   // console.log(teacher)
+        // } catch (error: any) {
+        //   if (error.response && error.response.status === 404) {
+        //     router.push({
+        //       name: '404-resource',
+        //       params: { resource: 'teacher' }
+        //   })
+        //   } else {
+        //     router.push({ name: 'network-error' })
+        //   }
+        //   return
+        // }
+
         try {
           const student = await studentStore.getStudentById(id)
-          if (student) {
-            studentStore.setStudent(student)
-            
-          } else {
-            console.log("Student not found.")
-              return {
-                  name: '404-resource',
-                  params: { resource: 'student' }
-              }
-          }
+          studentStore.setStudent(student)
+          const teacher = await teacherStore.getTeacherById(student.teacherID)
+          teacherStore.setTeacher(teacher)
 
-          if (student) {
-            const teacher = await teacherStore.getTeacherById(student.teacherID)
-            teacherStore.setTeacher(teacher)
-            console.log(teacher)
-          } else {
-            console.log("Teacher not found.")
-              return {
-                  name: '404-resource',
-                  params: { resource: 'teacher' }
-              }
-          }
+        } catch (error: any) {
+          if (error.response && error.response.status === 404) {
+            // const errorUrl = error.response.config.url;
+            // console.log("Error URL:", errorUrl);
+            // const resource = errorUrl.includes('T') ? 'teachers' : 'students';
+    
+            // console.log(`Resource '${resource}' not found.`);
+            // console.log("Resource not found")
 
-        } catch (error) {
-          return { name: 'network-error'}
+            const errorUrl = error.response.config.url
+            console.log("Error URL:", errorUrl)
+      
+            const resourceIdentifier = errorUrl.split('/').pop() // Get the last segment
+            console.log("Resource Identifier:", resourceIdentifier)
+      
+            const isTeacher = resourceIdentifier.charAt(0) === 'T' // Check the first character
+            console.log("Is Teacher:", isTeacher)
+      
+            const resource = isTeacher ? 'teacher' : 'student'
+            console.log("Resource:", resource)
+              router.push({
+                name: '404-resource',
+                params: { resource }
+            })
+            } else {
+              router.push({ name: 'network-error'})
+            }
         }
 
         // return StudentService.getStudentById(id)
         // .then((response) => {
-        //   studentStore.setStudent(response.data)
+        //   studentStore.setStudent([response.data])
         //   return TeacherService.getTeacherById(response.data.teacherID)
         // })
         // .then((response) => {
@@ -143,6 +224,22 @@ const router = createRouter({
           component: StudentDetail,
         }
       ]
+    },
+    {
+      path: '/404/:resource',
+      name: '404-resource',
+      component: NotFoundView,
+      props: true
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: 'not-found',
+      component: NotFoundView
+    },
+    {
+      path: '/network-error',
+      name: 'network-error',
+      component: NetworkErrorView
     }
   ]
 })
