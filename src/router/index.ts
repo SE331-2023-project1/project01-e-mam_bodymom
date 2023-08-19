@@ -15,6 +15,9 @@ import TeacherService from '@/services/TeacherService'
 import { useStudentStore } from '@/stores/student'
 import { useTeacherStore } from '@/stores/teacher'
 import type { StudentItem } from '@/type'
+import { commentStudent } from '@/stores/comment'
+import { commentStudentId } from '@/stores/comment_id'
+import { storeToRefs } from 'pinia'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -168,6 +171,7 @@ const router = createRouter({
           studentStore.setStudent(student)
           const teacher = await teacherStore.getTeacherById(student.teacherID)
           teacherStore.setTeacher(teacher)
+          
 
         } catch (error: any) {
           if (error.response && error.response.status === 404) {
