@@ -193,7 +193,7 @@
     "teachers": [
       {
         "id": "T123",
-        "studentsId": ["123456", "789012"],
+        "studentsId": ["123456"],
         "name": "Alice",
         "surname": "Johnson",
         "profileimage": "https://shorturl.at/amzP4"
