@@ -7,7 +7,7 @@
         "profileimage": "https://rebrand.ly/xz81uz9",
         "courselist": ["Math", "Science"],
         "teacherID": "T123",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Jane",
@@ -16,7 +16,7 @@
         "profileimage": "https://rb.gy/1jp8m",
         "courselist": ["History", "English"],
         "teacherID": "T234",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Michael",
@@ -25,7 +25,7 @@
         "profileimage": "https://rebrand.ly/4ajq3lg",
         "courselist": ["Physics", "ComSci"],
         "teacherID": "T789",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Emily",
@@ -34,7 +34,7 @@
         "profileimage": "https://rb.gy/44kto",
         "courselist": ["Art", "Music"],
         "teacherID": "T345",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "David",
@@ -43,7 +43,7 @@
         "profileimage": "https://rebrand.ly/ul1z0wk",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T901",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Olivia",
@@ -52,7 +52,7 @@
         "profileimage": "https://rb.gy/p5upi",
         "courselist": ["Spanish", "History"],
         "teacherID": "T234",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Ethan",
@@ -61,7 +61,7 @@
         "profileimage": "https://shorturl.at/aEU38",
         "courselist": ["Math", "Physics"],
         "teacherID": "T123",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Sophia",
@@ -70,7 +70,7 @@
         "profileimage": "https://rb.gy/v5fjc",
         "courselist": ["English", "Literature"],
         "teacherID": "T234",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Daniel",
@@ -79,7 +79,7 @@
         "profileimage": "https://rebrand.ly/35uqc75",
         "courselist": ["History", "PolSci"],
         "teacherID": "T345",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Ava",
@@ -88,7 +88,7 @@
         "profileimage": "https://rb.gy/pbyzw",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T567",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "William",
@@ -97,7 +97,7 @@
         "profileimage": "https://rebrand.ly/l27gc2a",
         "courselist": ["History", "Philosophy"],
         "teacherID": "T678",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Sofia",
@@ -106,7 +106,7 @@
         "profileimage": "https://rebrand.ly/h7bb0gj",
         "courselist": ["Math", "ComSci"],
         "teacherID": "T123",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "James",
@@ -115,7 +115,7 @@
         "profileimage": "https://rebrand.ly/d3776b",
         "courselist": ["Sports", "PE"],
         "teacherID": "T890",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Isabella",
@@ -124,7 +124,7 @@
         "profileimage": "https://rebrand.ly/mqqbv3v",
         "courselist": ["Art", "Drama"],
         "teacherID": "T456",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Elijah",
@@ -133,7 +133,7 @@
         "profileimage": "https://rebrand.ly/dy9uhoc",
         "courselist": ["Science", "Astronomy"],
         "teacherID": "T567",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Robin",
@@ -142,7 +142,7 @@
         "profileimage": "https://rebrand.ly/nvnjnhm",
         "courselist": ["English", "Literature"],
         "teacherID": "T234",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Benjamin",
@@ -151,7 +151,7 @@
         "profileimage": "https://shorturl.at/nyLT7",
         "courselist": ["History", "PolSci"],
         "teacherID": "T012",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Charlotte",
@@ -160,7 +160,7 @@
         "profileimage": "https://rebrand.ly/29e9h93",
         "courselist": ["Biology", "Chemistry"],
         "teacherID": "T456",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Henry",
@@ -169,7 +169,7 @@
         "profileimage": "https://shorturl.at/mryF2",
         "courselist": ["Math", "Physics"],
         "teacherID": "T567",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Amelia",
@@ -178,7 +178,7 @@
         "profileimage": "https://rebrand.ly/amihee8",
         "courselist": ["Languages", "Literature"],
         "teacherID": "T456",
-        "comment": []
+        "comment": ""
       },
       {
         "name": "Liam",
@@ -187,7 +187,7 @@
         "profileimage": "https://shorturl.at/tyzB9",
         "courselist": ["Music", "History"],
         "teacherID": "T345",
-        "comment": []
+        "comment": ""
       }
     ],
     "teachers": [
