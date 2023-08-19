@@ -9,8 +9,9 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
 <nav class="bg-white shadow-md border-gray-200 font-display">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="/" class="flex items-center">
-        <img src="../assets/logo.png" class="h-14 mr-3" alt="Logo" />
-        <span class="font-cp self-center text-2xl font-semibold whitespace-nowrap text-violet-700">BodyMom</span>
+        <!-- <img src="../assets/logo.png" class="h-14 mr-3" alt="Logo" /> -->
+        <img src="../assets/bodymom.png" class="h-10">
+        <!-- <span class="font-cp self-center text-2xl font-semibold whitespace-nowrap text-violet-700">BodyMom</span> -->
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>

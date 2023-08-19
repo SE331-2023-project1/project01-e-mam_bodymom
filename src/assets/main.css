@@ -49,6 +49,24 @@ body {
 .font-fig {
   font-family: 'Figtree', sans-serif;
 }
+
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-down {
+  animation-name: fadeDown;
+  animation-duration: 0.5s; /* Adjust the duration as needed */
+  animation-fill-mode: both;
+}
+
 /* #app {
   max-width: 1280px;
   margin: 0 auto;
