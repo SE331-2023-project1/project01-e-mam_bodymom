@@ -29,6 +29,10 @@ body {
   font-size: 40px;
 }
 
+.list {
+  height: 14px;
+}
+
 @media (min-width: 1024px) {
   .crop {
     object-fit: cover;
@@ -43,8 +47,11 @@ body {
   .detail {
     font-size: 20px;
   }
+
+  .list {
+    height: 18px;
+  }
   
- 
 }
 
 @media (max-width: 767px) {
@@ -65,8 +72,12 @@ body {
   .teacherid {
     font-size: 13px;
   }
+  
+  /* .list {
+    height: 10px;
+  } */
+  
 }
-
 
 .font-noto {
   font-family: 'Noto Serif', serif;

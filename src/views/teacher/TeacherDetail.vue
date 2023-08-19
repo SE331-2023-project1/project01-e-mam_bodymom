@@ -38,8 +38,13 @@ defineProps({
     </div>
     <div class="student-class flex flex-col mb-2 items-center justify-center">
       <div class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700
-        rounded-lg bg-white shadow-md">
-        <span class="detail font-fig font-bold">Student List:</span>
+        rounded-lg bg-white shadow-md mb-3">
+        <div class="flex items-center">
+          <img src="../../assets/list.png" class="list mr-1">
+          <span class="detail font-fig font-bold">Student List</span>
+
+        </div>
+
         <div class="justify-center items-center ">
           <div v-for="studentId in teacher.studentsId" :key="studentId">
             <RouterLink :to="{ name: 'student-detail', params: { id: studentId } }">
@@ -52,7 +57,8 @@ defineProps({
 
                   <!-- Text on the right in a flex column -->
                   <div class="flex flex-col">
-                    <p class="font-fig detail">ชื่อนามสกุลไม่มาครับ ผมต้องทำไง{{ student?.name }} {{ student?.surname }}</p>
+                    <p class="font-fig detail">ชื่อนามสกุลไม่มาครับ ผมต้องทำไง{{ student?.name }} {{ student?.surname }}
+                    </p>
 
                     <!-- Create separation and place Student ID on a new line -->
                     <p class="font-fig text-left">Student ID: {{ studentId }}</p>
