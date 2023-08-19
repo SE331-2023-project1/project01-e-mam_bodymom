@@ -81,9 +81,9 @@ const addComment = () => {
           <br>
           <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.id } }">
             <button
-              class="bg-amber-300 hover:bg-amber-400 text-black shadow-md
+              class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md
             font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
-              <div class="flex items-center">
+              <div class="flex justify-center items-center">
                 <img :src="teacher?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
                 <div class="flex flex-col">
                   <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
