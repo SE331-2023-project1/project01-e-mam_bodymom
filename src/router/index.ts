@@ -12,6 +12,7 @@ import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
 import { useStudentStore } from '@/stores/student'
 import { useTeacherStore } from '@/stores/teacher'
+import type { StudentItem } from '@/type'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,10 +41,11 @@ const router = createRouter({
       beforeEnter: async (to) => {
         const id: string = to.params.id as string
         const teacherStore = useTeacherStore()
+        const studentStore = useStudentStore()
         try {
           const teacher = await teacherStore.getTeacherById(id)
           if (teacher) {
-              console.log("Teacher Object:", teacher)
+              // console.log("Teacher Object:", teacher)
               teacherStore.setTeacher(teacher)
           } else {
               console.log("Teacher not found.");
@@ -51,6 +53,17 @@ const router = createRouter({
                   name: '404-resource',
                   params: { resource: 'teacher' }
               };
+          }
+
+          // console.log(teacher.studentsId)
+          if (teacher.studentsId && teacher.studentsId.length > 0) {
+            const studentPromises = teacher.studentsId.map(async studentId => {
+              const student = await studentStore.getStudentById(studentId)
+              return student
+            });
+            const students = await Promise.all(studentPromises)
+            // console.log(studentPromises)
+            studentStore.setStudent(students.filter(student => student !== null) as StudentItem[]);
           }
       } catch (error) {
           return {

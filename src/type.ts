@@ -13,6 +13,7 @@ export interface TeacherItem {
     surname: string;
     profileimage: string;
     id: string;
+    studentsId: string[];
 }
 
 export interface CommentInfo{

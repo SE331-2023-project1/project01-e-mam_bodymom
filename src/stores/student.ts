@@ -5,11 +5,11 @@ import { defineStore } from "pinia";
 
 export const useStudentStore = defineStore('student', {
     state: () => ({
-        students: null as StudentItem | null
+        students: [] as StudentItem []
     }),
     getters: {
         getStudent: (state) => state.students,
-        getStudentById: (state) => async (id: number) => {
+        getStudentById: (state) => async (id: string) => {
             const response = await StudentService.getStudentById(id)
             return new Promise<StudentItem | null>((resolve) => {
                 resolve(response.data || null)
@@ -17,7 +17,7 @@ export const useStudentStore = defineStore('student', {
         }
     },
     actions: {
-        setStudent(students: StudentItem) {
+        setStudent(students: StudentItem[]) {
             this.students = students
         },
         async fetchStudents() {
