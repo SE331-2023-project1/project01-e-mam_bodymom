@@ -53,16 +53,16 @@ defineProps({
                 rounded-xl font-fig my-2 hover:transform hover:scale-[1.01] transition-transform duration-300">
                 <div class="flex items-center">
                   <!-- Picture on the left -->
-                  <img :src="student?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
+                  <!-- <img :src="student?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2"> -->
 
                   <!-- Text on the right in a flex column -->
-                  <div class="flex flex-col">
-                    <p class="font-fig detail">ชื่อนามสกุลไม่มาครับ ผมต้องทำไง{{ student?.name }} {{ student?.surname }}
-                    </p>
+                  <!-- <div class="flex flex-col"> -->
+                    <!-- <p class="font-fig detail">ชื่อนามสกุลไม่มาครับ ผมต้องทำไง{{ student?.name }} {{ student?.surname }}
+                    </p> -->
 
                     <!-- Create separation and place Student ID on a new line -->
                     <p class="font-fig text-left">Student ID: {{ studentId }}</p>
-                  </div>
+                  <!-- </div> -->
                 </div>
               </button>
             </RouterLink>
