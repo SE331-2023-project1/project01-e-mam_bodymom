@@ -14,3 +14,8 @@ export interface TeacherItem {
     profileimage: string;
     id: string;
 }
+
+export interface CommentInfo{
+    id: string;
+    comment: string;
+}
