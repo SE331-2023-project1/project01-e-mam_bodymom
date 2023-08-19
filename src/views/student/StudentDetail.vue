@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, type Ref } from 'vue'
-import type { StudentItem, TeacherItem,CommentInfo } from '@/type'
+import type { StudentItem, TeacherItem, CommentInfo } from '@/type'
 import type { PropType } from 'vue'
 import { storeToRefs } from 'pinia';
 import { commentStudent } from '@/stores/comment'
@@ -15,19 +15,19 @@ const props = defineProps({
     type: Object as PropType<TeacherItem>,
     require: true
   },
-  commentData:{
+  commentData: {
     type: Object as PropType<CommentInfo>,
-      require: true
+    require: true
   }
 })
 
 const comment_input = ref<string>('');
-  const keep_comm: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keep_comm เป็น Ref<CommentInfo[]>
-  const keepCommt_id: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keepCommt_id เป็น Ref<CommentInfo[]>
-  const commentStudents = commentStudent();
-  const commentStudent_Id = commentStudentId();
-  const { comment } = storeToRefs(commentStudents);
-  const { comment_id } = storeToRefs(commentStudent_Id);
+const keep_comm: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keep_comm เป็น Ref<CommentInfo[]>
+const keepCommt_id: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keepCommt_id เป็น Ref<CommentInfo[]>
+const commentStudents = commentStudent();
+const commentStudent_Id = commentStudentId();
+const { comment } = storeToRefs(commentStudents);
+const { comment_id } = storeToRefs(commentStudent_Id);
 onMounted(() => {
   if (props.student) {
     keep_comm.value = comment.value.filter(
@@ -80,7 +80,8 @@ const addComment = () => {
 
           <br>
           <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.id } }">
-            <button class="bg-amber-300 hover:bg-amber-400 text-black shadow-md
+            <button
+              class="bg-amber-300 hover:bg-amber-400 text-black shadow-md
             font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
               <div class="flex items-center">
                 <img :src="teacher?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
@@ -97,15 +98,37 @@ const addComment = () => {
       </div>
     </div>
   </div>
-  <div v-for="(commentItem, index) in keepCommt_id" :key="index">
-        <p class="text-black">{{ commentItem.comment }}</p>
+
+  <div class="student-class flex flex-col mb-2 items-center justify-center">
+    <div class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700
+        rounded-lg bg-white shadow-md mb-8">
+      <div class="items-center">
+        <div v-for="(commentItem, index) in keepCommt_id" :key="index">
+          <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 animate-fade-down">
+            <span class="text-black font-fig">{{ commentItem.comment }}</span>
+          </div>
+        </div>
+        <!-- comment box -->
+        <div class="my-3">
+          <form @submit.prevent="addComment">
+            <!-- label -->
+            <div>
+              <label for="name" class="text-black font-bold font-fig">Comment:</label>
+            </div>
+            <!-- input -->
+            <div>
+              <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            focus:ring-fuchsia-500 focus:border-fuchsia-500 block p-2.5" placeholder="Write your comment here..."></textarea>
+            </div>
+
+            <!-- button -->
+            <div class="flex justify-center mt-3">
+              <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 text-black py-1 px-2 rounded-xl font-fig">Add Comment</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div>
-        <form @submit.prevent="addComment">
-          <label for="name" class="text-black">Comment:</label>
-          <input v-model="comment_input" type="text" id="name" required>
-          <button type="submit" class="submit-btn text-black">Add Comment</button>
-        </form>
-      </div>
- 
+    </div>
+
+  </div>
 </template>
