@@ -14,7 +14,7 @@
 
 2. Admin Functionalities :
 - [ ]  Ability to add student data
-- [ ]  Ability to view a list of all students
+- [x]  Ability to view a list of all students
 - [ ]  Ability to create advisor details
 - [x]  View student list and click on a student's name to route to student details:
 - [x]  Student Detail Page :
@@ -32,7 +32,6 @@
 - [x]  Teacher list
 - [x]  Add student page
 - [x]  Add teacher page
-- [ ]  Edit student page
 
 5. Deployment and Version Control :
 - [ ]  Set up automated Continuous Deployment (CD)
