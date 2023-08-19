@@ -5,17 +5,14 @@ export interface StudentItem {
     profileimage: string;
     courselist: string[];
     teacherID: string;
+    comment: []
 }
-
-
 export interface TeacherItem {
     name: string;
     surname: string;
     profileimage: string;
     id: string;
-    studentsId: string[];
 }
-
 export interface CommentInfo{
     id: string;
     comment: string;

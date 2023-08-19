@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { StudentItem, TeacherItem } from '@/type'
+import { ref, onMounted, type Ref } from 'vue'
+import type { StudentItem, TeacherItem,CommentInfo } from '@/type'
 import type { PropType } from 'vue'
+import { storeToRefs } from 'pinia';
+import { commentStudent } from '@/stores/comment'
+import { commentStudentId } from '@/stores/comment_id'
 
-defineProps({
+const props = defineProps({
   student: {
     type: Object as PropType<StudentItem>,
     require: true
@@ -11,8 +14,49 @@ defineProps({
   teacher: {
     type: Object as PropType<TeacherItem>,
     require: true
+  },
+  commentData:{
+    type: Object as PropType<CommentInfo>,
+      require: true
   }
 })
+
+const comment_input = ref<string>('');
+  const keep_comm: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keep_comm เป็น Ref<CommentInfo[]>
+  const keepCommt_id: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keepCommt_id เป็น Ref<CommentInfo[]>
+  const commentStudents = commentStudent();
+  const commentStudent_Id = commentStudentId();
+  const { comment } = storeToRefs(commentStudents);
+  const { comment_id } = storeToRefs(commentStudent_Id);
+onMounted(() => {
+  if (props.student) {
+    keep_comm.value = comment.value.filter(
+      (commentItem) => props.student?.id === commentItem.id
+    );
+    // ดึงความคิดเห็นจาก store และแสดงใน keepCommt_id
+    commentStudent_Id.setComment(keep_comm.value);
+    keepCommt_id.value = comment_id.value;
+  }
+});
+const addComment = () => {
+  if (props.student && props.student.id) {
+    const formatComment = {
+      id: props.student.id,
+      comment: comment_input.value
+    };
+    commentStudents.pushComment(formatComment);
+    // Update the filtered comments
+    keep_comm.value = comment.value.filter(
+      (commentItem) => props.student?.id === commentItem.id
+    );
+    commentStudent_Id.setComment(keep_comm.value);
+    // Update keepCommt_id with the latest filtered comments
+    keepCommt_id.value = comment_id.value;
+    // Clear the input field
+    comment_input.value = '';
+  }
+};
+
 
 </script>
 
@@ -49,4 +93,15 @@ defineProps({
       </div>
     </div>
   </div>
+  <div v-for="(commentItem, index) in keepCommt_id" :key="index">
+        <p class="text-black">{{ commentItem.comment }}</p>
+      </div>
+      <div>
+        <form @submit.prevent="addComment">
+          <label for="name">Comment:</label>
+          <input v-model="comment_input" type="text" id="name" required>
+          <button type="submit" class="submit-btn">Add Comment</button>
+        </form>
+      </div>
+ 
 </template>
