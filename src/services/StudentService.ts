@@ -20,7 +20,7 @@ export default {
   getAllStudents() : Promise<AxiosResponse<StudentItem[]>> {
     return apiClient.get<StudentItem[]>('')
   },
-  getStudentById(id : number) : Promise<AxiosResponse<StudentItem>>{
+  getStudentById(id : string) : Promise<AxiosResponse<StudentItem>>{
     return apiClient.get<StudentItem>('/'+id.toString())
   }
 }

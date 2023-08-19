@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { type TeacherItem } from '@/type'
+import { type StudentItem, type TeacherItem } from '@/type'
 import type { PropType } from 'vue'
 
 defineProps({
     teacher: {
         type: Object as PropType<TeacherItem>,
         require: true
+    },
+    student: {
+      type: Object as PropType<StudentItem>,
+        reqiure: true
     }
 })
 
@@ -24,6 +28,20 @@ defineProps({
         <div class="my-auto">
           <span class="font-fig text-base text-gray-500">ID: {{ teacher?.id }}</span> <br />
           <span class="font-fig text-5xl font-bold text-black"> {{ teacher?.name }} {{ teacher?.surname }}</span>
+        </div>
+        <!-- <b class="text-black">Student id list</b> -->
+        <!-- <li v-for="studentId in teacher.studentsId" :key="studentId" class="text-xl font-fig">
+          {{ studentId }}
+        </li> -->
+        <div v-for="studentId in teacher.studentsId" :key="studentId">
+          <RouterLink :to="{ name: 'student-detail', params: { id: studentId } }">
+            <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-5 rounded-xl font-fig">
+              <div class="flex items-center">
+                <!-- <img :src="student?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2"> -->
+                <span>Student ID: {{ studentId }}</span>
+              </div>
+            </button>
+          </RouterLink>
         </div>
       </div>
     </div>
