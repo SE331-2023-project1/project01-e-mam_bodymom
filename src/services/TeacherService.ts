@@ -17,6 +17,9 @@ export default {
     // page is number of pages
     return apiClient.get<TeacherItem[]>('?_limit=' + perPage + '&_page=' + page)
   },
+  getAllTeachers() : Promise<AxiosResponse<TeacherItem[]>> {
+    return apiClient.get<TeacherItem[]>('')
+  },
   getTeacherById(id : string) : Promise<AxiosResponse<TeacherItem>>{
     return apiClient.get<TeacherItem>('/'+id.toString())
   }

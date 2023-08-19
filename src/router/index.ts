@@ -37,24 +37,26 @@ const router = createRouter({
       path: '/teachers/:id',
       name: 'teacher-layout',
       component: TeacherLayout,
-      beforeEnter: (to) => {
+      beforeEnter: async (to) => {
         const id: string = to.params.id as string
         const teacherStore = useTeacherStore()
-        console.log("TeacherId: " + to.params.id)
-        return TeacherService.getTeacherById(id)
-        .then((response) => {
-          teacherStore.setTeacher(response.data)
-        })
-        .catch((error) => {
-          if(error.response && error.response.status === 404) {
-            return {
-              name: '404-resource',
-              params: { resource: 'event' }
-            }
+        try {
+          const teacher = await teacherStore.getTeacherById(id)
+          if (teacher) {
+              console.log("Teacher Object:", teacher)
+              teacherStore.setTeacher(teacher)
           } else {
-            return { name: 'network-error' }
+              console.log("Teacher not found.");
+              return {
+                  name: '404-resource',
+                  params: { resource: 'teacher' }
+              };
           }
-        })
+      } catch (error) {
+          return {
+              name: 'network-error'
+          };
+      }
       },
       children: [
         {
@@ -68,29 +70,58 @@ const router = createRouter({
       path: '/students/:id',
       name: 'student-layout',
       component: StudentLayout,
-      beforeEnter: (to) => {
+      beforeEnter: async (to) => {
         const id: number = parseInt(to.params.id as string)
         const studentStore = useStudentStore()
         const teacherStore = useTeacherStore()
-        console.log("StudentId: " + id)
-        return StudentService.getStudentById(id)
-        .then((response) => {
-          studentStore.setStudent(response.data)
-          return TeacherService.getTeacherById(response.data.teacherID)
-        })
-        .then((response) => {
-          teacherStore.setTeacher(response.data)
-        })
-        .catch((error) => {
-          if(error.response && error.response.status === 404) {
-            return {
-              name: '404-resource',
-              params: { resource: 'event' }
-            }
+        // console.log("StudentId: " + studentStore.getStudentById(id))
+        try {
+          const student = await studentStore.getStudentById(id)
+          if (student) {
+            studentStore.setStudent(student)
+            
           } else {
-            return { name: 'network-error' }
+            console.log("Student not found.")
+              return {
+                  name: '404-resource',
+                  params: { resource: 'student' }
+              }
           }
-        })
+
+          if (student) {
+            const teacher = await teacherStore.getTeacherById(student.teacherID)
+            teacherStore.setTeacher(teacher)
+            console.log(teacher)
+          } else {
+            console.log("Teacher not found.")
+              return {
+                  name: '404-resource',
+                  params: { resource: 'teacher' }
+              }
+          }
+
+        } catch (error) {
+          return { name: 'network-error'}
+        }
+
+        // return StudentService.getStudentById(id)
+        // .then((response) => {
+        //   studentStore.setStudent(response.data)
+        //   return TeacherService.getTeacherById(response.data.teacherID)
+        // })
+        // .then((response) => {
+        //   teacherStore.setTeacher(response.data)
+        // })
+        // .catch((error) => {
+        //   if(error.response && error.response.status === 404) {
+        //     return {
+        //       name: '404-resource',
+        //       params: { resource: 'event' }
+        //     }
+        //   } else {
+        //     return { name: 'network-error' }
+        //   }
+        // })
       },
       children: [
         {
