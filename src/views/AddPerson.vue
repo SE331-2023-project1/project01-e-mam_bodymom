@@ -39,7 +39,8 @@
             <label for="studentProfileImage" class="mr-2">Profile Image URL:</label>
             <input
               class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-              v-model="studentProfileImage" type="text" id="studentProfileImage" required>
+              v-model="studentProfileImage" type="text" id="studentProfileImage" required pattern="https?://.+"
+              placeholder="Add link of your picture ('http://..' or 'https://..)">
           </div>
 
 
@@ -121,7 +122,7 @@
               <label for="teacherName" class="mr-2 my-auto">Name:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="teacherName" type="text" id="teacherName" required>
+                v-model="teacherName" type="text" id="teacherName" required pattern="https?://.+">
             </div>
 
             <div class="flex mb-3">
@@ -135,7 +136,7 @@
 
           <div class="mb-3">
             <label for="teacherProfileImage" class="mr-2">Profile Image URL:</label>
-            <input
+            <input  placeholder="Add link of your picture ('http://..' or 'https://..)"
               class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="teacherProfileImage" type="text" id="teacherProfileImage" required>
           </div>
