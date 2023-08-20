@@ -102,9 +102,24 @@ const addComment = () => {
   <div class="student-class flex flex-col mb-2 items-center justify-center">
     <div class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg bg-white shadow-md mb-8">
-      <div class="items-center">
+      <div class="items-center mx-2">
+        <span class="font-fig text-xs font-semibold text-gray-600 animate-fade-down">
+            Anonymous comment
+        </span>
+
+        <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 animate-fade-down">
+          <span class="text-black font-fig flex items-center" >
+            <img src="../../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
+            example comment
+          </span>
+        </div>
+
+
         <div v-for="(commentItem, index) in keepCommt_id" :key="index">
-          <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 animate-fade-down">
+
+          <span class="font-fig text-xs font-semibold text-gray-600 animate-fade-down">Anonymous comment</span>
+          <div class="flex items-center bg-emerald-100 p-2 mb-2 rounded-lg mt-1 animate-fade-down">
+            <img src="../../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
             <span class="text-black font-fig">{{ commentItem.comment }}</span>
           </div>
         </div>
@@ -112,13 +127,14 @@ const addComment = () => {
         <div class="my-3">
           <form @submit.prevent="addComment">
             <!-- label -->
-            <div class="mx-3 mb-1">
+            <div class="mx-1 mb-1">
               <label for="name" class="text-black font-bold font-fig">Comment:</label>
             </div>
             <!-- input -->
-            <div class="mx-2">
+            <div>
               <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-            focus:ring-fuchsia-500 focus:border-fuchsia-500 block p-2.5" placeholder="Write your comment here..."></textarea>
+            focus:ring-fuchsia-500 focus:border-fuchsia-500 block p-2.5"
+                placeholder="Write your comment here..."></textarea>
             </div>
 
             <!-- button -->
