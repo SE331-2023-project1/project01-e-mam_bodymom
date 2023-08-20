@@ -2,6 +2,8 @@
 ## Component-Based Software Development
 ## Grop Name: E-Mam_BodyMom
 
+![alt text](https://cdn.discordapp.com/attachments/1142954276889575464/1142954338562609223/image.png)
+
 ## Contributors :
 1. 642115020 Thiwakon Sakunchao         | [thiwakonsakunchao](https://github.com/thiwakonsakunchao)
 2. 642115021 Thanakorn Waleejaroenpong  | [Nongpepenasi](https://github.com/Nongpepenasi)
@@ -13,9 +15,9 @@
 - [x]  Teacher Data
 
 2. Admin Functionalities :
-- [ ]  Ability to add student data
+- [x]  Ability to add student data
 - [x]  Ability to view a list of all students
-- [ ]  Ability to create advisor details
+- [x]  Ability to create advisor details
 - [x]  View student list and click on a student's name to route to student details:
 - [x]  Student Detail Page :
     - Student 
