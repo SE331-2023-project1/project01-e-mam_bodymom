@@ -69,6 +69,7 @@ const addComment = () => {
 
 <template>
   <div v-if="student">
+    {{ console.log(student) }}
     <div class="student-class flex flex-col items-center justify-center">
       <div class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg mb-4 bg-white shadow-md">

@@ -15,12 +15,25 @@ export const useTeacherStore = defineStore('teacher', {
             return state.teachers.slice(startIndex, endIndex);
         },
         getTeacherById: (state) => async (id: string) => {
-            const response = await TeacherService.getTeacherById(id)
+            const response = state.teachers.find(teacher => teacher.id === id)
             // console.log(response.data)
             return new Promise<TeacherItem | null>((resolve) => {
-                resolve(response.data || null)
+                resolve(response || null)
             })
         }
+        // getTeacherById: (state) => (id: string) => {
+        //     return new Promise<TeacherItem | undefined>((resolve, reject) => {
+        //         const teacher = state.teachers.find(teacher => teacher.teacherId === id);
+        //         if (teacher) {
+        //             resolve(teacher);
+        //         } else {
+        //             const error = new Error('Teacher not found');
+        //             // Custom status for the error
+        //             (error as any).status = 404;
+        //             reject(error);
+        //         }
+        //     });
+        // },
     },
     actions: {
         setTeacher(teachers: TeacherItem[]) {
@@ -52,8 +65,8 @@ export const useTeacherStore = defineStore('teacher', {
         },
         async fetchTeacherById(id: string) {
             try {
-                const response = await TeacherService.getTeacherById(id);
-                return response.data
+                const response = this.getTeacherById(id)
+                return response
             } catch (error) {
                 console.log(error)
                 return null
@@ -61,8 +74,8 @@ export const useTeacherStore = defineStore('teacher', {
         },
         async fetchTeacherByPage(perPage: number, page: number) {
             try {
-                const response = await TeacherService.getTeachers(perPage, page);
-                return response.data
+                const response = this.getTeacherByPage(perPage, page)
+                return response
             } catch (error) {
                 console.log(error)
                 return null

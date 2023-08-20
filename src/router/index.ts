@@ -50,37 +50,6 @@ const router = createRouter({
         const teacherStore = useTeacherStore()
         const studentStore = useStudentStore()
         try {
-          // const teacher = await teacherStore.getTeacherById(id)
-          // if (teacher) {
-          //     // console.log("Teacher Object:", teacher)
-          //     teacherStore.setTeacher(teacher)
-          // } else {
-          //     console.log("Teacher not found.")
-          //     router.push({
-          //       name: '404-resource',
-          //       params: { resource: 'teacher' }
-          //     })
-          //     // return {
-          //     //     name: '404-resource',
-          //     //     params: { resource: 'teacher' }
-          //     // }
-          // }
-
-          // // console.log(teacher.studentsId)
-          // if (teacher.studentsId && teacher.studentsId.length > 0) {
-          //   const studentPromises = teacher.studentsId.map(async studentId => {
-          //     const student = await studentStore.getStudentById(studentId)
-          //     return student
-          //   });
-          //   const students = await Promise.all(studentPromises)
-          //   // console.log(studentPromises)
-          //   studentStore.setStudent(students.filter(student => student !== null) as StudentItem[]);
-          // } else {
-          //   router.push({
-          //     name: '404-resource',
-          //     params: { resource: 'student' }
-          // })
-          // }
           const teacher = await teacherStore.getTeacherById(id)
           teacherStore.setTeacher(teacher)
           const studentPromises = teacher.studentsId.map(async studentId => {
@@ -133,42 +102,9 @@ const router = createRouter({
       name: 'student-layout',
       component: StudentLayout,
       beforeEnter: async (to) => {
-        const id: number = parseInt(to.params.id as string)
+        const id: string = to.params.id as string
         const studentStore = useStudentStore()
         const teacherStore = useTeacherStore()
-        // console.log("StudentId: " + studentStore.getStudentById(id))
-        
-        // const student = await studentStore.getStudentById(id)
-        // try {
-        //   studentStore.setStudent(student)
-        // } catch (error: any) {
-        //   if (error.response && error.response.status === 404) {
-        //     router.push({
-        //       name: '404-resource',
-        //       params: { resource: 'student' }
-        //   })
-        //   } else {
-        //     router.push({ name: 'network-error' })
-        //   }
-        //   return
-        // }
-
-        // try {
-        //   const teacher = await teacherStore.getTeacherById(student.teacherID)
-        //   teacherStore.setTeacher(teacher)
-        //   // console.log(teacher)
-        // } catch (error: any) {
-        //   if (error.response && error.response.status === 404) {
-        //     router.push({
-        //       name: '404-resource',
-        //       params: { resource: 'teacher' }
-        //   })
-        //   } else {
-        //     router.push({ name: 'network-error' })
-        //   }
-        //   return
-        // }
-
         try {
           const student = await studentStore.getStudentById(id)
           studentStore.setStudent(student)
@@ -204,25 +140,6 @@ const router = createRouter({
               router.push({ name: 'network-error'})
             }
         }
-
-        // return StudentService.getStudentById(id)
-        // .then((response) => {
-        //   studentStore.setStudent([response.data])
-        //   return TeacherService.getTeacherById(response.data.teacherID)
-        // })
-        // .then((response) => {
-        //   teacherStore.setTeacher(response.data)
-        // })
-        // .catch((error) => {
-        //   if(error.response && error.response.status === 404) {
-        //     return {
-        //       name: '404-resource',
-        //       params: { resource: 'event' }
-        //     }
-        //   } else {
-        //     return { name: 'network-error' }
-        //   }
-        // })
       },
       children: [
         {
