@@ -91,18 +91,21 @@ function navigateToStudentDetail(studentId: string) {
             </RouterLink> -->
 
             <button @click="() => navigateToStudentDetail(studentId)" class="w-full bg-amber-200 shadow-lg hover:bg-amber-300 text-white font-bold py-2 px-5
-                rounded-xl font-fig my-2 hover:transform hover:scale-[1.01] transition-transform duration-300">
-                <div class="flex items-center">
+                rounded-xl  font-fig my-2 hover:transform hover:scale-[1.01] transition-transform duration-300">
+                <div class="flex items-center mx-auto">
                   <!-- Picture on the left -->
                   <img :src="studentPicComputed(studentId)" class="w-10 h-10 object-cover rounded-full mr-2">
 
                   <!-- Text on the right in a flex column -->
-                  <div class="flex flex-col">
-                    <p class="font-fig text-left text-black">{{ studentNameComputed(studentId)}}</p>
+                  <div class="flex flex-col ml-1 ">
+                    
+                    <!-- Create separation and place Student ID on a new line -->
+                    <p class="font-fig text-left text-black text-xs">Student ID: {{ studentId }} </p>
+
+                    <p class="font-fig text-left text-black font-semibold">{{ studentNameComputed(studentId)}}</p>
                     <!-- <p class="font-fig text-left text-black">{{ student?.name }}</p> -->
 
-                    <!-- Create separation and place Student ID on a new line -->
-                    <p class="font-fig text-left text-black">Student ID: {{ studentId }} </p>
+                    
                   </div>
                 </div>
               </button>
