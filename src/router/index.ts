@@ -256,8 +256,10 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(() => {
+router.beforeEach(async () => {
   NProgress.start()
+  const teacherStore = useTeacherStore()
+  await teacherStore.fetchTeachersFromDB()
   })
 
   router.afterEach(() => {

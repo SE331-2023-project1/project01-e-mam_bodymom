@@ -5,10 +5,15 @@ import { defineStore } from "pinia";
 
 export const useTeacherStore = defineStore('teacher', {
     state: () => ({
-        teachers: null as TeacherItem | null
+        teachers: [] as TeacherItem []
     }),
     getters: {
         getTeachers: (state) => state.teachers,
+        getTeacherByPage: (state) => (perPage: number, page: number) => {
+            const startIndex = (page - 1) * perPage;
+            const endIndex = startIndex + perPage;
+            return state.teachers.slice(startIndex, endIndex);
+        },
         getTeacherById: (state) => async (id: string) => {
             const response = await TeacherService.getTeacherById(id)
             // console.log(response.data)
@@ -18,22 +23,45 @@ export const useTeacherStore = defineStore('teacher', {
         }
     },
     actions: {
-        setTeacher(teachers: TeacherItem) {
+        setTeacher(teachers: TeacherItem[]) {
             this.teachers = teachers
         },
         async fetchTeachers() {
-            const response = await TeacherService.getAllTeachers()
+            const response = this.getTeachers
             try {
-                return response.data
+                return response
             } catch (error) {
                 console.log(error)
                 return null
             }
+
+            // this.setTeacher(response)
+            
+        },
+        async fetchTeachersFromDB() {
+            const response = await TeacherService.getAllTeachers()
+            // try {
+            //     return response.data
+            // } catch (error) {
+            //     console.log(error)
+            //     return null
+            // }
+
+            this.setTeacher(response.data)
             
         },
         async fetchTeacherById(id: string) {
             try {
                 const response = await TeacherService.getTeacherById(id);
+                return response.data
+            } catch (error) {
+                console.log(error)
+                return null
+            }
+        },
+        async fetchTeacherByPage(perPage: number, page: number) {
+            try {
+                const response = await TeacherService.getTeachers(perPage, page);
                 return response.data
             } catch (error) {
                 console.log(error)
@@ -59,7 +87,8 @@ export const useTeacherStore = defineStore('teacher', {
           
               if (response.status === 201) {
                 // การเพิ่มครูสำเร็จ
-                this.setTeacher(teacher);
+                this.teachers.push(teacher)
+                console.log(this.getTeachers)
               } else {
                 // การเพิ่มครูไม่สำเร็จ
                 console.error('การเพิ่มครูไม่สำเร็จ');

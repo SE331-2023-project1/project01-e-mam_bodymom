@@ -116,6 +116,8 @@ const fetchTeachers = () => {
   // นำเข้า useTeacherStore เพื่อเรียกใช้ฟังก์ชัน fetchTeachers จาก store
   const teacherStore = useTeacherStore();
   teacherStore.fetchTeachers();
+  // console.log(teacherStore)
+  // teacherStore.getTeachers()
 };
 
 const addTeacher = () => {
