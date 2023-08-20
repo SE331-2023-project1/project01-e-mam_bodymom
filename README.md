@@ -32,6 +32,7 @@
 - [x]  Teacher list
 - [x]  Add student page
 - [x]  Add teacher page
+- [x]  Flash message for notifications
 
 5. Deployment and Version Control :
 - [ ]  Set up automated Continuous Deployment (CD)

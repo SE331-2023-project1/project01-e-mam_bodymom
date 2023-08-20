@@ -11,10 +11,10 @@ const { message } = storeToRefs(store)
 </script>
 
 <template>
-  <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-sky-500" v-if="message">
+  <!-- <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-sky-500" v-if="message">
   <h4>{{ message }}</h4>
 
-</div>
+</div> -->
 <Navbar />
    
   <!-- <header>
