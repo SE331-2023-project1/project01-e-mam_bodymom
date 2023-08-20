@@ -113,11 +113,11 @@ const addComment = () => {
 
       <div class="items-center mx-2">
       
-        <span class="font-fig text-xs font-semibold text-gray-600 animate-fade-down">
+        <span class="font-fig text-xs font-semibold text-gray-600 ">
           Anonymous comment
         </span>
 
-        <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 animate-fade-down">
+        <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
           <span class="text-black font-fig flex items-center">
             <img src="../../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
             example comment
@@ -129,8 +129,8 @@ const addComment = () => {
         <div v-for="(commentItem, index) in keepCommt_id" :key="index">
           
 
-          <span class="font-fig text-xs font-semibold text-gray-600 animate-fade-down">Anonymous comment</span>
-          <div class="flex items-center bg-emerald-100 p-2 mb-2 rounded-lg mt-1 animate-fade-down">
+          <span class="font-fig text-xs font-semibold text-gray-600 ">Anonymous comment</span>
+          <div class="flex items-center bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
             <img src="../../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
             <span class="text-black font-fig">{{ commentItem.comment }}</span>
           </div>
