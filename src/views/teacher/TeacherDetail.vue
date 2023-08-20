@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { type StudentItem, type TeacherItem } from '@/type'
-import type { PropType } from 'vue'
+import { computed, type PropType } from 'vue'
+import { useStudentStore } from '@/stores/student';
+import { useRouter } from 'vue-router';
 
 defineProps({
   teacher: {
@@ -12,6 +14,41 @@ defineProps({
     reqiure: true
   }
 })
+
+// const getStudentName = (studentId: string) => {
+//   const studentStore = useStudentStore()
+//   const student = studentStore.getStudentById(studentId)
+//   return student
+// };
+
+const getStudentName = (studentId: string) => {
+  const studentStore = useStudentStore()
+  const student = studentStore.students.find(student => student.id === studentId);
+  return student ? `${student.name} ${student.surname}` : 'Unknown Student';
+};
+
+const getStudentPic = (studentId: string) => {
+  const studentStore = useStudentStore()
+  const student = studentStore.students.find(student => student.id === studentId);
+  return student ? `${student.profileimage}` : 'Unknown Student';
+};
+
+const studentNameComputed = computed(() => (studentId: string) => {
+  return getStudentName(studentId);
+});
+
+const studentPicComputed = computed(() => (studentId: string) => {
+  return getStudentPic(studentId);
+});
+
+const router = useRouter()
+
+function navigateToStudentDetail(studentId: string) {
+  router.push({
+    name: 'student-detail',
+    params: { id: studentId }
+  });
+}
 
 </script>
 
@@ -47,25 +84,28 @@ defineProps({
 
         <div class="justify-center items-center ">
           <div v-for="studentId in teacher.studentsId" :key="studentId">
-            <RouterLink :to="{ name: 'student-detail', params: { id: studentId } }">
+            <!-- <RouterLink :to="{ name: 'student-detail', params: { id: studentId } }">
 
-              <button class="w-full bg-amber-200 shadow-lg hover:bg-amber-300 text-white font-bold py-2 px-5
+              
+              
+            </RouterLink> -->
+
+            <button @click="() => navigateToStudentDetail(studentId)" class="w-full bg-amber-200 shadow-lg hover:bg-amber-300 text-white font-bold py-2 px-5
                 rounded-xl font-fig my-2 hover:transform hover:scale-[1.01] transition-transform duration-300">
                 <div class="flex items-center">
                   <!-- Picture on the left -->
-                  <!-- <img :src="student?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2"> -->
+                  <img :src="studentPicComputed(studentId)" class="w-10 h-10 object-cover rounded-full mr-2">
 
                   <!-- Text on the right in a flex column -->
-                  <!-- <div class="flex flex-col"> -->
-                    <!-- <p class="font-fig detail">{{ student?.name }} {{ student?.surname }}
-                    </p> -->
+                  <div class="flex flex-col">
+                    <p class="font-fig text-left text-black">{{ studentNameComputed(studentId)}}</p>
+                    <!-- <p class="font-fig text-left text-black">{{ student?.name }}</p> -->
 
                     <!-- Create separation and place Student ID on a new line -->
-                    <p class="font-fig text-left text-black">Student ID: {{ studentId }}</p>
-                  <!-- </div> -->
+                    <p class="font-fig text-left text-black">Student ID: {{ studentId }} </p>
+                  </div>
                 </div>
               </button>
-            </RouterLink>
 
           </div>
         </div>
