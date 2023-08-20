@@ -38,7 +38,7 @@ const fetchStudents = async () => {
 // console.log(students)
 
 onBeforeRouteUpdate((to, from, next) => {
-    const toPage = Number(to.query.page);
+    const toPage = Number(to.query.page)
     students.value = store.getStudentByPage(6, toPage)
     totalStudent.value = store.getStudent.length
     next()

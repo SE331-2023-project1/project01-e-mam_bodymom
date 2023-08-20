@@ -1,7 +1,25 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
+
+function navigateToStudentList() {
+  router.push({
+    name: 'student-list'
+  })
+}
+function navigateToTeacherList() {
+  router.push({
+    name: 'teacher-list'
+  })
+}
+function navigateToAddPerson() {
+  router.push({
+    name: 'add-person'
+  })
+}
 </script>
 
 <template>
@@ -24,10 +42,10 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul
           class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-500 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white text-black">
-          <li class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+          <button @click="() => navigateToStudentList()" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/student.png" class="h-[20px] mr-2">
-            <RouterLink to="/students">Students</RouterLink>
-          </li>
+            Students
+          </button>
 
           <li class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/teacher.png" class="h-[20px] mr-2">
