@@ -32,7 +32,7 @@ const props = defineProps({
 
 
 
-const fetchTeachers = async () => {
+const fetchTeachers = () => {
     
     // const response = await TeacherService.getTeachers(6, props.page);
     // const response = await TeacherService.getAllTeachers();

@@ -10,6 +10,11 @@ export const useStudentStore = defineStore('student', {
     }),
     getters: {
         getStudent: (state) => state.students,
+        getStudentByPage: (state) => (perPage: number, page: number) => {
+            const startIndex = (page - 1) * perPage;
+            const endIndex = startIndex + perPage;
+            return state.students.slice(startIndex, endIndex);
+        },
         getStudentById: (state) => async (id: string) => {
             const response = await StudentService.getStudentById(id)
             return new Promise<StudentItem | null>((resolve) => {
@@ -22,14 +27,17 @@ export const useStudentStore = defineStore('student', {
             this.students = students
         },
         async fetchStudents() {
-            const response = await StudentService.getAllStudents()
             try {
-                return response.data
+                return this.students
             } catch (error) {
                 console.log(error)
                 return null
             }
             
+        },
+        async fetchStudentsFromDB() {
+            const response = await StudentService.getAllStudents()
+            this.setStudent(response.data)
         },
         async fetchStudentById(id: string) {
             try {

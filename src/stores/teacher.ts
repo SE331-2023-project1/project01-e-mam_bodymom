@@ -26,10 +26,10 @@ export const useTeacherStore = defineStore('teacher', {
         setTeacher(teachers: TeacherItem[]) {
             this.teachers = teachers
         },
-        async fetchTeachers() {
-            const response = this.getTeachers
+        fetchTeachers() {
+            // const response = this.getTeachers
             try {
-                return response
+                return this.teachers
             } catch (error) {
                 console.log(error)
                 return null
@@ -88,7 +88,7 @@ export const useTeacherStore = defineStore('teacher', {
               if (response.status === 201) {
                 // การเพิ่มครูสำเร็จ
                 this.teachers.push(teacher)
-                console.log(this.getTeachers)
+                // console.log(this.getTeachers)
               } else {
                 // การเพิ่มครูไม่สำเร็จ
                 console.error('การเพิ่มครูไม่สำเร็จ');

@@ -29,25 +29,28 @@ const props = defineProps({
 })
 
 const fetchStudents = async () => {
-    const response = await StudentService.getStudents(6, props.page);
-    students.value = response.data;
-    totalStudent.value = response.headers['x-total-count'];
-    console.log(students.value);
+    // const response = await StudentService.getStudents(6, props.page);
+    students.value = store.getStudentByPage(6, props.page)
+    totalStudent.value = store.getStudent.length
+    // console.log(students.value);
 };
 
-console.log(students)
+// console.log(students)
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = Number(to.query.page);
-    StudentService.getStudents(6, toPage)
-        .then((response: AxiosResponse<StudentItem[]>) => {
-            students.value = response.data;
-            totalStudent.value = response.headers['x-total-count'];
-            next();
-        })
-        .catch(() => {
-            next({ name: 'NetworkError' });
-        });
+    students.value = store.getStudentByPage(6, toPage)
+    totalStudent.value = store.getStudent.length
+    next()
+    // StudentService.getStudents(6, toPage)
+    //     .then((response: AxiosResponse<StudentItem[]>) => {
+    //         students.value = response.data;
+    //         totalStudent.value = response.headers['x-total-count'];
+    //         next();
+    //     })
+    //     .catch(() => {
+    //         next({ name: 'NetworkError' });
+    //     });
 });
 
 const hasNextPage = computed(() => {

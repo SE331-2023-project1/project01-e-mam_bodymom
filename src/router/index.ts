@@ -250,8 +250,10 @@ const router = createRouter({
     },{
       path: '/add',
       name: 'add-person',
-      component: AddPerson
-
+      component: AddPerson,
+      beforeEnter: () => {
+        useTeacherStore().fetchTeachers()
+      }
     }
   ]
 })
@@ -259,7 +261,14 @@ const router = createRouter({
 router.beforeEach(async () => {
   NProgress.start()
   const teacherStore = useTeacherStore()
-  await teacherStore.fetchTeachersFromDB()
+  const studentStore = useStudentStore()
+  if (teacherStore.teachers.length === 0) {
+    await teacherStore.fetchTeachersFromDB()
+  }
+  if (studentStore.students.length === 0) {
+    await studentStore.fetchStudentsFromDB()
+  }
+
   })
 
   router.afterEach(() => {
