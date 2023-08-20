@@ -44,12 +44,39 @@
 
 
 
-          <div class="mb-3">
+          <div class="flex mb-3">
             <!-- สร้าง input fields สำหรับรายการคอร์ส -->
-            <label for="studentCourseList" class="mr-2">Course List:</label>
-            <input
+            <label for="studentCourseList" class="my-auto mr-2">Course List:</label>
+            <select
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
+              v-model="studentCourseList" id="studentCourseList">
+              <option value>Select Course</option>
+              <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
+              <option value="Math">Math</option>
+              <option value="Science">Science</option>
+              <option value="History">English</option>
+              <option value="History">History</option>
+              <option value="Physics">Physics</option>
+              <option value="ComSci">ComSci</option>
+              <option value="Art">Art</option>
+              <option value="Music">Music</option>
+              <option value="Biology">Biology</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Spanish">Spanish</option>
+              <option value="Literature">Literature</option>
+              <option value="PolSci">PolSci</option>
+              <option value="Philosophy">Philosophy</option>
+              <option value="Sports">Sports</option>
+              <option value="PE">PE</option>
+              <option value="Drama">Drama</option>
+              <option value="Astronomy">Astronomy</option>
+              <option value="Languages">Languages</option>
+
+
+            </select>
+            <!-- <input
               class="w-full bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-              v-model="studentCourseList" type="text" id="studentCourseList" required>
+              v-model="studentCourseList" type="text" id="studentCourseList" required> -->
           </div>
 
 
