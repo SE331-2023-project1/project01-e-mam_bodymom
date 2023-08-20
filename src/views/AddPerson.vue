@@ -1,75 +1,113 @@
 <template>
-    <div>
-      <h1>Add Person</h1>
-      <div>
-        <label for="personType">Select Person Type:</label>
-        <select v-model="selectedPersonType" id="personType">
+  <div class="flex flex-col p-3 w-3/4 h-4/5 border border-gray-700
+        rounded-lg mb-4 bg-white shadow-md my-5 mx-auto">
+
+    <div class="font-fig">
+      <h1 class="flex justify-center font-bold text-2xl mb-3 text-green-600">Add Person</h1>
+      <div class="flex mb-3">
+        <label class="my-auto" for="personType">Select Person Type:</label>
+        <select  v-model="selectedPersonType" id="personType" class="ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5">
           <option value="student">Student</option>
           <option value="teacher">Teacher</option>
         </select>
       </div>
-  
+
       <!-- แสดงแบบฟอร์มขึ้นอย่างใดอย่างหนึ่งขึ้นอยู่กับ selectedPersonType -->
       <div v-if="selectedPersonType === 'student'">
+
         <!-- แบบฟอร์มสำหรับเพิ่มนักเรียน -->
         <form @submit.prevent="addStudent">
-          <label for="studentName">Name:</label>
-          <input v-model="studentName" type="text" id="studentName" required>
-  
-          <label for="studentSurname">Surname:</label>
-          <input v-model="studentSurname" type="text" id="studentSurname" required>
-  
-          <label for="studentProfileImage">Profile Image URL:</label>
-          <input v-model="studentProfileImage" type="text" id="studentProfileImage" required>
-  
-          <!-- สร้าง input fields สำหรับรายการคอร์ส -->
-          <label for="studentCourseList">Course List:</label>
-          <input v-model="studentCourseList" type="text" id="studentCourseList" required>
-  
-          <!-- เลือกครูจาก dropdown list (ให้นำมาจาก store ของครู) -->
-          <label for="studentTeacher">Teacher:</label>
-          <select v-model="studentTeacher" id="studentTeacher">
-            <option value="">Select a Teacher</option>
-            <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
-            <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }} {{ teacher.surname }}</option>
-          </select>
-  
-          <!-- เพิ่ม input fields สำหรับคอมเมนต์ -->
-          <label for="studentComment">Comments:</label>
-          <textarea v-model="studentComment" id="studentComment"></textarea>
-  
-          <button type="submit">Add Student</button>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex mb-3">
+              <label for="studentName" class="my-auto mr-2">Name:</label>
+              <input class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
+               v-model="studentName" type="text" id="studentName" required>
+            </div>
+
+            <div class="flex mb-3">
+              <label for="studentSurname" class="my-auto mx-2">Surname:</label>
+              <input class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5" 
+              v-model="studentSurname" type="text" id="studentSurname" required>
+            </div>
+          </div>
+
+
+          <div class="mb-3">
+            <label for="studentProfileImage" class="mr-2">Profile Image URL:</label>
+            <input class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
+            v-model="studentProfileImage" type="text" id="studentProfileImage" required>
+          </div>
+         
+
+
+          <div class="mb-3">
+            <!-- สร้าง input fields สำหรับรายการคอร์ส -->
+            <label for="studentCourseList" class="mr-2">Course List:</label>
+            <input class="w-full bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
+            v-model="studentCourseList" type="text" id="studentCourseList" required>
+          </div>
+
+
+          <div class="flex mb-3">
+            <!-- เลือกครูจาก dropdown list (ให้นำมาจาก store ของครู) -->
+            <label  for="studentTeacher" class="my-auto mr-2">Teacher:</label>
+            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5" v-model="studentTeacher" id="studentTeacher">
+              <option value="">Select a Teacher</option>
+              <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
+              <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }} {{
+                teacher.surname
+              }}</option>
+            </select>
+
+          </div>
+
+
+          <div class="mb-3">
+            <!-- เพิ่ม input field สำหรับคอมเมนต์ -->
+            <label for="studentComment" class="mr-2">Comments:</label>
+            <input class="w-full bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5" 
+            v-model="studentComment" type="text" id="studentComment">
+          </div>
+
+
+          <div class="flex justify-center mb-2">
+            <button class="bg-green-500 hover:bg-green-700 shadow-md px-2 py-1
+            rounded-lg font-bold text-white" type="submit">Add Student</button>
+          </div>
         </form>
       </div>
-  
+
       <div v-else-if="selectedPersonType === 'teacher'">
         <!-- แบบฟอร์มสำหรับเพิ่มครู -->
         <form @submit.prevent="addTeacher">
           <label for="teacherName">Name:</label>
           <input v-model="teacherName" type="text" id="teacherName" required>
-  
+
           <label for="teacherSurname">Surname:</label>
           <input v-model="teacherSurname" type="text" id="teacherSurname" required>
-  
+
           <label for="teacherProfileImage">Profile Image URL:</label>
           <input v-model="teacherProfileImage" type="text" id="teacherProfileImage" required>
-  
+
           <!-- เลือกนักเรียนจาก dropdown list (ให้นำมาจาก store ของนักเรียน) -->
           <label for="teacherStudents">Students:</label>
           <select v-model="teacherStudents" id="teacherStudents">
             <option value="">Select Students</option>
             <!-- วนลูปเพื่อแสดงรายชื่อนักเรียนที่มีใน store ของนักเรียน -->
-            <option v-for="student in students" :key="student.id" :value="student.id">{{ student.name }} {{ student.surname }}</option>
+            <option v-for="student in students" :key="student.id" :value="student.id">{{ student.name }} {{
+              student.surname
+            }}</option>
           </select>
-  
+
           <button type="submit">Add Teacher</button>
-          
+
         </form>
       </div>
     </div>
-  </template>
+  </div>
+</template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useStudentStore } from '@/stores/student';
 import { useTeacherStore } from '@/stores/teacher';
@@ -118,7 +156,7 @@ const fetchTeachers = () => {
   teacherStore.fetchTeachers();
   // teacherStore.getTeachers
   console.log(teacherStore.getTeachers)
-  
+
 };
 
 const addTeacher = () => {
