@@ -5,6 +5,7 @@ import type { PropType } from 'vue'
 import { storeToRefs } from 'pinia';
 import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
+import { useMessageStore } from '@/stores/message';
 
 const props = defineProps({
   student: {
@@ -20,6 +21,9 @@ const props = defineProps({
     require: true
   }
 })
+
+const store = useMessageStore()
+const { message } = storeToRefs(store)
 
 const comment_input = ref<string>('');
 const keep_comm: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keep_comm เป็น Ref<CommentInfo[]>
@@ -55,8 +59,11 @@ const addComment = () => {
     // Clear the input field
     comment_input.value = '';
   }
+  store.updateMessage('You are successfully for adding comment to ' + props.student?.name + ' ' + props.student?.surname)
+  setTimeout(() => {
+    store.resetMessage()
+  }, 4000)
 };
-
 
 </script>
 
@@ -99,33 +106,62 @@ const addComment = () => {
     </div>
   </div>
 
-  <div class="student-class flex flex-col mb-2 items-center justify-center">
+  <!-- comment section -->
+  <div class=" flex flex-col mb-2 items-center justify-center">
     <div class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg bg-white shadow-md mb-8">
-      <div class="items-center">
+
+      <div class="items-center mx-2">
+      
+        <span class="font-fig text-xs font-semibold text-gray-600 ">
+          Anonymous comment
+        </span>
+
+        <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
+          <span class="text-black font-fig flex items-center">
+            <img src="../../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
+            example comment
+          </span>
+        </div>
+
+
+        
         <div v-for="(commentItem, index) in keepCommt_id" :key="index">
-          <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 animate-fade-down">
+          
+
+          <span class="font-fig text-xs font-semibold text-gray-600 ">Anonymous comment</span>
+          <div class="flex items-center bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
+            <img src="../../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
             <span class="text-black font-fig">{{ commentItem.comment }}</span>
           </div>
         </div>
+        
+        
         <!-- comment box -->
         <div class="my-3">
+          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+              <h4>{{ message }}</h4>
+            </div>
+            <FlashMessage />
           <form @submit.prevent="addComment">
             <!-- label -->
-            <div class="mx-3 mb-1">
+            <div class="mx-1 mb-1">
               <label for="name" class="text-black font-bold font-fig">Comment:</label>
             </div>
-            <!-- input -->
-            <div class="mx-2">
-              <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-            focus:ring-fuchsia-500 focus:border-fuchsia-500 block p-2.5" placeholder="Write your comment here..."></textarea>
-            </div>
+          
+              <!-- input -->
+              <div>
+                <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            focus:ring-green-500 focus:border-green-500 block p-2.5"
+                  placeholder="Write your comment here..."></textarea>
+              </div>
 
-            <!-- button -->
-            <div class="flex justify-center mt-3">
-              <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
+              
+              <!-- button -->
+              <div class="flex justify-center mt-3">
+                <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
                text-black py-1 px-2 rounded-xl font-fig font-semibold">Add Comment</button>
-            </div>
+              </div>
           </form>
         </div>
       </div>

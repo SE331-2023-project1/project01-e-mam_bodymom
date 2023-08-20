@@ -2,10 +2,19 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import Navbar from './components/Navbar.vue'
+import { useMessageStore } from './stores/message';
+import { storeToRefs } from 'pinia';
+
+const store = useMessageStore()
+const { message } = storeToRefs(store)
 
 </script>
 
 <template>
+  <!-- <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-sky-500" v-if="message">
+  <h4>{{ message }}</h4>
+
+</div> -->
 <Navbar />
    
   <!-- <header>

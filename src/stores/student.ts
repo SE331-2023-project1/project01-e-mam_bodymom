@@ -31,7 +31,7 @@ export const useStudentStore = defineStore('student', {
             }
             
         },
-        async fetchStudentById(id: number) {
+        async fetchStudentById(id: string) {
             try {
                 const response = await StudentService.getStudentById(id);
                 return response.data

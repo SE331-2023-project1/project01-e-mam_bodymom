@@ -90,6 +90,7 @@ const router = createRouter({
           const students = await Promise.all(studentPromises)
           // console.log(studentPromises)
           studentStore.setStudent(students.filter(student => student !== null) as StudentItem[]);
+          // console.log(studentStore)
       } catch (error: any) {
         if (error.response && error.response.status === 404) {
           // const errorUrl = error.response.config.url;
@@ -173,7 +174,7 @@ const router = createRouter({
           studentStore.setStudent(student)
           const teacher = await teacherStore.getTeacherById(student.teacherID)
           teacherStore.setTeacher(teacher)
-          
+          // console.log(studentStore)
 
         } catch (error: any) {
           if (error.response && error.response.status === 404) {

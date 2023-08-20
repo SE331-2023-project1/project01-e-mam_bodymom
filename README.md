@@ -21,17 +21,23 @@
     - Student 
     - Teacher
     - Student and Teacher Profile images
-- [ ]  Comments section where admin can enter comments given by the teacher to the student
+- [x]  Teacher Detail Page :
+    - Teacher ID
+    - Teacher Name and Surname
+    - Teacher Profile images
+    - List of students under this teacher
+- [x]  Comments section where admin can enter comments given by the teacher to the student
 
 3. Storage and State Management :
-- [ ]  Save comments to Pinia
-- [ ]  Save student and teacher data to Pinia
+- [x]  Save comments to Pinia
+- [x]  Save student and teacher data to Pinia
 
 4. User Interface :
 - [x]  Student list
 - [x]  Teacher list
 - [x]  Add student page
 - [x]  Add teacher page
+- [x]  Flash message for notifications
 
 5. Deployment and Version Control :
 - [ ]  Set up automated Continuous Deployment (CD)

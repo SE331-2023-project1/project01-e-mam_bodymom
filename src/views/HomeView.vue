@@ -22,7 +22,7 @@ import TheWelcome from '../components/TheWelcome.vue'
         </div>
       </div>
       <div class="member flex flex-col items-center justify-center">
-        <img src="../assets/020.JPG" alt="" class="animate-fade-down h-48 rounded-full mb-4 shadow-md" />
+        <img src="../assets/021.JPG" alt="" class="animate-fade-down h-48 rounded-full mb-4 shadow-md" />
         <p><span class="font-fig font-bold">Name:</span> Thanakorn Waleejaroenpong</p>
         <p><span class="font-fig font-bold">Student ID:</span> 642115021</p>
         <div class="flex items-center">
