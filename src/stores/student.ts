@@ -16,9 +16,10 @@ export const useStudentStore = defineStore('student', {
             return state.students.slice(startIndex, endIndex);
         },
         getStudentById: (state) => async (id: string) => {
-            const response = await StudentService.getStudentById(id)
+            const response = state.students.find(student => student.id === id)
+            // console.log(response.data)
             return new Promise<StudentItem | null>((resolve) => {
-                resolve(response.data || null)
+                resolve(response || null)
             })
         }
     },
@@ -41,8 +42,8 @@ export const useStudentStore = defineStore('student', {
         },
         async fetchStudentById(id: string) {
             try {
-                const response = await StudentService.getStudentById(id);
-                return response.data
+                const response = this.getStudentById(id)
+                return response
             } catch (error) {
                 console.log(error)
                 return null
