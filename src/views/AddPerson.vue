@@ -162,12 +162,16 @@ const router = useRouter();
 const addStudent = () => {
   const store = useStudentStore();
 
-  
+  const generateRandomID = () => {
+  const min = 100000; // Minimum 6-digit number
+  const max = 999999; // Maximum 6-digit number
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
   const newStudent = {
     name: studentName.value,
     surname: studentSurname.value,
-    id: 'NEW_ID', // สร้าง ID ใหม่ตามต้องการ
+    id: generateRandomID().toString(), // สร้าง ID ใหม่ตามต้องการ
     profileimage: studentProfileImage.value,
     courselist: studentCourseList.value.split(',').map(course => course.trim()),
     teacherID: studentTeacher.value,
