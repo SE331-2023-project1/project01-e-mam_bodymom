@@ -5,6 +5,7 @@ import type { PropType } from 'vue'
 import { storeToRefs } from 'pinia';
 import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
+import { useMessageStore } from '@/stores/message';
 
 const props = defineProps({
   student: {
@@ -21,6 +22,7 @@ const props = defineProps({
   }
 })
 
+const store = useMessageStore()
 const comment_input = ref<string>('');
 const keep_comm: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keep_comm เป็น Ref<CommentInfo[]>
 const keepCommt_id: Ref<CommentInfo[]> = ref([]); // ระบุประเภทของ keepCommt_id เป็น Ref<CommentInfo[]>
@@ -55,8 +57,11 @@ const addComment = () => {
     // Clear the input field
     comment_input.value = '';
   }
+  store.updateMessage('You are successfully for adding comment to ' + props.student?.name + ' ' + props.student?.surname)
+  setTimeout(() => {
+    store.resetMessage()
+  },4000)
 };
-
 
 </script>
 
