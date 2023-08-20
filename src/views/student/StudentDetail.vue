@@ -112,10 +112,7 @@ const addComment = () => {
         rounded-lg bg-white shadow-md mb-8">
 
       <div class="items-center mx-2">
-        <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-sky-500" v-if="message">
-              <h4>{{ message }}</h4>
-            </div>
-            <FlashMessage />
+      
         <span class="font-fig text-xs font-semibold text-gray-600 animate-fade-down">
           Anonymous comment
         </span>
@@ -139,8 +136,13 @@ const addComment = () => {
           </div>
         </div>
         
+        
         <!-- comment box -->
         <div class="my-3">
+          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+              <h4>{{ message }}</h4>
+            </div>
+            <FlashMessage />
           <form @submit.prevent="addComment">
             <!-- label -->
             <div class="mx-1 mb-1">
@@ -150,10 +152,11 @@ const addComment = () => {
               <!-- input -->
               <div>
                 <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-            focus:ring-fuchsia-500 focus:border-fuchsia-500 block p-2.5"
+            focus:ring-green-500 focus:border-green-500 block p-2.5"
                   placeholder="Write your comment here..."></textarea>
               </div>
 
+              
               <!-- button -->
               <div class="flex justify-center mt-3">
                 <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
