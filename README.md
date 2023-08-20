@@ -21,6 +21,11 @@
     - Student 
     - Teacher
     - Student and Teacher Profile images
+- [x]  Teacher Detail Page :
+    - Teacher ID
+    - Teacher Name and Surname
+    - Teacher Profile images
+    - List of students under this teacher
 - [x]  Comments section where admin can enter comments given by the teacher to the student
 
 3. Storage and State Management :
