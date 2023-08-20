@@ -4,8 +4,8 @@ const router = useRouter()
 </script>
 
 <template>
-    <div class="flex flex-col font-fig items-center justify-center text-black my-5">
-        <img src="../assets/network.png" class="notfound">
+    <div class="flex flex-col font-fig items-center justify-center text-black my-8">
+        <!-- <img src="../assets/network.png" class="notfound"> -->
         <h1 class="text-3xl font-bold">Uh-oh!</h1>
         <h3 class="text-center mt-1 text-xl">
             It looks like you're experiencing some network issues, please take a breath <br> and
