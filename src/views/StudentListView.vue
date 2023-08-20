@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { type StudentItem } from '@/type';
-import { computed, ref, watchEffect, type Ref } from 'vue';
+import { computed, ref, watchEffect, type Ref , onMounted } from 'vue';
 import StudentService from '@/services/StudentService';
 import StudentCard from '@/components/StudentCard.vue';
 import NProgress from 'nprogress'
-import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+import { onBeforeRouteUpdate, useRouter,useRoute  } from 'vue-router'
 import type { AxiosResponse } from 'axios';
+import { useStudentStore } from '@/stores/student';
+
 
 const router = useRouter()
+const store = useStudentStore();
+const route = useRoute();
 
 const students: Ref<Array<StudentItem>> = ref([])
-
-
 const totalStudent = ref<number>(0)
 
 const props = defineProps({
@@ -25,28 +27,37 @@ const props = defineProps({
         required: true
     }
 })
-StudentService.getStudents(6, props.page).then((response) => {
-    students.value = response.data
-    totalStudent.value = response.headers['x-total-count']
-    console.log(students.value)
-})
+
+const fetchStudents = async () => {
+    const response = await StudentService.getStudents(6, props.page);
+    students.value = response.data;
+    totalStudent.value = response.headers['x-total-count'];
+    console.log(students.value);
+};
 
 console.log(students)
 
 onBeforeRouteUpdate((to, from, next) => {
-    const toPage = Number(to.query.page)
-    StudentService.getStudents(6, toPage).then((response: AxiosResponse<StudentItem[]>) => {
-        students.value = response.data
-        totalStudent.value = response.headers['x-total-count']
-        next()
-    }).catch(() => {
-        next({ name: 'NetworkError' })
-    })
-})
+    const toPage = Number(to.query.page);
+    StudentService.getStudents(6, toPage)
+        .then((response: AxiosResponse<StudentItem[]>) => {
+            students.value = response.data;
+            totalStudent.value = response.headers['x-total-count'];
+            next();
+        })
+        .catch(() => {
+            next({ name: 'NetworkError' });
+        });
+});
+
 const hasNextPage = computed(() => {
-    const totalPages = Math.ceil(totalStudent.value / 6)
-    return props.page.valueOf() < totalPages
-})
+    const totalPages = Math.ceil(totalStudent.value / 6);
+    return props.page < totalPages;
+});
+
+onMounted(() => {
+    fetchStudents();
+});
 
 </script>
 

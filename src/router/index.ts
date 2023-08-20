@@ -19,6 +19,8 @@ import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
 import { storeToRefs } from 'pinia'
 
+import AddPerson from '../views/AddPerson.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -244,6 +246,11 @@ const router = createRouter({
       path: '/network-error',
       name: 'network-error',
       component: NetworkErrorView
+    },{
+      path: '/add',
+      name: 'add-person',
+      component: AddPerson
+
     }
   ]
 })

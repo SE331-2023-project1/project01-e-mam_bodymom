@@ -8,6 +8,7 @@ export interface StudentItem {
     comment: []
 }
 export interface TeacherItem {
+    [x: string]: any;
     name: string;
     surname: string;
     profileimage: string;

@@ -33,6 +33,9 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
             <img src="../assets/teacher.png" class="h-[20px] mr-2">
             <RouterLink to="/teachers">Teachers</RouterLink>
           </li>
+          <li class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">       
+          <RouterLink to="/add">Add Person</RouterLink>
+          </li>
 
         </ul>
       </div>
