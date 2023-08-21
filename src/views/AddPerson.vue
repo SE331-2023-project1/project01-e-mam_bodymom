@@ -88,7 +88,19 @@
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentTeacher" id="studentTeacher">
               <option value="" disabled>Select a Teacher</option>
-              <option value="T234">David Smith</option>
+              <option value="T123">David Smith</option>
+              <option value="T234">Alice Johnson</option>
+              <option value="T345">Emily Williams</option>
+              <option value="T456">Rose Brown</option>
+              <option value="T567">Sarah Miller</option>
+              <option value="T678">John Davis</option>
+              <option value="T789">Olivia Wilson</option>
+              <option value="T890">William Anderson</option>
+              <option value="T901">Sophia Martinez</option>
+              <option value="T012">Daniel Taylor</option>
+
+
+
               <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
               <!-- <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }} {{
                 teacher.surname
