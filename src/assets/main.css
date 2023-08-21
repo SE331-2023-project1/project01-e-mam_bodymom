@@ -33,7 +33,7 @@ body {
   height: 14px;
 }
 
-@media (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
   .crop {
     object-fit: cover;
     width: 300px;
@@ -58,8 +58,8 @@ body {
   height: 180px;
 }
 
-@media (max-width: 767px) {
-  /* Styles for mobile devices */
+@media screen and (max-width: 768px) {
+  /* Styles for tablets */
   .crop {
     width: 150px;
     height: 150px;
@@ -84,6 +84,29 @@ body {
     height: 10px;
   } */
   
+}
+
+@media screen and (max-width: 480px) {
+  /* CSS rules for mobile devices */
+  .crop {
+    width: 150px;
+    height: 150px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+
+  .course {
+    font-size: 10px;
+  }
+
+  .teacherid {
+    font-size: 13px;
+  }
+  .notfound {
+    height: 100px;
+  }
 }
 
 .font-noto {
