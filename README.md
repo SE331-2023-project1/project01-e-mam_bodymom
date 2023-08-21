@@ -60,6 +60,8 @@
     - add comment
     - add person successfully
 
+- [x] Progress bar
+
 5. Deployment and Version Control :
 - [x]  Set up automated Continuous Deployment (CD)
 - [x]  Deploy the application on Firebase
