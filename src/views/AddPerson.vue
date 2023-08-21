@@ -23,14 +23,14 @@
               <label for="studentName" class="my-auto mr-2">Name:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="studentName" type="text" id="studentName" required>
+                v-model="studentName" type="text" id="studentName" required pattern="[A-Za-z]+" title="Please enter a valid name (only alphabetic characters are allowed).">
             </div>
 
             <div class="flex mb-3">
               <label for="studentSurname" class="my-auto mx-2">Surname:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="studentSurname" type="text" id="studentSurname" required>
+                v-model="studentSurname" type="text" id="studentSurname" required pattern="[A-Za-z]+" title="Please enter a valid name (only alphabetic characters are allowed).">
             </div>
           </div>
 
@@ -40,7 +40,7 @@
             <input
               class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentProfileImage" type="text" id="studentProfileImage" required pattern="https?://.+"
-              placeholder="Add link of your picture ('http://..' or 'https://..)">
+              placeholder="Add link of your picture ('http://..' or 'https://..)" title="Must start with 'http://' or 'https://'">
           </div>
 
 
@@ -122,14 +122,14 @@
               <label for="teacherName" class="mr-2 my-auto">Name:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="teacherName" type="text" id="teacherName" required >
+                v-model="teacherName" type="text" id="teacherName" required pattern="[A-Za-z]+">
             </div>
 
             <div class="flex mb-3">
               <label for="teacherSurname" class="mr-2 my-auto">Surname:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="teacherSurname" type="text" id="teacherSurname" required>
+                v-model="teacherSurname" type="text" id="teacherSurname" required pattern="[A-Za-z]+">
             </div>
           </div>
 
@@ -138,7 +138,7 @@
             <label for="teacherProfileImage" class="mr-2">Profile Image URL:</label>
             <input  placeholder="Add link of your picture ('http://..' or 'https://..)"
               class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-              v-model="teacherProfileImage" type="text" id="teacherProfileImage" required pattern="https?://.+">
+              v-model="teacherProfileImage" type="text" id="teacherProfileImage" required pattern="https?://.+" title="Must start with 'http://' or 'https://'">
           </div>
 
           <div class="flex mb-3">
