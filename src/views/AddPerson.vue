@@ -55,7 +55,7 @@
               <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
               <option value="Math">Math</option>
               <option value="Science">Science</option>
-              <option value="History">English</option>
+              <option value="English">English</option>
               <option value="History">History</option>
               <option value="Physics">Physics</option>
               <option value="ComSci">ComSci</option>
@@ -88,7 +88,19 @@
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentTeacher" id="studentTeacher">
               <option value="" disabled>Select a Teacher</option>
-              <option value="T234">David Smith</option>
+              <option value="T123">David Smith</option>
+              <option value="T234">Alice Johnson</option>
+              <option value="T345">Emily Williams</option>
+              <option value="T456">Rose Brown</option>
+              <option value="T567">Sarah Miller</option>
+              <option value="T678">John Davis</option>
+              <option value="T789">Olivia Wilson</option>
+              <option value="T890">William Anderson</option>
+              <option value="T901">Sophia Martinez</option>
+              <option value="T012">Daniel Taylor</option>
+
+
+
               <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
               <!-- <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }} {{
                 teacher.surname
@@ -98,14 +110,12 @@
           </div>
 
 
-          <!-- <div class="mb-3">
-            <label for="studentComment" class="mr-2">Comments:</label>
-            <input
-              class="w-full bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-              v-model="studentComment" type="text" id="studentComment">
-          </div> -->
+          
 
-
+          <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+              <h4>{{ message }}</h4>
+            </div>
+            <FlashMessage />
           <div class="flex justify-center mb-2">
             <button class="bg-green-500 hover:bg-green-700 shadow-md px-2 py-1
             rounded-lg font-bold text-white" type="submit">Add Student</button>
@@ -155,7 +165,10 @@
             <!-- </select> -->
           <!-- </div> -->
 
-
+          <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+              <h4>{{ message }}</h4>
+            </div>
+            <FlashMessage />
           <div class="flex justify-center mb-2">
             <button class="bg-green-500 hover:bg-green-700 shadow-md px-2 py-1
             rounded-lg font-bold text-white" type="submit">Add Teacher</button>
@@ -171,6 +184,8 @@ import { ref } from 'vue';
 import { useStudentStore } from '@/stores/student';
 import { useTeacherStore } from '@/stores/teacher';
 import { useRouter } from 'vue-router';
+import { useMessageStore } from '@/stores/message';
+import { storeToRefs } from 'pinia';
 
 const selectedPersonType = ref('student');
 const studentName = ref('');
@@ -186,6 +201,9 @@ const teacherProfileImage = ref('');
 const teacherStudents = ref('');
 
 const router = useRouter();
+
+const storeMessage = useMessageStore()
+const { message } = storeToRefs(storeMessage)
 
 const addStudent = () => {
   const store = useStudentStore();
@@ -210,6 +228,10 @@ const addStudent = () => {
 
   console.log(newStudent)
 
+  storeMessage.updateMessage('You are successfully for adding student.')
+  setTimeout(() => {
+    storeMessage.resetMessage()
+  }, 4000)
 
   // ล้างค่าฟอร์ม
   clearStudentForm();
@@ -227,13 +249,21 @@ const fetchTeachers = () => {
 const addTeacher = () => {
   const storeTeacher = useTeacherStore();
 
+  const generateRandomTID = () => {
+  const min = 100; // Minimum 3-digit number
+  const max = 999; // Maximum 3-digit number
+  const randomThreeDigitNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  return `T${randomThreeDigitNumber}`;};
+
   const newTeacher = {
     name: teacherName.value,
     surname: teacherSurname.value,
-    id: 'T111', // สร้าง ID ใหม่ตามต้องการ
+    id: generateRandomTID().toString(), // สร้าง ID ใหม่ตามต้องการ
     profileimage: teacherProfileImage.value,
     studentsId: teacherStudents.value,
   };
+
+  
 
   storeTeacher.addTeacher(newTeacher); // เพิ่มครูใหม่ลงในสถานะของครู
   console.log(newTeacher)
@@ -241,6 +271,10 @@ const addTeacher = () => {
   // เรียกใช้ fetchTeachers() เพื่ออัปเดตรายการครูในหน้า TeacherListView.vue
   fetchTeachers();
 
+  storeMessage.updateMessage('You are successfully for adding teacher.')
+  setTimeout(() => {
+    storeMessage.resetMessage()
+  }, 4000)
   // ล้างค่าฟอร์ม
   clearTeacherForm();
 };
