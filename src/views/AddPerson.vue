@@ -2,7 +2,7 @@
   <div class="flex flex-col p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg mb-4 bg-white shadow-md my-5 mx-auto">
 
-    <div class="font-fig mx-5">
+    <div class="font-fig mx-5 text-black">
       <h1 class="flex justify-center font-bold text-2xl mb-3 text-green-600">Add Person</h1>
       <div class="flex mb-3">
         <label class="my-auto" for="personType">Select Person Type:</label>
