@@ -122,14 +122,14 @@
               <label for="teacherName" class="mr-2 my-auto">Name:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="teacherName" type="text" id="teacherName" required pattern="[A-Za-z]+">
+                v-model="teacherName" type="text" id="teacherName" required pattern="[A-Za-z]+" title="Please enter a valid name (only alphabetic characters are allowed).">
             </div>
 
             <div class="flex mb-3">
               <label for="teacherSurname" class="mr-2 my-auto">Surname:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="teacherSurname" type="text" id="teacherSurname" required pattern="[A-Za-z]+">
+                v-model="teacherSurname" type="text" id="teacherSurname" required pattern="[A-Za-z]+" title="Please enter a valid name (only alphabetic characters are allowed).">
             </div>
           </div>
 
