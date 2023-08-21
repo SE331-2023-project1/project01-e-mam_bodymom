@@ -63,7 +63,7 @@ const fetchTeachers = () => {
 // console.log(teachers)
 
 onBeforeRouteUpdate((to, from, next) => {
-    const toPage = Number(to.query.page);
+    const toPage = to.query.page ? Number(to.query.page) : 1
     teachers.value = store.getTeacherByPage(6, toPage)
     // console.log(teachers.value)
     totalTeacher.value = store.getTeachers.length
