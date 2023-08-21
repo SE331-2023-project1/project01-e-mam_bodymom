@@ -16,7 +16,7 @@ export const useTeacherStore = defineStore('teacher', {
         },
         getTeacherById: (state) => async (id: string) => {
             const response = state.teachers.find(teacher => teacher.id === id)
-            // console.log(response.data)
+            console.log(response)
             return new Promise<TeacherItem | null>((resolve) => {
                 resolve(response || null)
             })

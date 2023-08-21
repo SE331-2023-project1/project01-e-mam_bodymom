@@ -2,6 +2,7 @@ import StudentService from "@/services/StudentService";
 import type { StudentItem } from "@/type";
 import axios from "axios";
 import { defineStore } from "pinia";
+import { useTeacherStore } from "./teacher";
 
 
 export const useStudentStore = defineStore('student', {
@@ -21,7 +22,18 @@ export const useStudentStore = defineStore('student', {
             return new Promise<StudentItem | null>((resolve) => {
                 resolve(response || null)
             })
-        }
+        },
+        getStudentsByTeacherId: (state) => async (teacherId: string) => {
+            const teacherStore = useTeacherStore();
+            const teacher = teacherStore.getTeacherById(teacherId);
+
+            if (!teacher) {
+                return Promise.resolve([]); 
+            }
+
+            const students = state.students.filter(student => student.teacherID === teacherId);
+            return Promise.resolve(students);
+        },
     },
     actions: {
         setStudent(students: StudentItem[]) {

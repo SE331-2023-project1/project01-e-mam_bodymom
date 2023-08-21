@@ -1,23 +1,41 @@
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 import { useTeacherStore } from '@/stores/teacher'
+import { useStudentStore } from '@/stores/student'
+import { type TeacherItem } from '@/type'
+import { type StudentItem } from '@/type'
 import { storeToRefs } from 'pinia'
-// import { useStudentStore } from '@/stores/student';
 
-const store = useTeacherStore()
+const props = defineProps({
+  id: {
+    type: String
+  }
+})
+
+const teachers = ref<TeacherItem | null>(null)
+const students = ref<StudentItem[]>([])
+
+const teacherStore = useTeacherStore()
 // const storeStudent = useStudentStore()
-const teachers = storeToRefs(store).teachers
-// const students = storeToRefs(storeStudent).students
-const id = ref(teachers?.value?.id)
+teacherStore.getTeacherById(props.id!)
+  .then((response) => {
+    teachers.value = response
+  })
 
+  useStudentStore().getStudentsByTeacherId(props.id!)
+  .then((response) => {
+    students.value = response
+})
+// const students = storeToRefs(storeStudent).students
+// const id = ref(teachers?.value?.id)
+console.log(students)
 </script>
 
 <template>
-    <div v-if="teachers">
-        <div class="text-lg text-center text-black font-sans hover:font-serif flex flex-col p-4">
-            <!-- <RouterLink :to="{name: 'teacher-detail', params: { id }}">Details</RouterLink> -->
-        </div>
-        <RouterView :teacher="teachers" ></RouterView>
-        
+  <div v-if="students">
+    <div class="text-lg text-center text-black font-sans hover:font-serif flex flex-col p-4">
+      <!-- <RouterLink :to="{name: 'teacher-detail', params: { id }}">Details</RouterLink> -->
     </div>
+    <RouterView :teacher="teachers" :students="students"></RouterView>
+  </div>
 </template>

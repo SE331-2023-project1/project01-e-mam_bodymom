@@ -9,12 +9,10 @@ import { useMessageStore } from '@/stores/message';
 
 const props = defineProps({
   student: {
-    type: Object as PropType<StudentItem>,
-    require: true
+    type: Object as PropType<StudentItem>
   },
   teacher: {
-    type: Object as PropType<TeacherItem>,
-    require: true
+    type: Object as PropType<TeacherItem>
   },
   commentData: {
     type: Object as PropType<CommentInfo>,
@@ -69,7 +67,7 @@ const addComment = () => {
 
 <template>
   <div v-if="student">
-    {{ console.log(student) }}
+    <!-- {{ console.log(student) }} -->
     <div class="student-class flex flex-col items-center justify-center">
       <div class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg mb-4 bg-white shadow-md">
@@ -87,6 +85,8 @@ const addComment = () => {
           </ul>
 
           <br>
+
+          <!-- {{ console.log(teacher) }} -->
           <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.id } }">
             <button
               class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md

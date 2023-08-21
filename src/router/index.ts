@@ -45,20 +45,22 @@ const router = createRouter({
       path: '/teachers/:id',
       name: 'teacher-layout',
       component: TeacherLayout,
+      props: (route) => ({ id: route.params.id }),
       beforeEnter: async (to) => {
         const id: string = to.params.id as string
         const teacherStore = useTeacherStore()
         const studentStore = useStudentStore()
         try {
-          const teacher = await teacherStore.getTeacherById(id)
-          teacherStore.setTeacher(teacher)
-          const studentPromises = teacher.studentsId.map(async studentId => {
-            const student = await studentStore.getStudentById(studentId)
-            return student
-          });
-          const students = await Promise.all(studentPromises)
-          // console.log(studentPromises)
-          studentStore.setStudent(students.filter(student => student !== null) as StudentItem[]);
+          // const teacher = await teacherStore.getTeacherById(id)
+          // teacherStore.setTeacher(teacher)
+          // const studentPromises = teacher.studentsId.map(async studentId => {
+          //   const student = await studentStore.getStudentById(studentId)
+          //   return student
+          // });
+          // const students = await Promise.all(studentPromises)
+          // // console.log(studentPromises)
+          // studentStore.setStudent(students.filter(student => student !== null) as StudentItem[]);
+          useTeacherStore().getTeacherById(id)
           // console.log(studentStore)
       } catch (error: any) {
         if (error.response && error.response.status === 404) {
@@ -93,7 +95,7 @@ const router = createRouter({
         {
           path: '',
           name: 'teacher-detail',
-          component: TeacherDetail,
+          component: TeacherDetail
         }
       ]
     },
@@ -101,16 +103,22 @@ const router = createRouter({
       path: '/students/:id',
       name: 'student-layout',
       component: StudentLayout,
+      props: (route) => ({ id: route.params.id }),
       beforeEnter: async (to) => {
         const id: string = to.params.id as string
         const studentStore = useStudentStore()
         const teacherStore = useTeacherStore()
         try {
-          const student = await studentStore.getStudentById(id)
-          studentStore.setStudent(student)
-          const teacher = await teacherStore.getTeacherById(student.teacherID)
-          teacherStore.setTeacher(teacher)
+          // const student = await studentStore.getStudentById(id)
+          // studentStore.setStudent(student)
+          // const teacher = await teacherStore.getTeacherById(student.teacherID)
+          // teacherStore.setTeacher(teacher)
+
+          // studentStore.getStudentById(id)
+          // teacherStore.getTeacherById(studentStore.getStudent.find(student?.id))
           // console.log(studentStore)
+
+          useStudentStore().getStudentById(id)
 
         } catch (error: any) {
           if (error.response && error.response.status === 404) {
