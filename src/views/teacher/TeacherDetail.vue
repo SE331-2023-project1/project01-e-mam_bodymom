@@ -20,10 +20,10 @@ defineProps({
       <div
         class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700 rounded-lg mb-4 bg-white shadow-md"
       >
-        <div class="flex justify-center items-center">
+        <div class="flex justify-center">
           <img :src="teacher?.profileimage" alt="" class="crop rounded-lg" />
         </div>
-        <div class="my-auto">
+        <div class="justify-center padding-top">
           <span class="font-fig text-base text-gray-500">Teacher ID: {{ teacher?.id }}</span> <br />
           <span class="font-fig name font-bold text-black">
             {{ teacher?.name }} {{ teacher?.surname }} </span
@@ -69,3 +69,9 @@ defineProps({
     </div>
   </div>
 </template>
+
+<style scoped>
+.padding-top{
+  padding-top: 20%;
+}
+</style>
