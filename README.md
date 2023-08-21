@@ -57,6 +57,8 @@
 ![alt text](https://cdn.discordapp.com/attachments/1142954276889575464/1143207759983165490/image.png)
 
 - [x]  Flash message for notifications
+    - add comment
+    - add person successfully
 
 5. Deployment and Version Control :
 - [x]  Set up automated Continuous Deployment (CD)
