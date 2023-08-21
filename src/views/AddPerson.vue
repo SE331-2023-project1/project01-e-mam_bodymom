@@ -50,8 +50,8 @@
             <label for="studentCourseList" class="my-auto mr-2">Course List:</label>
             <select
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-              v-model="studentCourseList" id="studentCourseList">
-              <option value>Select Course</option>
+              v-model="studentCourseList" id="studentCourseList" required>
+              <option value disabled>Select Course</option>
               <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
               <option value="Math">Math</option>
               <option value="Science">Science</option>
@@ -87,7 +87,8 @@
             <select
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentTeacher" id="studentTeacher">
-              <option value="">Select a Teacher</option>
+              <option value="" disabled>Select a Teacher</option>
+              <option value="T234">David Smith</option>
               <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
               <!-- <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }} {{
                 teacher.surname
@@ -140,19 +141,19 @@
               v-model="teacherProfileImage" type="text" id="teacherProfileImage" required pattern="https?://.+" title="Must start with 'http://' or 'https://'">
           </div>
 
-          <div class="flex mb-3">
+          <!-- <div class="flex mb-3"> -->
             <!-- เลือกนักเรียนจาก dropdown list (ให้นำมาจาก store ของนักเรียน) -->
-            <label class="mr-2 my-auto" for="teacherStudents">Students:</label>
-            <select
+            <!-- <label class="mr-2 my-auto" for="teacherStudents">Students:</label> -->
+            <!-- <select
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="teacherStudents" id="teacherStudents">
-              <option value="">Select Students</option>
+              <option value="">Select Students</option> -->
               <!-- วนลูปเพื่อแสดงรายชื่อนักเรียนที่มีใน store ของนักเรียน -->
               <!-- <option v-for="student in students" :key="student.id" :value="student.id">{{ student.name }} {{
                 student.surname
               }}</option> -->
-            </select>
-          </div>
+            <!-- </select> -->
+          <!-- </div> -->
 
 
           <div class="flex justify-center mb-2">
