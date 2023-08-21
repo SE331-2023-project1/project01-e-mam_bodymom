@@ -89,21 +89,20 @@
               v-model="studentTeacher" id="studentTeacher">
               <option value="">Select a Teacher</option>
               <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
-              <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }} {{
+              <!-- <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }} {{
                 teacher.surname
-              }}</option>
+              }}</option> -->
             </select>
 
           </div>
 
 
-          <div class="mb-3">
-            <!-- เพิ่ม input field สำหรับคอมเมนต์ -->
+          <!-- <div class="mb-3">
             <label for="studentComment" class="mr-2">Comments:</label>
             <input
               class="w-full bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentComment" type="text" id="studentComment">
-          </div>
+          </div> -->
 
 
           <div class="flex justify-center mb-2">
@@ -149,9 +148,9 @@
               v-model="teacherStudents" id="teacherStudents">
               <option value="">Select Students</option>
               <!-- วนลูปเพื่อแสดงรายชื่อนักเรียนที่มีใน store ของนักเรียน -->
-              <option v-for="student in students" :key="student.id" :value="student.id">{{ student.name }} {{
+              <!-- <option v-for="student in students" :key="student.id" :value="student.id">{{ student.name }} {{
                 student.surname
-              }}</option>
+              }}</option> -->
             </select>
           </div>
 
@@ -178,7 +177,7 @@ const studentSurname = ref('');
 const studentProfileImage = ref('');
 const studentCourseList = ref('');
 const studentTeacher = ref('');
-const studentComment = ref('');
+// const studentComment = ref('');
 
 const teacherName = ref('');
 const teacherSurname = ref('');
@@ -203,7 +202,7 @@ const addStudent = () => {
     profileimage: studentProfileImage.value,
     courselist: studentCourseList.value.split(',').map(course => course.trim()),
     teacherID: studentTeacher.value,
-    comment: studentComment.value.split(',').map(comment => comment.trim()),
+    // comment: studentComment.value.split(',').map(comment => comment.trim()),
   };
 
   store.addStudent(newStudent); // หรือ store.addTeacher(newTeacher);
@@ -252,7 +251,7 @@ const clearStudentForm = () => {
   studentProfileImage.value = '';
   studentCourseList.value = '';
   studentTeacher.value = '';
-  studentComment.value = '';
+  // studentComment.value = '';
 };
 
 const clearTeacherForm = () => {
