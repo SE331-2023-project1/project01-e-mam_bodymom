@@ -75,7 +75,7 @@ const addComment = () => {
           <img :src="student?.profileimage" alt="" class="crop rounded-lg" />
         </div>
         <div class="my-auto">
-          <span class="text-base text-gray-500 font-fig">ID: {{ student?.id }}</span> <br />
+          <span class="text-base text-gray-500 teacherid font-fig">ID: {{ student?.id }}</span> <br />
           <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
           <ul class="list-disc list-inside">
             <span class="font-fig font-bold text-black text-xl course">Course List</span>
