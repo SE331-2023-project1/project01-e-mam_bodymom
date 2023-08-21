@@ -117,7 +117,10 @@
               v-model="studentComment" type="text" id="studentComment">
           </div> -->
 
-
+          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+              <h4>{{ message }}</h4>
+            </div>
+            <FlashMessage />
           <div class="flex justify-center mb-2">
             <button class="bg-green-500 hover:bg-green-700 shadow-md px-2 py-1
             rounded-lg font-bold text-white" type="submit">Add Student</button>
@@ -167,7 +170,10 @@
             <!-- </select> -->
           <!-- </div> -->
 
-
+          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+              <h4>{{ message }}</h4>
+            </div>
+            <FlashMessage />
           <div class="flex justify-center mb-2">
             <button class="bg-green-500 hover:bg-green-700 shadow-md px-2 py-1
             rounded-lg font-bold text-white" type="submit">Add Teacher</button>
@@ -183,6 +189,8 @@ import { ref } from 'vue';
 import { useStudentStore } from '@/stores/student';
 import { useTeacherStore } from '@/stores/teacher';
 import { useRouter } from 'vue-router';
+import { useMessageStore } from '@/stores/message';
+import { storeToRefs } from 'pinia';
 
 const selectedPersonType = ref('student');
 const studentName = ref('');
@@ -198,6 +206,9 @@ const teacherProfileImage = ref('');
 const teacherStudents = ref('');
 
 const router = useRouter();
+
+const storeMessage = useMessageStore()
+const { message } = storeToRefs(storeMessage)
 
 const addStudent = () => {
   const store = useStudentStore();
@@ -222,6 +233,10 @@ const addStudent = () => {
 
   console.log(newStudent)
 
+  storeMessage.updateMessage('You are successfully for adding student.')
+  setTimeout(() => {
+    storeMessage.resetMessage()
+  }, 4000)
 
   // ล้างค่าฟอร์ม
   clearStudentForm();
@@ -253,6 +268,10 @@ const addTeacher = () => {
   // เรียกใช้ fetchTeachers() เพื่ออัปเดตรายการครูในหน้า TeacherListView.vue
   fetchTeachers();
 
+  storeMessage.updateMessage('You are successfully for adding teacher.')
+  setTimeout(() => {
+    storeMessage.resetMessage()
+  }, 4000)
   // ล้างค่าฟอร์ม
   clearTeacherForm();
 };
