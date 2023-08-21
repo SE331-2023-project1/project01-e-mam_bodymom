@@ -55,7 +55,7 @@
               <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
               <option value="Math">Math</option>
               <option value="Science">Science</option>
-              <option value="History">English</option>
+              <option value="English">English</option>
               <option value="History">History</option>
               <option value="Physics">Physics</option>
               <option value="ComSci">ComSci</option>
@@ -110,14 +110,9 @@
           </div>
 
 
-          <!-- <div class="mb-3">
-            <label for="studentComment" class="mr-2">Comments:</label>
-            <input
-              class="w-full bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-              v-model="studentComment" type="text" id="studentComment">
-          </div> -->
+          
 
-          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+          <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
               <h4>{{ message }}</h4>
             </div>
             <FlashMessage />
@@ -170,7 +165,7 @@
             <!-- </select> -->
           <!-- </div> -->
 
-          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+          <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
               <h4>{{ message }}</h4>
             </div>
             <FlashMessage />
@@ -254,13 +249,21 @@ const fetchTeachers = () => {
 const addTeacher = () => {
   const storeTeacher = useTeacherStore();
 
+  const generateRandomTID = () => {
+  const min = 100; // Minimum 3-digit number
+  const max = 999; // Maximum 3-digit number
+  const randomThreeDigitNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  return `T${randomThreeDigitNumber}`;};
+
   const newTeacher = {
     name: teacherName.value,
     surname: teacherSurname.value,
-    id: 'T111', // สร้าง ID ใหม่ตามต้องการ
+    id: generateRandomTID().toString(), // สร้าง ID ใหม่ตามต้องการ
     profileimage: teacherProfileImage.value,
     studentsId: teacherStudents.value,
   };
+
+  
 
   storeTeacher.addTeacher(newTeacher); // เพิ่มครูใหม่ลงในสถานะของครู
   console.log(newTeacher)
