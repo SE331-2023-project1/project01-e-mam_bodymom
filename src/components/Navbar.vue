@@ -37,6 +37,10 @@ import { useRouter } from 'vue-router';
             <img src="../assets/add.png" class="h-[12px] ml-1 mr-2">
           <RouterLink to="/add">Add Person</RouterLink>
           </li>
+          <li class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+            <img src="../assets/login.png" class="h-[12px] ml-1 mr-2">
+          <RouterLink to="/Login">Login</RouterLink>
+          </li>
 
         </ul>
       </div>
