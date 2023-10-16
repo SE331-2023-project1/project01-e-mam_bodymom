@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosResponse } from 'axios'
 import type { StudentItem } from '@/type'
 
 const apiClient: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL_STUDENT,
+  baseURL: import.meta.env.VITE_BASE_URL,
   withCredentials: false,
   headers: {
     Accept: 'application/json',
