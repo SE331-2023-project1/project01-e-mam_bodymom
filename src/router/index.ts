@@ -9,6 +9,7 @@ import TeacherDetail from '../views/teacher/TeacherDetail.vue'
 import NetworkErrorView from '../views/NetworkErrorView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import HomePage from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
 import NProgress from 'nprogress'
 import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/',
       name: 'home-page',
       component: HomePage
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: LoginView
     },
     {
       path: '/students',
