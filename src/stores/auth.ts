@@ -45,6 +45,20 @@ export const useAuthStore = defineStore('auth', {
         })
       
     },
+    async studentRegister(username: string, firstName: string, lastName: string, email: string, password: string) {
+      const response = await apiClient.post('/api/v1/auth/register', {
+        username: username,
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        password: password,
+      })
+      this.token = response.data.access_token
+      // this.userRole = response.data.user_role
+      localStorage.setItem('access_token', this.token as string)
+      // localStorage.setItem('user_role', JSON.stringify(this.userRole))
+      return response
+    },
     logout() {
         console.log('logout')
         this.token = null
