@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import type { AxiosInstance } from 'axios'
 // import type { EventOrganizer } from '@/type'
+import type { StudentItem, TeacherItem } from '@/type'
 
 const apiClient: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -19,12 +20,12 @@ const apiClient: AxiosInstance = axios.create({
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: null as string | null,
-    // user: null as EventOrganizer | null
+    userRole: null as string[] | null
   }),
   getters: {
-    // currentUserName(): string {
-    //     return this.user?.name || ''
-    // },
+    currentUserName(): string {
+        return ''
+    },
     // isAdmin(): boolean {
     //     return this.user?.roles.includes('ROLE_ADMIN') || false
     // }
@@ -39,22 +40,24 @@ export const useAuthStore = defineStore('auth', {
         .then((response) => {
             this.token = response.data.access_token
             // this.user = response.data.user
+            this.userRole = response.data.user_role
             localStorage.setItem('access_token', this.token as string)
-            // localStorage.setItem('user', JSON.stringify(this.user))
+            localStorage.setItem('user_role', JSON.stringify(this.userRole))
+            console.log(this.userRole)
             return response
         })
-      
+        
     },
     logout() {
         console.log('logout')
         this.token = null
-        // this.user = null
+        this.userRole = null
         localStorage.removeItem('access_token')
-        // localStorage.removeItem('user')
+        localStorage.removeItem('user_role')
     },
-    reload(token: string) {
+    reload(token: string, userRole: string[]) {
         this.token = token
-        // this.user = user
+        this.userRole = userRole
     }
   }
 })

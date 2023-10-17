@@ -2,6 +2,27 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import { useRouter } from 'vue-router';
+import { useMessageStore } from '@/stores/message'
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth.ts'
+
+const store = useMessageStore()
+const { message } = storeToRefs(store)
+const authStore = useAuthStore()
+const router = useRouter()
+const token = localStorage.getItem('access_token')
+const userRole = localStorage.getItem('user_role')
+
+function logout() {
+  authStore.logout()
+  router.push({name: 'login'})
+}
+
+if (token || userRole) {
+  authStore.reload(token, JSON.parse(userRole))
+} else {
+  authStore.logout()
+}
 </script>
 
 <template>
@@ -37,9 +58,17 @@ import { useRouter } from 'vue-router';
             <img src="../assets/add.png" class="h-[12px] ml-1 mr-2">
           <RouterLink to="/add">Add Person</RouterLink>
           </li>
-          <li class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+          <li v-if="!authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
             <img src="../assets/login.png" class="h-[12px] ml-1 mr-2">
           <RouterLink to="/Login">Login</RouterLink>
+          </li>
+          <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+            <!-- <router-link to="/profile" class="nav-link">
+              <font-awesome-icon icon="user"/> {{ authStore.currentUserName }}
+            </router-link> -->
+            <a class="nav-link hover:cursor-pointer" @click="logout">
+              <font-awesome-icon icon="sign-in-alt"/>LogOut
+            </a>
           </li>
 
         </ul>

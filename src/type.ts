@@ -6,6 +6,7 @@ export interface StudentItem {
     courselist: string[];
     teacherID: string;
     comment?: any[]
+    roles: string []
 }
 export interface TeacherItem {
     [x: string]: any;
@@ -13,6 +14,7 @@ export interface TeacherItem {
     surname: string;
     profileimage: string;
     id: string;
+    roles: string []
 }
 export interface CommentInfo{
     id: string;
