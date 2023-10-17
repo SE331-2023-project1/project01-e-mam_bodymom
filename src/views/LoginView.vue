@@ -29,7 +29,7 @@
             <p class="mt-10 text-center text-sm text-gray-500">
                 Not a member?
                 {{ ' ' }}
-                <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Try to register here</a>
+               <RouterLink :to="{ name: 'register-page' }" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Try to register here</RouterLink>
             </p>
         </div>
     </div>
@@ -41,7 +41,7 @@ import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
-import { useMessageStore } from '@/stores/message.ts'
+import { useMessageStore } from '@/stores/message'
 
 const messageStore = useMessageStore()
 
