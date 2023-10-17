@@ -26,9 +26,9 @@ export const useAuthStore = defineStore('auth', {
     currentUserName(): string {
         return ''
     },
-    // isAdmin(): boolean {
-    //     return this.user?.roles.includes('ROLE_ADMIN') || false
-    // }
+    isAdmin(): boolean {
+        return this.userRole?.includes('ROLE_ADMIN') || false
+    }
   },
   actions: {
     login(email: string, password: string) {
@@ -57,9 +57,9 @@ export const useAuthStore = defineStore('auth', {
         password: password,
       })
       this.token = response.data.access_token
-      // this.userRole = response.data.user_role
+      this.userRole = response.data.user_role
       localStorage.setItem('access_token', this.token as string)
-      // localStorage.setItem('user_role', JSON.stringify(this.userRole))
+      localStorage.setItem('user_role', JSON.stringify(this.userRole))
       return response
     },
     logout() {
