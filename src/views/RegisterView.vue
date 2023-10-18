@@ -17,7 +17,7 @@ const validationSchema = yup.object({
   username: yup.string()
   .required('The username is required')
   .matches(/^[A-Za-z0-9]+$/, 'Username should contain only alphabetic characters and numbers'),
-  
+
   firstName: yup.string()
   .required('The firstName is required')
   .matches(/^[A-Za-z]+$/, 'First name should contain only alphabetic characters'),
@@ -71,6 +71,7 @@ const onSubmit = handleSubmit((values) => {
       }, 3000)
     })
 })
+
 </script>
 
 <template>
