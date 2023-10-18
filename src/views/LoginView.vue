@@ -55,13 +55,13 @@ const authStore = useAuthStore()
 
 const validationSchema = yup.object({
   email: yup.string()
-  .required('Please enter your email address.')
-  .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
-
+//   .required('Please enter your email address.')
+//   .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
+,
   password: yup
     .string()
-    .required('Please enter your password.')
-    .min(6, 'Password must be at least 6 characters long.'), // Minimum 7 characters required
+    // .required('Please enter your password.')
+    // .min(6, 'Password must be at least 6 characters long.'), // Minimum 7 characters required
 })
 
 const { errors, handleSubmit } = useForm({

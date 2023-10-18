@@ -12,14 +12,15 @@ const authStore = useAuthStore()
 const router = useRouter()
 const token = localStorage.getItem('access_token')
 const userRole = localStorage.getItem('user_role')
+const id = localStorage.getItem('id')
 
 function logout() {
   authStore.logout()
   router.push({name: 'login'})
 }
 
-if (token || userRole) {
-  authStore.reload(token, JSON.parse(userRole))
+if (token && userRole && id) {
+  authStore.reload(token, JSON.parse(userRole), id)
 } else {
   authStore.logout()
 }
@@ -66,7 +67,7 @@ if (token || userRole) {
             <!-- <router-link to="/profile" class="nav-link">
               <font-awesome-icon icon="user"/> {{ authStore.currentUserName }}
             </router-link> -->
-            <a class="nav-link hover:cursor-pointer" @click="logout">
+            <a href="/" class="nav-link hover:cursor-pointer" @click="logout">
               <font-awesome-icon icon="sign-in-alt"/>LogOut
             </a>
           </li>
