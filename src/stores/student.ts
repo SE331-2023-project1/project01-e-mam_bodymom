@@ -51,6 +51,7 @@ export const useStudentStore = defineStore('student', {
         async fetchStudentsFromDB() {
             const response = await StudentService.getAllStudents()
             this.setStudent(response.data)
+            console.log(response)
         },
         async fetchStudentById(id: string) {
             try {
@@ -60,6 +61,12 @@ export const useStudentStore = defineStore('student', {
                 console.log(error)
                 return null
             }
+        },
+        async fetchStudentsByTeacher(id: string) {
+            const response = await StudentService.getStudentsByTeacher(id)
+            this.setStudent(response.data)
+            console.log(response)
+
         },
         async addStudent(student: StudentItem) {
             try {

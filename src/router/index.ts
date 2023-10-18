@@ -21,6 +21,7 @@ import type { StudentItem } from '@/type'
 import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
 import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth.ts'
 
 import AddPerson from '../views/AddPerson.vue';
 
@@ -205,11 +206,18 @@ router.beforeEach(async () => {
   NProgress.start()
   const teacherStore = useTeacherStore()
   const studentStore = useStudentStore()
-  if (teacherStore.teachers.length === 0) {
+  const authStore = useAuthStore()
+  if (teacherStore.teachers.length === 0 && authStore.userRole?.includes("ROLE_ADMIN")) {
     await teacherStore.fetchTeachersFromDB()
   }
-  if (studentStore.students.length === 0) {
+  if (studentStore.students.length === 0 && authStore.userRole?.includes("ROLE_ADMIN")) {
     await studentStore.fetchStudentsFromDB()
+    // console.log(studentStore.students)
+  }
+  if (studentStore.students.length === 0 && authStore.userRole?.includes("ROLE_TEACHER")
+  && authStore.id != null) {
+    await studentStore.fetchStudentsByTeacher(authStore.id)
+    console.log(studentStore.students)
   }
 
   })
