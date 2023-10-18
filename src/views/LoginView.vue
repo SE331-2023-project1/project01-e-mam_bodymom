@@ -1,14 +1,15 @@
 <template>
     <div class="flex min-h-full flex-1 flex-col justify-center-px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-            <h2 class="mt-10 text-center text-2x1 font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+            <img class="mx-auto h-[160px] w-auto" src="../assets/bodymoms.png" alt="Your Company">
+            <h2 class="mt-4 text-center text-lg font-bold leading-9 tracking-tight text-gray-900">Welcome to SE331 Project - BodyMom</h2>
+            <h2 class="mt-1 text-center text-lg font-bold leading-9 tracking-tight text-blue-700">Sign in to your account</h2>
         </div>
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" action="#" @submit.prevent="onSubmit">
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                    <InputText type="text" v-model="email" :error="errors['email']"></InputText>
+                    <InputText type="text" v-model="email" :error="errors['email']" placeholder="example@example.com"></InputText>
                 </div>
                 <div>
                     <div class="flex items-center justify-between">
@@ -18,7 +19,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <InputText v-model="password" type="password" :error="errors['password']" ></InputText>
+                        <InputText v-model="password" type="password" :error="errors['password']" placeholder="Enter Password (at least 6 characters long)" ></InputText>
                     </div>
                 </div>
                 <div>
@@ -29,7 +30,7 @@
             <p class="mt-10 text-center text-sm text-gray-500">
                 Not a member?
                 {{ ' ' }}
-               <RouterLink :to="{ name: 'register-page' }" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Try to register here</RouterLink>
+               <RouterLink :to="{ name: 'register-page' }" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-400">Try to register here</RouterLink>
             </p>
         </div>
     </div>
@@ -50,10 +51,14 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 const validationSchema = yup.object({
-  email: yup.string().required('The email is required'),
+  email: yup.string()
+  .required('Please enter your email address.')
+  .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
+
   password: yup
     .string()
-    .required('The password is required')
+    .required('Please enter your password.')
+    .min(6, 'Password must be at least 6 characters long.'), // Minimum 7 characters required
 })
 
 const { errors, handleSubmit } = useForm({
