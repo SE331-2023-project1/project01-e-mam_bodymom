@@ -8,7 +8,7 @@
         <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" action="#" @submit.prevent="onSubmit">
                 <div>
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
                     <InputText type="text" v-model="email" class="text-emerald-600 text-sm font-semibold" placeholder="example@example.com"></InputText>
                     <div v-if="errors['email']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌ {{ errors['email'] }}</div>
                 </div>
@@ -56,8 +56,8 @@ const authStore = useAuthStore()
 const validationSchema = yup.object({
   email: yup.string()
   .required('Please enter your email address.')
-  .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
-
+//   .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
+,
   password: yup
     .string()
     .required('Please enter your password.')
