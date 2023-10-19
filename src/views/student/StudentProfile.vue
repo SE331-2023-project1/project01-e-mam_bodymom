@@ -14,7 +14,21 @@ const enterEditMode = () => {
 const saveChanges = () => {
     // Add your logic to save changes here
     isEditing.value = false;
+
+    // Show a success message using the alert function
+    // alert('Changes saved successfully');
+
+    storeMessage.updateMessage('Changes saved successfully')
+    setTimeout(() => {
+        storeMessage.resetMessage()
+    }, 3000)
+
 };
+
+import { useMessageStore } from '@/stores/message'
+import { storeToRefs } from 'pinia'
+const storeMessage = useMessageStore()
+const { message } = storeToRefs(storeMessage)
 
 // // Create a computed property for the button label
 // const buttonLabel = computed(() => (isEditing.value ? 'Save' : 'Edit'));
@@ -28,6 +42,12 @@ const saveChanges = () => {
 </script>
 
 <template>
+    <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white"
+        v-if="message">
+        <h4>{{ message }}</h4>
+    </div>
+    <FlashMessage />
+    
     <main class=" flex flex-col items-center justify-center">
         <div class="font-fig flex items-center justify-center p-3 w-3/4 sm:w-2/4 h-4/5 text-2xl font-bold text-gray-900">
             Profile
@@ -104,7 +124,7 @@ const saveChanges = () => {
 
                 </div>
 
-                <div class="flex justify-center">
+                <div class="flex  justify-center">
                     <!-- <button type="submit" @click="toggleEditMode"
                         :class="`${buttonColor} hover:${buttonColor} flex focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-white text-sm w-full sm:w-auto px-5 py-2 text-center items-center`">
                         <img :src="buttonImage" class="h-[15px] mr-2">
@@ -117,14 +137,25 @@ const saveChanges = () => {
                         Edit
                     </button>
 
+                    <!-- edit button when editing mode - disabled -->
+                    <button v-if="isEditing" disabled
+                        class="flex opacity-50 text-white bg-gray-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
+                        <img src="src/assets/edit.png" class="h-[15px] mr-2">
+                        Edit
+                    </button>
+                </div>
+                <div class="flex justify-center">
                     <!-- Save button -->
                     <button v-if="isEditing" @click="saveChanges"
-                        class="flex text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
+                        class="flex mt-2 text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
                         <img src="src/assets/save.png" class="h-[15px] mr-2">
                         Save
                     </button>
+
                 </div>
-                
+
+
+
 
             </div>
         </div>
