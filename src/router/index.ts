@@ -47,7 +47,7 @@ const router = createRouter({
     {
       path: '/studentprofile',
       name: 'studentprofile-view',
-      component: StudentProfile
+      component: StudentProfile,
     },
     {
       path: '/register',
