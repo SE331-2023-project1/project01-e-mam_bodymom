@@ -34,6 +34,21 @@ export default {
         },
     },
 };
+
+// import { type AnnouncementItem } from '@/type'
+// import { computed, ref, watchEffect, type Ref , onMounted } from 'vue';
+// import AnnouncementService from '@/services/AnnouncementService';
+// import NProgress from 'nprogress'
+// import { onBeforeRouteUpdate, useRouter,useRoute  } from 'vue-router'
+// import type { AxiosResponse } from 'axios';
+// import {useAnnouncementStore} from '@/stores/announcement';
+
+// const router = useRouter
+// const store = useStudentStore();
+// const route = useRoute();
+
+// const announcements: Ref<Array<AnnouncementItem>> = ref([])
+// const totalAnnouncement = ref<number>(10)
 </script>
 
 <template>

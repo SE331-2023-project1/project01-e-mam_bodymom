@@ -15,8 +15,8 @@ export const useTeacherStore = defineStore('teacher', {
             return state.teachers.slice(startIndex, endIndex);
         },
         getTeacherById: (state) => async (id: string) => {
-            const response = state.teachers.find(teacher => teacher.id === id)
-            console.log(response)
+            const response = state.teachers.find(teacher => teacher.id == id)
+            // console.log(response)
             return new Promise<TeacherItem | null>((resolve) => {
                 resolve(response || null)
             })

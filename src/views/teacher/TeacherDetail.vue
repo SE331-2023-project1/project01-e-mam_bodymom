@@ -26,7 +26,7 @@ defineProps({
         <div class="justify-center padding-top">
           <span class="font-fig text-base text-gray-500">Teacher ID: {{ teacher?.id }}</span> <br />
           <span class="font-fig name font-bold text-black">
-            {{ teacher?.name }} {{ teacher?.surname }} </span
+            {{ teacher?.name }} {{ teacher?.surname }}</span
           >
         </div>
         <!-- <b class="text-black">Student id list</b> -->
@@ -45,7 +45,7 @@ defineProps({
         </div>
 
         <div class="justify-center items-center">
-          <div v-for="(student, i) in students" :key="i">
+          <div v-for="(student, i) in students.data" :key="i">
             <RouterLink :to="{ name: 'student-detail', params: { id: student.id } }">
               <button class="w-full bg-amber-200 shadow-lg hover:bg-amber-300 text-white font-bold py-2 px-5 rounded-xl font-fig my-2 hover:transform hover:scale-[1.01] transition-transform duration-300">
                 <div class="flex items-center mx-auto">

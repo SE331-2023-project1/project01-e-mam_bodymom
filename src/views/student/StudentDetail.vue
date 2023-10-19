@@ -67,7 +67,7 @@ const addComment = () => {
 
 <template>
   <div v-if="student">
-    <!-- {{ console.log(student) }} -->
+    <!-- {{ console.log(student.teacher) }} -->
     <div class="student-class flex flex-col items-center justify-center">
       <div class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg mb-4 bg-white shadow-md">
@@ -87,7 +87,7 @@ const addComment = () => {
           <br>
 
           <!-- {{ console.log(teacher) }} -->
-          <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.id } }">
+          <RouterLink :to="{ name: 'teacher-detail', params: { id: student.teacher.id } }">
             <button
               class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md
             font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
@@ -95,7 +95,7 @@ const addComment = () => {
                 <img :src="teacher?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
                 <div class="flex flex-col">
                   <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
-                  <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacherID }}</span>
+                  <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span>
                 </div>
               </div>
             </button>
