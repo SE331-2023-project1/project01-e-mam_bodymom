@@ -19,9 +19,10 @@ studentStore.getStudentById(props.id!)
 .then((response) =>{
     student.value = response
     // console.log(props.id)
-    teacherStore.getTeacherById(response?.teacherID!)
+    teacherStore.getTeacherById(response?.teacher.id)
     .then((responseT) => {
         teacher.value = responseT
+        // console.log(teacher.value)
     })
 })
 
