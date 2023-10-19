@@ -16,7 +16,7 @@ const id = localStorage.getItem('id')
 
 function logout() {
   authStore.logout()
-  router.push({name: 'login'})
+  router.push({ name: 'login' })
 }
 
 if (token && userRole && id) {
@@ -46,33 +46,41 @@ if (token && userRole && id) {
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul
           class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-500 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white text-black">
-          <li v-if="authStore.userRole == 'ROLE_ADMIN' || authStore.userRole == 'ROLE_TEACHER'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+          <li v-if="authStore.userRole == 'ROLE_ADMIN' || authStore.userRole == 'ROLE_TEACHER'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/student.png" class="h-[20px] mr-2">
             <RouterLink to="/students">Students</RouterLink>
           </li>
 
-          <li v-if="authStore.userRole == 'ROLE_ADMIN'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+          <li v-if="authStore.userRole == 'ROLE_ADMIN'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/teacher.png" class="h-[20px] mr-2">
             <RouterLink to="/teachers">Teachers</RouterLink>
           </li>
-          <li v-if="authStore.userRole == 'ROLE_ADMIN'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+          <li v-if="authStore.userRole == 'ROLE_ADMIN'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/add.png" class="h-[12px] ml-1 mr-2">
-          <RouterLink to="/add">Add Person</RouterLink>
+            <RouterLink to="/add">Add Person</RouterLink>
           </li>
-          <li v-if="!authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+          <li v-if="!authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/login.png" class="h-[12px] ml-1 mr-2">
-          <RouterLink to="/Login">Login</RouterLink>
+            <RouterLink to="/Login">Login</RouterLink>
           </li>
-          <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+          <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
-          <RouterLink to="/announcements">Announcements</RouterLink>
+            <RouterLink to="/announcements">Announcements</RouterLink>
           </li>
-          <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+          <li v-if="authStore.userRole == 'ROLE_STUDENT'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+            <img src="../assets/profile.png" class="h-[21px] ml-1 mr-2 items-center">
+            <RouterLink to="/studentprofile">Profile</RouterLink>
+          </li>
+          <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <!-- <router-link to="/profile" class="nav-link">
               <font-awesome-icon icon="user"/> {{ authStore.currentUserName }}
             </router-link> -->
             <a href="/" class="nav-link hover:cursor-pointer" @click="logout">
-              
+
               LogOut
             </a>
           </li>
@@ -81,6 +89,6 @@ if (token && userRole && id) {
         </ul>
       </div>
     </div>
-  </nav>
+</nav>
 
 <RouterView /></template>

@@ -12,6 +12,7 @@ import HomePage from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import AnnouncementView from '../views/announcement/AnnouncementView.vue'
+import StudentProfile from '../views/student/StudentProfile.vue'
 import NProgress from 'nprogress'
 import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
@@ -42,6 +43,11 @@ const router = createRouter({
       path: '/announcements',
       name: 'announcement-view',
       component: AnnouncementView
+    },
+    {
+      path: '/studentprofile',
+      name: 'studentprofile-view',
+      component: StudentProfile
     },
     {
       path: '/register',
