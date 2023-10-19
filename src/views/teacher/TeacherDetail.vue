@@ -38,7 +38,7 @@ defineProps({
     <div class="student-class flex flex-col mb-2 items-center justify-center">
       <div
         class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700 rounded-lg bg-white shadow-md mb-3"
-      >
+      > 
         <div class="flex items-center">
           <img src="../../assets/list.png" class="list mr-1" />
           <span class="detail text-list text-black font-fig font-bold">Student List</span>
