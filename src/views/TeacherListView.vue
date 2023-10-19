@@ -10,9 +10,7 @@ import { useTeacherStore } from '@/stores/teacher';
 
 const router = useRouter();
 const route = useRoute();
-
 const store = useTeacherStore();
-
 
 const teachers: Ref<Array<TeacherItem>> = ref([])
 const totalTeacher = ref<number>(0)
@@ -29,8 +27,6 @@ const props = defineProps({
         required: true
     }
 })
-
-
 
 const fetchTeachers = () => {
     
@@ -91,7 +87,6 @@ onBeforeRouteUpdate((to, from, next) => {
     // next()
     
 });
-
 
 const hasNextPage = computed(() => {
     const totalPages = Math.ceil(totalTeacher.value / 6);
