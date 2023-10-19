@@ -66,9 +66,9 @@ onMounted(() => {
 
 <template> 
     <div class="my-5">
-        <main class="flex flex-col items-center justify-center">
+        <main class="mt-[25%] md:mt-[15%] lg:mt-[7%] flex flex-col items-center justify-center">
 
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 -z-10">
                 <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
             </div>
 

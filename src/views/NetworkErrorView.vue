@@ -4,7 +4,7 @@ const router = useRouter()
 </script>
 
 <template>
-    <div class="flex flex-col font-fig items-center justify-center text-black my-8">
+    <div class="mt-40 md:mt-[20%] lg:mt-[8%] flex flex-col font-fig items-center justify-center text-black my-8">
         <!-- <img src="../assets/network.png" class="notfound"> -->
         <h1 class="text-3xl font-bold">Uh-oh!</h1>
         <h3 class="text-center mt-1 text-xl">

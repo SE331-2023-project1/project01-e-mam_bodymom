@@ -27,7 +27,7 @@ if (token && userRole && id) {
 </script>
 
 <template>
-  <nav class="bg-white shadow-md border-gray-200 font-display">
+  <nav class="fixed top-0 left-0 right-0 bg-white shadow-md border-gray-200 font-display">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="/" class="flex items-center">
         <!-- <img src="../assets/logo.png" class="h-14 mr-3" alt="Logo" /> -->

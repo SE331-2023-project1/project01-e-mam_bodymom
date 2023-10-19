@@ -80,7 +80,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="mt-10 md:mt-[10%] lg:mt-[4%] flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-[160px] w-auto" src="../assets/bodymoms.png" alt="" />
 
