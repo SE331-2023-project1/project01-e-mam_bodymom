@@ -144,6 +144,7 @@ const router = createRouter({
           // console.log(studentStore)
 
           useStudentStore().getStudentById(id)
+          // console.log(id)
 
         } catch (error: any) {
           if (error.response && error.response.status === 404) {
@@ -223,7 +224,7 @@ router.beforeEach(async () => {
   if (studentStore.students.length === 0 && authStore.userRole?.includes("ROLE_TEACHER")
   && authStore.id != null) {
     await studentStore.fetchStudentsByTeacher(authStore.id)
-    console.log(studentStore.students)
+    // console.log(studentStore.students)
   }
 
   })

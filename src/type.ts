@@ -4,7 +4,7 @@ export interface StudentItem {
     id: string;
     profileimage: string;
     courselist: string[];
-    teacherID: string;
+    teacher: string[];
     comment?: any[]
     roles: string []
 }
@@ -15,8 +15,15 @@ export interface TeacherItem {
     profileimage: string;
     id: string;
     roles: string []
+    ownStudent: string []
 }
 export interface CommentInfo{
     id: string;
     comment: string;
+}
+export interface AnnouncementItem {
+    id: string,
+    title: string,
+    description: string,
+    files: string []
 }

@@ -17,11 +17,15 @@ export const useStudentStore = defineStore('student', {
             return state.students.slice(startIndex, endIndex);
         },
         getStudentById: (state) => async (id: string) => {
-            const response = state.students.find(student => student.id === id)
-            // console.log(response.data)
+            const response = state.students.find(student => student.id == id)
+            // console.log(state.students[0].id)
+            // console.log(response)
             return new Promise<StudentItem | null>((resolve) => {
                 resolve(response || null)
             })
+            // const response = state.students.filter(student => student.id === id)
+            // console.log(state.students)
+            // return Promise.resolve(response)
         },
         getStudentsByTeacherId: (state) => async (teacherId: string) => {
             const teacherStore = useTeacherStore();
@@ -31,7 +35,10 @@ export const useStudentStore = defineStore('student', {
                 return Promise.resolve([]); 
             }
 
-            const students = state.students.filter(student => student.teacherID === teacherId);
+            // const students = state.students.filter(student => student.teacher.id == teacherId);
+            const students = state.students.filter(student => {
+                return Array.isArray(student.teacher) && student.teacher.includes(teacherId);
+            });
             return Promise.resolve(students);
         },
     },
@@ -51,7 +58,7 @@ export const useStudentStore = defineStore('student', {
         async fetchStudentsFromDB() {
             const response = await StudentService.getAllStudents()
             this.setStudent(response.data)
-            console.log(response)
+            // console.log(response)
         },
         async fetchStudentById(id: string) {
             try {
@@ -65,7 +72,7 @@ export const useStudentStore = defineStore('student', {
         async fetchStudentsByTeacher(id: string) {
             const response = await StudentService.getStudentsByTeacher(id)
             this.setStudent(response.data)
-            console.log(response)
+            // console.log(response)
 
         },
         async addStudent(student: StudentItem) {

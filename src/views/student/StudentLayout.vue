@@ -18,12 +18,14 @@ const teacherStore = useTeacherStore()
 studentStore.getStudentById(props.id!)
 .then((response) =>{
     student.value = response
-    // console.log(response?.teacherID)
+    // console.log(props.id)
     teacherStore.getTeacherById(response?.teacherID!)
     .then((responseT) => {
         teacher.value = responseT
     })
 })
+
+// console.log(studentStore.getStudentById(props.id))
 
 // teacherStore.getTeacherById(student.value?.teacherID!)
 // .then((response) => {
