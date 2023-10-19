@@ -1,5 +1,14 @@
 <script setup lang="ts">
+// Import the ref function from Vue to create reactive properties
+import { ref } from 'vue';
 
+// Define a reactive property to track if the form is in edit mode
+let isEditing = ref(false);
+
+// Function to toggle edit mode
+const toggleEditMode = () => {
+    isEditing.value = !isEditing.value;
+};
 </script>
 
 <template>
@@ -41,8 +50,7 @@
                         <label for="username" class="block mb-2 text-sm font-semibold text-indigo-900">
                             Username</label>
                         <input type="text" id="username" disabled
-                        
-                        class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                            class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                             placeholder="" value="BRO-073" required>
                     </div>
 
@@ -54,7 +62,7 @@
                     <div class="w-full">
                         <label for="first_name" class="block mb-2 text-sm font-semibold text-indigo-900">
                             First name</label>
-                        <input type="text" id="first_name"
+                        <input type="text" id="first_name" :disabled="!isEditing"
                             class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                             placeholder="" value="Gorn" required>
                     </div>
@@ -62,7 +70,7 @@
                     <div class="w-full">
                         <label for="last_name" class="block mb-2 text-sm font-semibold text-indigo-900 ">
                             Last name</label>
-                        <input type="text" id="last_name"
+                        <input type="text" id="last_name" :disabled="!isEditing"
                             class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                             placeholder="" value="Wannapairote" required>
                     </div>
@@ -81,11 +89,11 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <button type="submit"
-                        class="flex text-white bg-indigo-500  hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center ">
-                        <img src="src\assets\edit.png" class="h-[15px]  mr-2">
-
-                        Edit</button>
+                    <button type="submit" @click="toggleEditMode"
+                        class="flex text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
+                        <img src="src\assets\edit.png" class="h-[15px] mr-2">
+                        Edit
+                    </button>
                 </div>
             </div>
         </div>
