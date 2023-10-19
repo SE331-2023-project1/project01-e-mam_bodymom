@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="mt-40 md:mt-[20%] lg:mt-[8%] flex flex-col items-center justify-center my-5">
+    <div class="flex flex-col items-center justify-center my-5">
         <img src="../assets/404-error.png" class="notfound">
         <h1 class="text-3xl  font-bold font-fig">Oop!</h1>
         <h3 class="text-2xl  text-center font-bold font-fig">The {{ resource }} you're looking for is not here</h3>

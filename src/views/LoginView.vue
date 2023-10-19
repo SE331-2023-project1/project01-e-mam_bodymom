@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10 md:mt-[10%] lg:mt-[4%] flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
     <!-- <div id="flashMessage"
       class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
       <h4>{{ message }}</h4>
