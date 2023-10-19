@@ -61,7 +61,7 @@ const onSubmit = handleSubmit((values) => {
   authStore
     .studentRegister(values.username, values.firstName, values.lastName, values.email, values.password)
     .then(() => {
-      router.push({ name: 'event-list' })
+      router.push({ name: 'Login' })
       storeMessage.updateMessage('Registration successful');
       setTimeout(() => {
         storeMessage.resetMessage()
