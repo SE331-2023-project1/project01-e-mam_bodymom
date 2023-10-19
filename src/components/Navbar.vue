@@ -64,13 +64,19 @@ if (token && userRole && id) {
           <RouterLink to="/Login">Login</RouterLink>
           </li>
           <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+            <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
+          <RouterLink to="/announcements">Announcements</RouterLink>
+          </li>
+          <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
             <!-- <router-link to="/profile" class="nav-link">
               <font-awesome-icon icon="user"/> {{ authStore.currentUserName }}
             </router-link> -->
             <a href="/" class="nav-link hover:cursor-pointer" @click="logout">
-              <font-awesome-icon icon="sign-in-alt"/>LogOut
+              
+              LogOut
             </a>
           </li>
+
 
         </ul>
       </div>
