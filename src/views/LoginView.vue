@@ -113,7 +113,7 @@ const onSubmit = handleSubmit((values) => {
 
     }).catch((err) => {
       console.log('error', err)
-      storeMessage.updateMessage('could not login')
+      storeMessage.updateMessage('Username and Password does not match')
       setTimeout(() => {
         storeMessage.resetMessage()
       }, 3000)
