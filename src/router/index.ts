@@ -24,7 +24,7 @@ import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth.ts'
 
 import AddPerson from '../views/AddPerson.vue';
- 
+  
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
