@@ -92,7 +92,6 @@ onBeforeRouteUpdate((to, from, next) => {
     
 });
 
-
 const hasNextPage = computed(() => {
     const totalPages = Math.ceil(totalTeacher.value / 6);
     return props.page < totalPages;
