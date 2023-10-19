@@ -40,10 +40,10 @@
                     <div class="w-full">
                         <label for="username" class="block mb-2 text-sm font-semibold text-indigo-900">
                             Username</label>
-                        <input type="text" id="username"
+                        <input type="text" id="username" disabled
                         
-                            class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="Gboy" required>
+                        class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                            placeholder="" value="BRO-073" required>
                     </div>
 
 
