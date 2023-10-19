@@ -27,7 +27,7 @@ if (token && userRole && id) {
 </script>
 
 <template>
-  <nav class="bg-white shadow-md border-gray-200 font-display">
+  <nav class="fixed top-0 left-0 right-0 bg-white shadow-md border-gray-200 font-display">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="/" class="flex items-center">
         <!-- <img src="../assets/logo.png" class="h-14 mr-3" alt="Logo" /> -->
@@ -63,7 +63,7 @@ if (token && userRole && id) {
             <img src="../assets/login.png" class="h-[12px] ml-1 mr-2">
           <RouterLink to="/Login">Login</RouterLink>
           </li>
-          <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+          <li v-if="authStore.userRole == 'ROLE_STUDENT'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
             <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
           <RouterLink to="/announcements">Announcements</RouterLink>
           </li>

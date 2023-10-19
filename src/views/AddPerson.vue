@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-3 w-3/4 h-4/5 border border-gray-700
+  <div class="mt-[25%] md:mt-[20%] lg:mt-[8%] flex flex-col p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg mb-4 bg-white shadow-md my-5 mx-auto">
 
     <div class="font-fig mx-5 text-black">

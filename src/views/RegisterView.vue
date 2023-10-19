@@ -62,10 +62,10 @@ const onSubmit = handleSubmit((values) => {
     .studentRegister(values.username, values.firstName, values.lastName, values.email, values.password)
     .then(() => {
       router.push({ name: 'event-list' })
-      storeMessage.updateMessage('Registration successful');
-      setTimeout(() => {
-        storeMessage.resetMessage()
-      }, 4000)
+      // storeMessage.updateMessage('Registration successful');
+      // setTimeout(() => {
+      //   storeMessage.resetMessage()
+      // }, 4000)
 
     })
     .catch(() => {
@@ -80,16 +80,17 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="mt-10 md:mt-[10%] lg:mt-[4%] flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-[160px] w-auto" src="../assets/bodymoms.png" alt="" />
 
       <h2 class="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-blue-700">
         Register to your account
       </h2>
-      <div class="animate-flashMessage mb-4" v-if="message">
+      <!-- <div class="animate-flashMessage mb-4" v-if="message">
         <h4>{{ message }}</h4>
-      </div>
+      </div> -->
+
     </div>
 
     <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -141,6 +142,10 @@ const onSubmit = handleSubmit((values) => {
         </div>
 
         <div>
+          <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-red-500 font-fig text-white"
+            v-if="message">
+            <h4>{{ message }}</h4>
+          </div>
           <button type="submit"
             class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm
                     hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">

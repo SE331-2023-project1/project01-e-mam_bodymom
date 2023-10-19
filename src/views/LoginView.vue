@@ -1,16 +1,17 @@
 <template>
-  <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white"
-    v-if="message">
-    <h4>{{ message }}</h4>
-  </div>
-  <FlashMessage />
-  <div class="flex min-h-full flex-1 flex-col justify-center-px-6 py-12 lg:px-8">
+  <div class="mt-10 md:mt-[10%] lg:mt-[4%] flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <!-- <div id="flashMessage"
+      class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+      <h4>{{ message }}</h4>
+    </div>
+    <FlashMessage /> -->
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-[160px] w-auto" src="../assets/bodymoms.png" alt="Your Company">
       <h2 class="mt-4 text-center text-lg font-bold leading-9 tracking-tight text-gray-900">Welcome to SE331 Project -
         BodyMom</h2>
       <h2 class="mt-1 text-center text-lg font-bold leading-9 tracking-tight text-blue-700">Log in to your account</h2>
     </div>
+
     <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" @submit.prevent="onSubmit">
         <div>
@@ -36,6 +37,11 @@
           </div>
         </div>
         <div>
+          <div id="flashMessage"
+            class="mb-2 animate-pulse text-center text-base font-fig bg-red-500 font-fig text-white" v-if="message">
+            <h4>{{ message }}</h4>
+          </div>
+          <FlashMessage />
           <button type="submit"
             class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm
                     hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log
@@ -48,6 +54,7 @@
         <RouterLink :to="{ name: 'register-page' }" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-400">
           Try to register here</RouterLink>
       </p>
+
     </div>
   </div>
 </template>
@@ -94,18 +101,19 @@ const onSubmit = handleSubmit((values) => {
   authStore.login(values.email, values.password)
     .then(() => {
       console.log('login success')
-      storeMessage.updateMessage('Login successful');
-      setTimeout(() => {
-        storeMessage.resetMessage()
-      }, 1000)
-      setTimeout(() => {
-        
-        router.push({ name: 'home-page' })
-      }, 1000)
-      
+      // storeMessage.updateMessage('Login successful');
+      // setTimeout(() => {
+      //   storeMessage.resetMessage()
+      // }, 1000)
+      // setTimeout(() => {
+
+      //   router.push({ name: 'home-page' })
+      // }, 1000)
+      router.push({ name: 'home-page' })
+
     }).catch((err) => {
       console.log('error', err)
-      storeMessage.updateMessage('could not login')
+      storeMessage.updateMessage('Username and Password does not match')
       setTimeout(() => {
         storeMessage.resetMessage()
       }, 3000)

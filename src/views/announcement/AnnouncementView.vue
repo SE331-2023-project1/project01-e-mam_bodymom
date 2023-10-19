@@ -76,7 +76,7 @@ export default {
                 <p class="font-fig text-md text-gray-600">Ho Ho Ho kriๆๆๆๆ</p>
             </div>
             <!-- Photo slider -->
-            <div class="mt-5 relative">
+            <div class="mt-5  relative">
                 <img :src="photos[selectedPhoto]" class="object-cover w-full h-60 md:h-96 rounded-lg"
                     alt="Selected Photo" />
                 <div
@@ -93,7 +93,7 @@ export default {
                     </span>
                 </div>
                 <div
-                    class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                    class="absolute top-0 right-0  flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                     <span
                         class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
                         @click="nextPhoto">
