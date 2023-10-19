@@ -67,6 +67,10 @@ if (token && userRole && id) {
             <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
           <RouterLink to="/announcements">Announcements</RouterLink>
           </li>
+          <li v-if="authStore.userRole == 'ROLE_STUDENT'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+            <img src="../assets/profile.png" class="h-[21px] ml-1 mr-2 items-center">
+          <RouterLink to="/studentprofile">Profile</RouterLink>
+          </li>
           <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
             <!-- <router-link to="/profile" class="nav-link">
               <font-awesome-icon icon="user"/> {{ authStore.currentUserName }}

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
 
 <template>
   <main class="mt-20 mb-6 lg:mt-[7%] md:mt-[12%] md:mb-6 flex flex-col items-center justify-center  text-black">
-    <h1 class="font-fig text-3xl font-bold  px-4 py-2 text-center">SE331 TERM PROJECT I</h1>
+    <h1 class="font-fig text-3xl font-bold  px-4 py-2 text-center">SE331 TERM PROJECT</h1>
     <p class="font-mono text-center">Component-Based Software Development</p>
     <br>
     <p class="font-fig font-bold text-base ">Group Name: E-Mam_BodyMom</p>
