@@ -1,14 +1,30 @@
 <script setup lang="ts">
-// Import the ref function from Vue to create reactive properties
+// Import the ref and computed functions from Vue
 import { ref } from 'vue';
 
 // Define a reactive property to track if the form is in edit mode
 let isEditing = ref(false);
 
-// Function to toggle edit mode
-const toggleEditMode = () => {
-    isEditing.value = !isEditing.value;
+// Function to enter edit mode
+const enterEditMode = () => {
+    isEditing.value = true;
 };
+
+// Function to save changes and exit edit mode
+const saveChanges = () => {
+    // Add your logic to save changes here
+    isEditing.value = false;
+};
+
+// // Create a computed property for the button label
+// const buttonLabel = computed(() => (isEditing.value ? 'Save' : 'Edit'));
+
+// // Create a computed property for the button color
+// const buttonColor = computed(() => (isEditing.value ? 'bg-emerald-500 focus:ring-emerald-300' : 'bg-indigo-500'));
+
+// Create a computed property for the button image source
+// const buttonImage = computed(() => (isEditing.value ? 'src/assets/save.png' : 'src/assets/edit.png'));
+
 </script>
 
 <template>
@@ -89,12 +105,27 @@ const toggleEditMode = () => {
                 </div>
 
                 <div class="flex justify-center">
-                    <button type="submit" @click="toggleEditMode"
+                    <!-- <button type="submit" @click="toggleEditMode"
+                        :class="`${buttonColor} hover:${buttonColor} flex focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-white text-sm w-full sm:w-auto px-5 py-2 text-center items-center`">
+                        <img :src="buttonImage" class="h-[15px] mr-2">
+                        {{ buttonLabel }}
+                    </button> -->
+                    <!-- Edit button -->
+                    <button v-if="!isEditing" @click="enterEditMode"
                         class="flex text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
-                        <img src="src\assets\edit.png" class="h-[15px] mr-2">
+                        <img src="src/assets/edit.png" class="h-[15px] mr-2">
                         Edit
                     </button>
+
+                    <!-- Save button -->
+                    <button v-if="isEditing" @click="saveChanges"
+                        class="flex text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
+                        <img src="src/assets/save.png" class="h-[15px] mr-2">
+                        Save
+                    </button>
                 </div>
+                
+
             </div>
         </div>
 
