@@ -70,29 +70,6 @@ const { message } = storeToRefs(storeMessage)
             </div>
 
             <div class="items-center mt-4 mb-4 lg:mb-6 lg:mt-6 w-full text-[#202142]">
-
-
-                <div
-                    class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
-                    <div class="w-full">
-                        <label for="studentid" class="block mb-2 text-sm font-semibold text-indigo-900">
-                            Student ID</label>
-                        <input type="text" id="studentid" disabled
-                            class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="BRO-073" required>
-                    </div>
-
-                    <div class="w-full">
-                        <label for="username" class="block mb-2 text-sm font-semibold text-indigo-900">
-                            Username</label>
-                        <input type="text" id="username" disabled
-                            class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="BRO-073" required>
-                    </div>
-
-
-                </div>
-
                 <div
                     class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
                     <div class="w-full">
@@ -100,7 +77,7 @@ const { message } = storeToRefs(storeMessage)
                             First name</label>
                         <input type="text" id="first_name" :disabled="!isEditing"
                             class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="Gorn" required>
+                            placeholder="" value="Patty" required>
                     </div>
 
                     <div class="w-full">
@@ -108,7 +85,7 @@ const { message } = storeToRefs(storeMessage)
                             Last name</label>
                         <input type="text" id="last_name" :disabled="!isEditing"
                             class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="Wannapairote" required>
+                            placeholder="" value="eieiei" required>
                     </div>
                 </div>
 
@@ -116,10 +93,10 @@ const { message } = storeToRefs(storeMessage)
                     class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
                     <div class="w-full">
                         <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
-                            Department</label>
+                            Academic Position</label>
                         <input type="text" id="department" disabled
                             class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="Faculty of Medicine" required>
+                            placeholder="" value="Associate Professor" required>
                     </div>
 
                 </div>
