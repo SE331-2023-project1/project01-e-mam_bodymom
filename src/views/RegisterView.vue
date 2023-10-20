@@ -16,7 +16,7 @@ const { message } = storeToRefs(storeMessage)
 const validationSchema = yup.object({
   username: yup.string()
     .required('The username is required')
-    .matches(/^[A-Za-z0-9]+$/, 'Username should contain only alphabetic characters and numbers'),
+    .matches(/^(?=.*[0-9])[A-Za-z0-9]+$/, 'Username should contain only alphabetic characters and numbers'),
 
   firstName: yup.string()
     .required('The firstName is required')
