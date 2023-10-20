@@ -226,10 +226,14 @@ const previewMultiImages = (event: Event) => {
 
 
 const reset = () => {
+    const fileInput = document.getElementById('my-files') as HTMLInputElement | null;
+    if (fileInput) {
+        fileInput.value = ''; // Clear the file input value
+    }
+
     preview.value = null;
     image.value = null;
     previewList.value = [];
     imageList.value = [];
 };
-
 </script>
