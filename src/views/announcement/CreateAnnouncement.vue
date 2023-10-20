@@ -78,7 +78,7 @@
                                         <div class="form-group">
                                             <label for="my-files"
                                                 class="font-fig text-sm font-semibold text-indigo-900">Select Images</label>
-                                            <input type="file" accept="image/*" multiple="multiple"
+                                            <input type="file" accept="image/*,.pdf" multiple="multiple"
                                                 @change="previewMultiImages"
                                                 class="form-control-file lg:ml-2 text-white bg-pink-400 font-medium rounded-lg text-sm w-full sm:w-auto text-center justify-center items-center"
                                                 id="my-files">
@@ -87,12 +87,12 @@
                                                 <p class="font-fig text-sm font-semibold text-indigo-900">Preview Here:</p>
                                                 <template v-if="previewList.length">
                                                     <div v-for="(item, index) in previewList" :key="index">
-                                                        <img :src="item" class="img-fluid mx-auto object-cover h-40" />
+                                                        <!-- <img :src="item" class="img-fluid mx-auto object-cover h-40" /> -->
                                                         <p
-                                                            class="flex justify-center mb-0 font-fig text-sm font-semibold text-gray-600">
+                                                            class="flex justify-center font-fig text-sm font-semibold text-gray-600 ">
                                                             file name: {{ imageList[index].name }}</p>
                                                         <p
-                                                            class="flex justify-center font-fig text-sm font-semibold text-gray-600">
+                                                            class="flex justify-center font-fig mb-2 text-sm font-semibold text-gray-600">
                                                             size: {{ imageList[index].size / 1024 }}KB</p>
                                                     </div>
                                                 </template>
@@ -143,7 +143,7 @@ const storeMessage = useMessageStore()
 const { message } = storeToRefs(storeMessage)
 const eventName = ref("");
 const eventDetail = ref("");
-import { ref } from 'vue';
+// import { ref } from 'vue';
 
 const showConfirmation = () => {
     if (confirm("Are you sure you want to post this announcement?")) {
@@ -170,17 +170,34 @@ const image = ref<File | null>(null);
 const previewList = ref<string[]>([]);
 const imageList = ref<File[]>([]);
 
-const previewImage = (event: Event) => {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            preview.value = reader.result as string;
-        };
-        reader.readAsDataURL(file);
-        image.value = file;
-    }
-};
+// const previewImage = (event: Event) => {
+//     const file = (event.target as HTMLInputElement).files?.[0];
+//     if (file) {
+//         const reader = new FileReader();
+//         reader.onload = () => {
+//             preview.value = reader.result as string;
+//         };
+//         reader.readAsDataURL(file);
+//         image.value = file;
+//     }
+// };
+
+// const previewMultiImages = (event: Event) => {
+//     const files = (event.target as HTMLInputElement).files;
+//     previewList.value = [];
+//     imageList.value = [];
+//     for (let i = 0; i < files.length; i++) {
+//         const file = files[i];
+//         if (file) {
+//             const reader = new FileReader();
+//             reader.onload = () => {
+//                 previewList.value.push(reader.result as string);
+//             };
+//             reader.readAsDataURL(file);
+//             imageList.value.push(file);
+//         }
+//     }
+// };
 
 const previewMultiImages = (event: Event) => {
     const files = (event.target as HTMLInputElement).files;
@@ -189,15 +206,24 @@ const previewMultiImages = (event: Event) => {
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                previewList.value.push(reader.result as string);
-            };
-            reader.readAsDataURL(file);
-            imageList.value.push(file);
+            if (file.type.startsWith('image/')) {
+                // Handle image files
+                const reader = new FileReader();
+                reader.onload = () => {
+                    previewList.value.push(reader.result as string);
+                };
+                reader.readAsDataURL(file);
+                imageList.value.push(file);
+            } else if (file.type === 'application/pdf') {
+                // Handle PDF files
+                // Display a link to the PDF file
+                previewList.value.push('path_to_your_pdf_file.pdf');
+                imageList.value.push(file);
+            }
         }
     }
 };
+
 
 const reset = () => {
     preview.value = null;
