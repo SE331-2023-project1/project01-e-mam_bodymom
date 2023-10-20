@@ -239,7 +239,7 @@ const saveAndSubmitForm = async () => {
           <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">
 
 
-            <form class="space-y-6" @submit.prevent="onSubmit">
+            <form class="" @submit.prevent="onSubmit">
 
             <div
               class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
