@@ -170,14 +170,9 @@ const onSubmit = handleSubmit(async (values) => {
                     <div class="w-full">
                         <label for="studentid" class="block mb-2 text-sm font-semibold text-indigo-900">
                             Student ID</label>
-                        <!-- <input type="text" id="studentid" disabled
+                        <input type="text" id="studentid" disabled
                             class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" :value="student?.data?.id" required> -->
-                            <InputText type="text" v-model="username" class="text-emerald-600 text-sm font-semibold" placeholder="Username">
-                             </InputText>
-                            <div v-if="errors['id']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
-                             {{ errors['id'] }}</div>
-
+                            placeholder="" :value="student?.data?.id" required>
                     </div>
 
                     <div class="w-full">
