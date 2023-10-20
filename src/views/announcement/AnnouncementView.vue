@@ -31,12 +31,12 @@
 
             <div class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
                 <div class="w-full">
-                    <label for="event_description" class="block mb-2 text-sm font-semibold text-indigo-900">
-                        Description
+                    <label for="event_detail" class="block mb-2 text-sm font-semibold text-indigo-900">
+                        Detail
                     </label>
-                    <input type="text" id="event_description" disabled
+                    <input type="text" id="event_detail" disabled
                         class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                        placeholder="" :value="eventDescription" required />
+                        placeholder="" :value="eventDetail" required />
                 </div>
             </div>
 
