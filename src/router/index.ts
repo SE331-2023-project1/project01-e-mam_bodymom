@@ -14,6 +14,7 @@ import RegisterView from '../views/RegisterView.vue'
 import AnnouncementView from '../views/announcement/AnnouncementView.vue'
 import StudentProfile from '../views/student/StudentProfile.vue'
 import TeacherProfile from '../views/teacher/TeacherProfile.vue'
+import CreateAnnouncement from '../views/announcement/CreateAnnouncement.vue'
 import NProgress from 'nprogress'
 import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
@@ -44,6 +45,11 @@ const router = createRouter({
       path: '/announcements',
       name: 'announcement-view',
       component: AnnouncementView
+    },
+    {
+      path: '/createpost',
+      name: 'create-announcement',
+      component: CreateAnnouncement
     },
     {
       path: '/studentprofile',
