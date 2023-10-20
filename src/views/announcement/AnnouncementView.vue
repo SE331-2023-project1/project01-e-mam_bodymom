@@ -16,11 +16,30 @@
                     <p class="font-fig text-sm font-semibold text-gray-600">Time: 10:00 AM</p>
                 </div>
             </div>
-            <!-- Announcement Details -->
-            <div class="mt-5 flex flex-col pl-3">
-                <p class="font-fig font-semibold text-md">Christmas Event !</p>
-                <p class="font-fig text-md text-gray-600">Ho Ho Ho kriๆๆๆๆ</p>
+            <div class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+                <div class="w-full">
+                    <label for="event_name" class="block mb-2 text-sm font-semibold text-indigo-900">
+                        Topic
+                    </label>
+                    <input type="text" id="event_name" disabled
+                        class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                        placeholder="" :value="eventName" required />
+                </div>
+
+
             </div>
+
+            <div class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+                <div class="w-full">
+                    <label for="event_description" class="block mb-2 text-sm font-semibold text-indigo-900">
+                        Description
+                    </label>
+                    <input type="text" id="event_description" disabled
+                        class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                        placeholder="" :value="eventDescription" required />
+                </div>
+            </div>
+
             <!-- Media Preview -->
             <div class="mt-5 relative" v-if="mediaExists">
                 <template v-if="isImage">
