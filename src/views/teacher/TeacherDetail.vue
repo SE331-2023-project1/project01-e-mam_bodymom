@@ -24,10 +24,12 @@ defineProps({
           <img :src="teacher?.profileimage" alt="" class="crop rounded-lg" />
         </div>
         <div class="justify-center padding-top">
-          <span class="font-fig text-base text-gray-500">Teacher ID: {{ teacher?.id }}</span> <br />
           <span class="font-fig name font-bold text-black">
             {{ teacher?.name }} {{ teacher?.surname }}</span
-          >
+          > <br>
+          <span class="font-fig text-base text-gray-500">Department: {{ teacher?.department }}</span> <br />
+          <span class="font-fig text-base text-gray-500">Academic Position: {{ teacher?.academicposition }}</span>
+
         </div>
         <!-- <b class="text-black">Student id list</b> -->
         <!-- <li v-for="studentId in teacher.studentsId" :key="studentId" class="text-xl font-fig">
