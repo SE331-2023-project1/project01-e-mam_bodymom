@@ -172,7 +172,7 @@ const onSubmit = handleSubmit(async (values) => {
                             Student ID</label>
                         <input type="text" id="studentid" disabled
                             class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" :value="student?.data?.id" required>
+                            placeholder="" :value="student?.data?.username" required>
                     </div>
 
                     <div class="w-full">
