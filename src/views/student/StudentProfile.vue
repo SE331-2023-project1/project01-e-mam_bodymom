@@ -42,10 +42,30 @@ const student = ref<StudentItem | null>(null)
 // student.value = useStudentStore().getStudentById(authStore.id);
 // console.log(student.value);
 
-useStudentStore().getStudentById(authStore.id).then((response) => {
-    student.value = response
-    console.log(student.value)
-})
+// useStudentStore().getStudentById(authStore.id).then((response) => {
+//     student.value = response
+//     console.log(student.value)
+// })
+
+onMounted(async () => {
+  try {
+    const response = await useStudentStore().getStudentById(authStore.id);
+    student.value = response;
+    console.log(student.value);
+
+    // Access student data here
+    if (student.value) {
+      console.log(student.value.username);
+      username.value = response?.username;
+      id.value = response?.id;
+      firstName.value = response?.name;
+      lastName.value = response?.surname;
+
+    }
+  } catch (error) {
+    console.error('Error fetching student data:', error);
+  }
+});
 
 // console.log(student.value)
 
@@ -114,8 +134,8 @@ const { errors, handleSubmit } = useForm({
   validationSchema,
 
   initialValues: {
-    id: student?.value?.data?.id,
-    username: 'student?.value?.name',
+    id: '',
+    username: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -248,7 +268,7 @@ const saveAndSubmitForm = async () => {
                   Student ID</label>
                 <input type="text" id="studentid" disabled
                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.value?.username" required>
+                  placeholder="" v-model="id" required>
               </div>
 
               <div class="w-full">
@@ -268,7 +288,7 @@ const saveAndSubmitForm = async () => {
                   First name</label>
                 <input type="text" id="first_name" :disabled="!isEditing"
                   class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.name" required>
+                  placeholder="" v-model="firstName" required>
               </div>
 
               <div class="w-full">
@@ -276,7 +296,7 @@ const saveAndSubmitForm = async () => {
                   Last name</label>
                 <input type="text" id="last_name" :disabled="!isEditing"
                   class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.surname" required>
+                  placeholder="" v-model="lastName" required>
               </div>
             </div>
 
