@@ -38,23 +38,47 @@ const { message } = storeToRefs(storeMessage)
 
 const student = ref<StudentItem | null>(null)
 
+
+// student.value = useStudentStore().getStudentById(authStore.id);
+// console.log(student.value);
+
+useStudentStore().getStudentById(authStore.id).then((response) => {
+    student.value = response
+    console.log(student.value)
+})
+
+// console.log(student.value)
+
+// const fetchStudentData = async () => {
+//   const response = await useStudentStore().getStudentById(authStore.id);
+//   student.value = response;
+//   console.log(student.value);
+
+//   // Now you can use student.value here or anywhere else in your component.
+// };
+
+// fetchStudentData();
+
+
+
 // StudentService.getStudentById(authStore.id).then((response) => {
 //   student.value = response
 //   console.log(student.value.data)
 // })
 
-const fetchStudentData = async () => {
-  try {
-    const response = await StudentService.getStudentById(authStore.id);
-    student.value = response;
-  } catch (error) {
-    console.error('Error fetching student data:', error);
-  }
-};
+// const fetchStudentData = async () => {
+//   try {
+//     const response = await StudentService.getStudentById(authStore.id);
+//     student.value = response;
+//     console.log(student.value)
+//   } catch (error) {
+//     console.error('Error fetching student data:', error);
+//   }
+// };
 
-onMounted(() => {
-  fetchStudentData();
-});
+// const response = StudentService.getStudentById(authStore.id);
+// student.value = response
+// console.log(student.value.data)
 
 const validationSchema = yup.object({
   id: yup.string()
@@ -91,13 +115,15 @@ const { errors, handleSubmit } = useForm({
 
   initialValues: {
     id: student?.value?.data?.id,
-    username: '',
+    username: 'student?.value?.name',
     firstName: '',
     lastName: '',
     email: '',
     password: '',
   }
 })
+
+// console.log(student.value.data)
 
 const { value: id } = useField<string>('id')
 
@@ -142,6 +168,7 @@ const saveAndSubmitForm = async () => {
 
   try {
     await onSubmit();
+    console.log(onSubmit())
     storeMessage.updateMessage(successMessage);
     setTimeout(() => {
       storeMessage.resetMessage();
@@ -153,6 +180,26 @@ const saveAndSubmitForm = async () => {
     }, 3000);
   }
 };
+
+
+// onMounted(() => {
+//   fetchStudentData();
+// });
+
+// onMounted(async () => {
+//   try {
+//     student.value = await useStudentStore().getStudentById(authStore.id);
+//     console.log(student.value);
+
+//     // Access student data here
+//     if (student.value) {
+//       console.log(student.value.username);
+//     }
+//   } catch (error) {
+//     console.error('Error fetching student data:', error);
+//   }
+// });
+
 </script>
 
 <template>
@@ -186,6 +233,8 @@ const saveAndSubmitForm = async () => {
           <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">
 
 
+            <form class="space-y-6" @submit.prevent="onSubmit">
+
             <div
               class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
               <div class="w-full">
@@ -193,7 +242,7 @@ const saveAndSubmitForm = async () => {
                   Student ID</label>
                 <input type="text" id="studentid" disabled
                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.data?.username" required>
+                  placeholder="" :value="student?.value?.username" required>
               </div>
 
               <div class="w-full">
@@ -201,7 +250,7 @@ const saveAndSubmitForm = async () => {
                   Username</label>
                 <input type="text" id="username" disabled
                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.data?.username" required>
+                  placeholder="" v-model="username" required>
               </div>
 
 
@@ -213,7 +262,7 @@ const saveAndSubmitForm = async () => {
                   First name</label>
                 <input type="text" id="first_name" :disabled="!isEditing"
                   class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.data?.name" required>
+                  placeholder="" :value="student?.name" required>
               </div>
 
               <div class="w-full">
@@ -221,7 +270,7 @@ const saveAndSubmitForm = async () => {
                   Last name</label>
                 <input type="text" id="last_name" :disabled="!isEditing"
                   class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.data?.surname" required>
+                  placeholder="" :value="student?.surname" required>
               </div>
             </div>
 
@@ -232,7 +281,7 @@ const saveAndSubmitForm = async () => {
                   Departmenr</label>
                 <input type="text" id="department" disabled
                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.data?.department" required>
+                  placeholder="" :value="student?.department" required>
               </div>
 
             </div>
@@ -265,6 +314,8 @@ const saveAndSubmitForm = async () => {
                 Save
               </button>
             </div>
+
+        </form>
 
           </div>
         </div>

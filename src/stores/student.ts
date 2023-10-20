@@ -61,13 +61,15 @@ export const useStudentStore = defineStore('student', {
             // console.log(response)
         },
         async fetchStudentById(id: string) {
-            try {
-                const response = this.getStudentById(id)
-                return response
-            } catch (error) {
-                console.log(error)
-                return null
-            }
+            const response = await StudentService.getStudentById(id)
+            this.students.push(response.data)
+            // try {
+            //     const response = this.getStudentById(id)
+            //     return response
+            // } catch (error) {
+            //     console.log(error)
+            //     return null
+            // }
         },
         async fetchStudentsByTeacher(id: string) {
             const response = await StudentService.getStudentsByTeacher(id)
