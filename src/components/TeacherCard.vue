@@ -37,9 +37,12 @@ defineProps({
 
         </div>
         <div class="">
-          <span class="text-xs text-gray-500">ID: {{ teacher?.id }}</span> <br />
+          <!-- <span class="text-xs text-gray-500">ID: {{ teacher?.id }}</span> <br /> -->
 
-          <span class="font-bold text-black"> {{ teacher?.name }} {{ teacher?.surname }}</span>
+          <span class="font-fig text-lg font-bold text-black"> {{ teacher?.name }} {{ teacher?.surname }}</span> <br>
+          <span class="font-fig font-semibold text-sm text-gray-500"> {{ teacher?.department }} </span> <br>
+          <span class="font-fig font-semibold text-sm text-gray-500"> {{ teacher?.academicposition }} </span>
+
         </div>
       </div>
     </div>

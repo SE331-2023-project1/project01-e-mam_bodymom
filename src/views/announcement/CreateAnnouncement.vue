@@ -23,29 +23,28 @@
             </div>
 
             <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
-                <div class="flex flex-col items-center space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 ">
-                    <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">
+        <div class="flex flex-col items-center space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 ">
+            <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">
+                <div
+                    class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+                    <div class="w-full">
+                        <label for="event_name" class="block mb-2 text-sm font-semibold text-indigo-900">
+                            Topic</label>
+                        <input type="text" id="event_name"
+                            class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                            placeholder="Write topic here..." :value="eventName" @input="eventName = $event.target.value" required>
+                    </div>
+                </div>
 
-                        <div
-                            class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
-                            <div class="w-full">
-                                <label for="event_name" class="block mb-2 text-sm font-semibold text-indigo-900">
-                                    Topic</label>
-                                <input type="text" id="event_name"
-                                    class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                                    placeholder="Write topic here..." :value="eventName" required>
-                            </div>
-                        </div>
-
-                        <div
-                            class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
-                            <div class="w-full">
-                                <label for="event_detail" class="block mb-2 text-sm font-semibold text-indigo-900">
-                                    Detail</label>
-                                <input type="text" id="event_detail"
-                                    class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                                    placeholder="Write detail here..." :value="eventDetail" required>
-                            </div>
+                <div
+                    class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+                    <div class="w-full">
+                        <label for="event_detail" class="block mb-2 text-sm font-semibold text-indigo-900">
+                            Detail</label>
+                        <input type="text" id="event_detail"
+                            class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                            placeholder="Write detail here..." :value="eventDetail" @input="eventDetail = $event.target.value" required>
+                    </div>
                         </div>
 
                         <div id="app" class="container my-3">
@@ -146,7 +145,9 @@ const eventDetail = ref("");
 // import { ref } from 'vue';
 
 const showConfirmation = () => {
-    if (confirm("Are you sure you want to post this announcement?")) {
+    if (!eventName.value || !eventDetail.value) {
+        alert('Please fill in all required fields (Topic and Detail) before posting.');
+    } else if (confirm("Are you sure you want to post this announcement?")) {
         onSubmit();
     }
 };
@@ -158,8 +159,10 @@ const onSubmit = () => {
 
     // Display a success message
     storeMessage.updateMessage('Announcement posted!');
+    reset(); 
     setTimeout(() => {
         storeMessage.resetMessage();
+    
     }, 4000);
 };
 
@@ -235,5 +238,9 @@ const reset = () => {
     image.value = null;
     previewList.value = [];
     imageList.value = [];
+
+    // Reset the text inputs
+    eventName.value = "";
+    eventDetail.value = "";
 };
 </script>

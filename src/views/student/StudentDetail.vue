@@ -95,7 +95,7 @@ const addComment = () => {
                 <img :src="teacher?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
                 <div class="flex flex-col">
                   <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
-                  <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span>
+                  <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
                 </div>
               </div>
             </button>

@@ -99,6 +99,14 @@ const { message } = storeToRefs(storeMessage)
                             placeholder="" value="Associate Professor" required>
                     </div>
 
+                    <div class="w-full">
+                        <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
+                            Department</label>
+                        <input type="text" id="department" disabled
+                            class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                            placeholder="" value="Software Engineering" required>
+                    </div>
+
                 </div>
 
                 <div class="flex  justify-center">
