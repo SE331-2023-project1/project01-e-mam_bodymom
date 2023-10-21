@@ -82,12 +82,12 @@ function updateKeyword (value: string) {
         <main class="flex flex-col items-center justify-center">
 
 
-            <div class="w-64">
+            <div class="flex justify-center w-full p-3 sm:w-2/4 ">
              <BaseInput 
               v-model="keyword"
               type="text"
               placeholder="Search..."
-              class="w-full "
+              class="w-full h-10  border rounded-md "
               @input="updateKeyword"/>
             </div>
             
