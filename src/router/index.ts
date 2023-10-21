@@ -15,6 +15,7 @@ import AnnouncementView from '../views/announcement/AnnouncementView.vue'
 import StudentProfile from '../views/student/StudentProfile.vue'
 import TeacherProfile from '../views/teacher/TeacherProfile.vue'
 import CreateAnnouncement from '../views/announcement/CreateAnnouncement.vue'
+import StudentProfileAdmin from '../views/student/StudentProfileAdmin.vue'
 import NProgress from 'nprogress'
 import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
@@ -55,6 +56,12 @@ const router = createRouter({
       path: '/studentprofile',
       name: 'studentprofile-view',
       component: StudentProfile,
+    },
+    {
+      path: '/studentprofile-admin/:id',
+      name: 'studentprofile-admin',
+      component: StudentProfileAdmin,
+      props: true
     },
     {
       path: '/teacherprofile',
@@ -192,7 +199,7 @@ const router = createRouter({
           path: '',
           name: 'student-detail',
           component: StudentDetail,
-        }
+        },
       ]
     },
     {

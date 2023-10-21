@@ -2,7 +2,7 @@ export interface StudentItem {
     name: string;
     surname: string;
     id: string;
-    profileimage: string[];
+    images: string;
     courselist: string[];
     teacher: string[];
     comment?: any[]
@@ -13,7 +13,7 @@ export interface TeacherItem {
     [x: string]: any;
     name: string;
     surname: string;
-    profileimage: string;
+    images: string;
     id: string;
     roles: string []
     ownStudent: string []

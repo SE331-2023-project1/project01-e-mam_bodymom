@@ -6,6 +6,7 @@ import { storeToRefs } from 'pinia';
 import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
 import { useMessageStore } from '@/stores/message';
+import { useAuthStore } from '@/stores/auth'
 
 const props = defineProps({
   student: {
@@ -19,6 +20,8 @@ const props = defineProps({
     require: true
   }
 })
+
+const authStore = useAuthStore()
 
 const store = useMessageStore()
 const { message } = storeToRefs(store)
@@ -95,6 +98,20 @@ const addComment = () => {
                 <img :src="teacher?.images" class="w-10 h-10 object-cover rounded-full mr-2">
                 <div class="flex flex-col">
                   <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
+                  <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
+                </div>
+              </div>
+            </button>
+          </RouterLink>
+
+          <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'studentprofile-admin', params: { id: student.id } }">
+            <button
+              class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md
+            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
+              <div class="flex justify-center items-center">
+                <img :src="student?.images" class="w-10 h-10 object-cover rounded-full mr-2">
+                <div class="flex flex-col">
+                  <span class="teacherid font-fig text-left">Edit Profile</span>
                   <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
                 </div>
               </div>
