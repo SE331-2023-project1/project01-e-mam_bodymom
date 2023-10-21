@@ -239,15 +239,6 @@ const saveAndSubmitForm = async () => {
                 Change Profile Picture
               </button>
             </div>
-
-        <!-- <button type="button"
-                    class="py-3.5 px-7 text-base font-medium text-white focus:outline-none bg-emerald-600 rounded-lg border border-indigo-200 hover:bg-emerald-800 focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
-                    Change picture
-                </button> -->
-        <!-- <button type="button"
-            class="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
-            Delete picture
-        </button> -->
       </div>
 
       <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">

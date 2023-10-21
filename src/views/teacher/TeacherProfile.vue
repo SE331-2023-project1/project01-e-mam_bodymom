@@ -217,124 +217,125 @@ const saveAndSubmitForm = async () => {
 </script>
 
 <template>
-    <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white"
-        v-if="message">
-        <h4>{{ message }}</h4>
-    </div>
-    <FlashMessage />
+    <!-- Flash message -->
+    <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+       <h4>{{ message }}</h4>
+     </div>
+   <main class="flex flex-col items-center justify-center">
+     <div class="font-fig flex items-center justify-center p-3 w-3/4 sm:w-2/4 h-4/5 text-2xl font-bold text-gray-900">
+       Profile
+     </div>
+ 
+     <div
+       class="mt-2 mb-10 font-fig flex flex-col  p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
+       <form class="" @submit.prevent="onSubmit">
 
-    <main class=" flex flex-col items-center justify-center">
-        <div class="font-fig flex items-center justify-center p-3 w-3/4 sm:w-2/4 h-4/5 text-2xl font-bold text-gray-900">
-            Profile
-        </div>
-        <div
-            class="mt-2 mb-10 font-fig flex flex-col items-center justify-center p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
-            <form class="" @submit.prevent="onSubmit">
-            <div class="flex flex-col items-center justify-center py-4 space-y-5">
-
-                <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
-                    :src="images" alt="Profile Picture">
-
-                <div class="flex justify-center">
-                    <!-- Change Profile button -->
-                    <button href="/updatestudents" v-if="isEditing" @click="changePicture"
-                        class="flex mt-2 text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
-                        <!-- <img src="src/assets/save.png" class="h-[15px] mr-2"> -->
-                        Change Profile Picture
-                    </button>
-                </div>
-                <!-- <button type="button"
-                    class="py-3.5 px-7 text-base font-medium text-white focus:outline-none bg-emerald-600 rounded-lg border border-indigo-200 hover:bg-emerald-800 focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
-                    Change picture
-                </button> -->
-                <!-- <button type="button"
-            class="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
-            Delete picture
-        </button> -->
-            </div>
-
-            <div class="items-center mt-4 mb-4 lg:mb-6 lg:mt-6 w-full text-[#202142]">
-                <div
-                    class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
-                    <div class="w-full">
-                        <label for="first_name" class="block mb-2 text-sm font-semibold text-indigo-900">
-                            First name</label>
-                        <input type="text" id="first_name" :disabled="!isEditing"
-                            class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" v-model="firstName" required>
-                    </div>
-
-                    <div class="w-full">
-                        <label for="last_name" class="block mb-2 text-sm font-semibold text-indigo-900 ">
-                            Last name</label>
-                        <input type="text" id="last_name" :disabled="!isEditing"
-                            class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" v-model="lastName" required>
-                    </div>
-                </div>
-
-                <div
-                    class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
-                    <div class="w-full">
-                        <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
-                            Academic Position</label>
-                        <input type="text" id="department" disabled
-                            class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="Associate Professor" required>
-                    </div>
-
-                    <div class="w-full">
-                        <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
-                            Department</label>
-                        <input type="text" id="department" disabled
-                            class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" v-model="department" required>
-                    </div>
-
-                </div>
-
-                <div class="flex  justify-center">
-                    <!-- <button type="submit" @click="toggleEditMode"
-                        :class="`${buttonColor} hover:${buttonColor} flex focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-white text-sm w-full sm:w-auto px-5 py-2 text-center items-center`">
-                        <img :src="buttonImage" class="h-[15px] mr-2">
-                        {{ buttonLabel }}
-                    </button> -->
-                    <!-- Edit button -->
-                    <button v-if="!isEditing" @click="enterEditMode"
-                        class="flex text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
-                        <img src="src/assets/edit.png" class="h-[15px] mr-2">
-                        Edit
-                    </button>
-
-                    <!-- edit button when editing mode - disabled -->
-                    <button v-if="isEditing" disabled
-                        class="flex opacity-50 text-white bg-gray-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
-                        <img src="src/assets/edit.png" class="h-[15px] mr-2">
-                        Edit
-                    </button>
-                </div>
-                <div class="flex justify-center">
-                    <!-- Save button -->
-                    <button href="/updateteachers" v-if="isEditing" @click="showConfirmation"
-                        class="flex mt-2 text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
-                        <img src="src/assets/save.png" class="h-[15px] mr-2">
-                        Save
-                    </button>
-
-                </div>
-
-
+       <div class="flex flex-col items-center justify-center py-4 space-y-5">
+         <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
+           :src="images" alt="Profile Picture" />
+           <div class="flex justify-center">
+               <!-- Change Profile button -->
+               <button href="/updatestudents" v-if="isEditing" @click="changePicture"
+                 class="flex mt-2 text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
+                 <!-- <img src="src/assets/save.png" class="h-[15px] mr-2"> -->
+                 Change Profile Picture
+               </button>
+             </div>
+       </div>
+ 
+       <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
+         <div class="flex flex-col items-center space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 ">
+           <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">
+ 
+ 
+             <!-- <form class="" @submit.prevent="onSubmit"> -->
+ 
             
-            </div>
-        </form>
-        </div>
+             <div
+               class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+               <div class="w-full">
+                 <label for="first_name" class="block mb-2 text-sm font-semibold text-indigo-900">
+                   First name</label>
+                 <input type="text" id="first_name" :disabled="!isEditing"
+                   class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                   placeholder="" v-model="firstName" required>
+               </div>
+ 
+               <div class="w-full">
+                 <label for="last_name" class="block mb-2 text-sm font-semibold text-indigo-900 ">
+                   Last name</label>
+                 <input type="text" id="last_name" :disabled="!isEditing"
+                   class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                   placeholder="" v-model="lastName" required>
+               </div>
+             </div>
+ 
+             
+             <div
+               class="flex flex-col items-center mb-5 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+               <div class="w-full">
+                 <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
+                   Academic Position</label>
+                 <input type="text" id="academicposition" disabled
+                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                   placeholder="Associate Professor" v-model="academicposition" required>
+               </div>
+               
+ 
+             </div>
 
-
-
-
-
-
-
-    </main>
-</template>
-  
+             <div
+               class="flex flex-col items-center mb-5 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+               <div class="w-full">
+                 <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
+                   Department</label>
+                 <input type="text" id="department" disabled
+                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                   placeholder="" v-model="department" required>
+               </div>
+               
+ 
+             </div>
+ 
+             <div class="flex justify-center">
+               <!-- <button type="submit" @click="toggleEditMode"
+                         :class="`${buttonColor} hover:${buttonColor} flex focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-white text-sm w-full sm:w-auto px-5 py-2 text-center items-center`">
+                         <img :src="buttonImage" class="h-[15px] mr-2">
+                         {{ buttonLabel }}
+                     </button> -->
+               <!-- Edit button -->
+               <button v-if="!isEditing" @click="enterEditMode"
+                 class="flex text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
+                 <img src="src/assets/edit.png" class="h-[15px] mr-2">
+                 Edit
+               </button>
+ 
+               <!-- edit button when editing mode - disabled -->
+               <button v-if="isEditing" disabled
+                 class="flex opacity-50 text-white bg-gray-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center justify-center">
+                 <img src="src/assets/edit.png" class="h-[15px] mr-2">
+                 Edit
+               </button>
+             </div>
+             <div class="flex justify-center">
+               <!-- Save button -->
+               <button href="/updatestudents" v-if="isEditing" @click="showConfirmation"
+                 class="flex mt-2 text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
+                 <img src="src/assets/save.png" class="h-[15px] mr-2">
+                 Save
+               </button>
+             </div>
+ 
+         
+ 
+           </div>
+         </div>
+ 
+ 
+       </div>
+    </form>
+ 
+ 
+     </div>
+   </main>
+ </template>
