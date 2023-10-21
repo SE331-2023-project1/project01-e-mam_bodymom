@@ -278,7 +278,7 @@ const saveAndSubmitForm = async () => {
               class="flex flex-col items-center mb-5 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
               <div class="w-full">
                 <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
-                  Departmenr</label>
+                  Department</label>
                 <input type="text" id="department" disabled
                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                   placeholder="" :value="student?.department" required>
