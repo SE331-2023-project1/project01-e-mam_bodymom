@@ -76,8 +76,8 @@ export const useAuthStore = defineStore('auth', {
     async studentUpdateProfile(id: string, firstName: string, lastName: string) {
       const response = await apiClient.put('/updatestudents', {
         id: id,
-        firstname: firstName,
-        lastname: lastName,
+        name: firstName,
+        surname: lastName,
       })
       this.token = response.data.access_token
       this.userRole = response.data.user_role

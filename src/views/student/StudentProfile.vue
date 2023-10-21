@@ -102,30 +102,21 @@ onMounted(async () => {
 
 const validationSchema = yup.object({
   id: yup.string()
-    .required('The id is required')
-    .matches(/^[A-Za-z0-9]+$/, 'Id should contain only numbers'),
+    .required('The id is required'),
 
-  username: yup.string()
-    .required('The username is required')
-    .matches(/^[A-Za-z0-9]+$/, 'Username should contain only alphabetic characters and numbers'),
 
   firstName: yup
     .string()
-    .required('The firstName is required')
-    .matches(/^[A-Za-z]+$/, 'First name should contain only alphabetic characters'),
+    .required('The firstName is required'),
+
 
   lastName: yup
     .string()
-    .required('The lastName is required')
-    .matches(/^[A-Za-z]+$/, 'Last name should contain only alphabetic characters'),
+    .required('The lastName is required'),
 
-  email: yup.string()
-    .required('The email is required')
-    .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
 
-  password: yup.string()
-    .required('The password is required')
-    .min(6, 'Password must be at least 6 characters long.'),
+ 
+ 
 })
 
 // console.log(student)
@@ -135,11 +126,9 @@ const { errors, handleSubmit } = useForm({
 
   initialValues: {
     id: '',
-    username: '',
     firstName: '',
     lastName: '',
-    email: '',
-    password: '',
+
   }
 })
 
@@ -153,9 +142,7 @@ const { value: firstName } = useField<string>('firstName')
 
 const { value: lastName } = useField<string>('lastName')
 
-const { value: email } = useField<string>('email')
 
-const { value: password } = useField<string>('password')
 
 // Function to save changes and exit edit mode
 const saveChanges = () => {
@@ -165,7 +152,10 @@ const saveChanges = () => {
 
 const onSubmit = handleSubmit(async (values) => {
   try {
+    console.log(values)
+
     await authStore.studentUpdateProfile(values.id, values.firstName, values.lastName);
+
     storeMessage.updateMessage('Update profile successful');
     setTimeout(() => {
       storeMessage.resetMessage();
@@ -208,23 +198,7 @@ const saveAndSubmitForm = async () => {
 };
 
 
-// onMounted(() => {
-//   fetchStudentData();
-// });
 
-// onMounted(async () => {
-//   try {
-//     student.value = await useStudentStore().getStudentById(authStore.id);
-//     console.log(student.value);
-
-//     // Access student data here
-//     if (student.value) {
-//       console.log(student.value.username);
-//     }
-//   } catch (error) {
-//     console.error('Error fetching student data:', error);
-//   }
-// });
 
 </script>
 
@@ -334,7 +308,7 @@ const saveAndSubmitForm = async () => {
             </div>
             <div class="flex justify-center">
               <!-- Save button -->
-              <button v-if="isEditing" @click="showConfirmation"
+              <button  v-if="isEditing" @click="showConfirmation"
                 class="flex mt-2 text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
                 <img src="src/assets/save.png" class="h-[15px] mr-2">
                 Save
