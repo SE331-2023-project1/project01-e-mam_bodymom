@@ -51,15 +51,16 @@ onMounted(async () => {
   try {
     const response = await useStudentStore().getStudentById(authStore.id);
     student.value = response;
-    console.log(student.value);
+    // console.log(student.value);
 
     // Access student data here
     if (student.value) {
-      console.log(student.value.username);
+    //   console.log(student.value.department);
       username.value = response?.username;
       id.value = response?.id;
       firstName.value = response?.name;
       lastName.value = response?.surname;
+      department.value = response?.department
 
     }
   } catch (error) {
@@ -114,7 +115,9 @@ const validationSchema = yup.object({
     .string()
     .required('The lastName is required'),
 
-
+    department: yup
+    .string()
+    .required('The department is required'),
  
  
 })
@@ -128,6 +131,7 @@ const { errors, handleSubmit } = useForm({
     id: '',
     firstName: '',
     lastName: '',
+    department: '',
 
   }
 })
@@ -142,6 +146,8 @@ const { value: firstName } = useField<string>('firstName')
 
 const { value: lastName } = useField<string>('lastName')
 
+const { value: department } = useField<string>('department')
+
 
 
 // Function to save changes and exit edit mode
@@ -152,7 +158,7 @@ const saveChanges = () => {
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    console.log(values)
+    // console.log(values)
 
     await authStore.studentUpdateProfile(values.id, values.firstName, values.lastName);
 
@@ -242,7 +248,7 @@ const saveAndSubmitForm = async () => {
                   Student ID</label>
                 <input type="text" id="studentid" disabled
                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" v-model="id" required>
+                  placeholder="" v-model="username" required>
               </div>
 
               <div class="w-full">
@@ -281,7 +287,7 @@ const saveAndSubmitForm = async () => {
                   Department</label>
                 <input type="text" id="department" disabled
                   class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" :value="student?.department" required>
+                  placeholder="" v-model="department" required>
               </div>
 
             </div>

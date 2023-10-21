@@ -7,6 +7,7 @@ export interface StudentItem {
     teacher: string[];
     comment?: any[]
     roles: string []
+    department: string
 }
 export interface TeacherItem {
     [x: string]: any;
