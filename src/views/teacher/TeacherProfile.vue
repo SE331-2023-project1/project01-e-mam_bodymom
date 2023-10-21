@@ -1,34 +1,27 @@
 <script setup lang="ts">
+import { type StudentItem } from '@/type'
+import { computed, onMounted, type PropType } from 'vue'
+import { useStudentStore } from '@/stores/student'
+import { useTeacherStore } from '@/stores/teacher'
+import InputText from '@/components/InputText.vue'
+import * as yup from 'yup'
+import { useField, useForm } from 'vee-validate'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter, RouterLink } from 'vue-router'
+import { useMessageStore } from '@/stores/message'
+import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
+import StudentService from '@/services/StudentService'
+import { type TeacherItem } from '@/type'
 // Import the ref and computed functions from Vue
-import { ref } from 'vue';
 
 // Define a reactive property to track if the form is in edit mode
 let isEditing = ref(false);
 
 // Function to enter edit mode
 const enterEditMode = () => {
-    isEditing.value = true;
+  isEditing.value = true;
 };
-
-// Function to save changes and exit edit mode
-const saveChanges = () => {
-    // Add your logic to save changes here
-    isEditing.value = false;
-
-    // Show a success message using the alert function
-    // alert('Changes saved successfully');
-
-    storeMessage.updateMessage('Changes saved successfully')
-    setTimeout(() => {
-        storeMessage.resetMessage()
-    }, 3000)
-
-};
-
-import { useMessageStore } from '@/stores/message'
-import { storeToRefs } from 'pinia'
-const storeMessage = useMessageStore()
-const { message } = storeToRefs(storeMessage)
 
 // // Create a computed property for the button label
 // const buttonLabel = computed(() => (isEditing.value ? 'Save' : 'Edit'));
@@ -38,6 +31,188 @@ const { message } = storeToRefs(storeMessage)
 
 // Create a computed property for the button image source
 // const buttonImage = computed(() => (isEditing.value ? 'src/assets/save.png' : 'src/assets/edit.png'));
+
+const authStore = useAuthStore()
+const router = useRouter()
+const storeMessage = useMessageStore()
+
+const { message } = storeToRefs(storeMessage)
+
+// const student = ref<StudentItem | null>(null)
+const teacher = ref<TeacherItem | null>(null)
+
+let images = ''
+
+// student.value = useStudentStore().getStudentById(authStore.id);
+// console.log(student.value);
+
+// useStudentStore().getStudentById(authStore.id).then((response) => {
+//     student.value = response
+//     console.log(student.value)
+// })
+
+onMounted(async () => {
+  try {
+    const response = await useTeacherStore().getTeacherById(authStore.id);
+    teacher.value = response;
+    // console.log(response);
+
+    // Access student data here
+    if (teacher.value) {
+      console.log(response?.department);
+      username.value = response?.username;
+      id.value = response?.id;
+      firstName.value = response?.name;
+      lastName.value = response?.surname;
+      department.value = response?.department
+      images = response?.images
+
+    }
+  } catch (error) {
+    console.error('Error fetching student data:', error);
+  }
+});
+
+// console.log(student.value)
+
+// const fetchStudentData = async () => {
+//   const response = await useStudentStore().getStudentById(authStore.id);
+//   student.value = response;
+//   console.log(student.value);
+
+//   // Now you can use student.value here or anywhere else in your component.
+// };
+
+// fetchStudentData();
+
+
+
+// StudentService.getStudentById(authStore.id).then((response) => {
+//   student.value = response
+//   console.log(student.value.data)
+// })
+
+// const fetchStudentData = async () => {
+//   try {
+//     const response = await StudentService.getStudentById(authStore.id);
+//     student.value = response;
+//     console.log(student.value)
+//   } catch (error) {
+//     console.error('Error fetching student data:', error);
+//   }
+// };
+
+// const response = StudentService.getStudentById(authStore.id);
+// student.value = response
+// console.log(student.value.data)
+
+const validationSchema = yup.object({
+  id: yup.string()
+    .required('The id is required'),
+
+
+  firstName: yup
+    .string()
+    .required('The firstName is required'),
+
+
+  lastName: yup
+    .string()
+    .required('The lastName is required'),
+
+    department: yup
+    .string()
+    .required('The department is required'),
+
+    images: yup
+    .string()
+ 
+ 
+})
+
+// console.log(student)
+
+const { errors, handleSubmit } = useForm({
+  validationSchema,
+
+  initialValues: {
+    id: '',
+    firstName: '',
+    lastName: '',
+    department: '',
+    images: ''
+
+  }
+})
+
+// console.log(student.value.data)
+
+const { value: id } = useField<string>('id')
+
+const { value: username } = useField<string>('username')
+
+const { value: firstName } = useField<string>('firstName')
+
+const { value: lastName } = useField<string>('lastName')
+
+const { value: department } = useField<string>('department')
+
+// const { value: images } = useField<string>('images')
+
+
+
+// Function to save changes and exit edit mode
+const saveChanges = () => {
+  // Add your logic to save changes here
+  isEditing.value = false;
+};
+
+const onSubmit = handleSubmit(async (values) => {
+  try {
+    // console.log(values)
+
+    await authStore.teacherUpdateProfile(values.id, values.firstName, values.lastName);
+
+    storeMessage.updateMessage('Update profile successful');
+    setTimeout(() => {
+      storeMessage.resetMessage();
+    }, 4000);
+    // router.push({ name: 'home-page' });
+  } catch (error) {
+    storeMessage.updateMessage('Could not update profile');
+    setTimeout(() => {
+      storeMessage.resetMessage();
+    }, 3000);
+  }
+});
+
+const showConfirmation = () => {
+  if (confirm("Are you sure you want to post this announcement?")) {
+    saveAndSubmitForm();
+  }
+};
+
+// Function to save changes and submit the form
+const saveAndSubmitForm = async () => {
+  saveChanges(); // Call the saveChanges function
+  // You can set a different message here based on your needs
+  const successMessage = 'Changes saved successfully';
+  const errorMessage = 'Could not save changes';
+
+  try {
+    await onSubmit();
+    console.log(onSubmit())
+    storeMessage.updateMessage(successMessage);
+    setTimeout(() => {
+      storeMessage.resetMessage();
+    }, 4000);
+  } catch (error) {
+    storeMessage.updateMessage(errorMessage);
+    setTimeout(() => {
+      storeMessage.resetMessage();
+    }, 3000);
+  }
+};
 
 </script>
 
@@ -54,10 +229,11 @@ const { message } = storeToRefs(storeMessage)
         </div>
         <div
             class="mt-2 mb-10 font-fig flex flex-col items-center justify-center p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
+            <form class="" @submit.prevent="onSubmit">
             <div class="flex flex-col items-center justify-center py-4 space-y-5">
 
                 <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
-                    src="src\assets\bodymoml.png" alt="Profile Picture">
+                    :src="images" alt="Profile Picture">
 
                 <div class="flex justify-center">
                     <!-- Change Profile button -->
@@ -85,7 +261,7 @@ const { message } = storeToRefs(storeMessage)
                             First name</label>
                         <input type="text" id="first_name" :disabled="!isEditing"
                             class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="Patty" required>
+                            placeholder="" v-model="firstName" required>
                     </div>
 
                     <div class="w-full">
@@ -93,7 +269,7 @@ const { message } = storeToRefs(storeMessage)
                             Last name</label>
                         <input type="text" id="last_name" :disabled="!isEditing"
                             class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="eieiei" required>
+                            placeholder="" v-model="lastName" required>
                     </div>
                 </div>
 
@@ -112,7 +288,7 @@ const { message } = storeToRefs(storeMessage)
                             Department</label>
                         <input type="text" id="department" disabled
                             class="bg-gray-300 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                            placeholder="" value="Software Engineering" required>
+                            placeholder="" v-model="department" required>
                     </div>
 
                 </div>
@@ -139,7 +315,7 @@ const { message } = storeToRefs(storeMessage)
                 </div>
                 <div class="flex justify-center">
                     <!-- Save button -->
-                    <button v-if="isEditing" @click="saveChanges"
+                    <button href="/updateteachers" v-if="isEditing" @click="showConfirmation"
                         class="flex mt-2 text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center">
                         <img src="src/assets/save.png" class="h-[15px] mr-2">
                         Save
@@ -148,9 +324,9 @@ const { message } = storeToRefs(storeMessage)
                 </div>
 
 
-
-
+            
             </div>
+        </form>
         </div>
 
 

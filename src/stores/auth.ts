@@ -81,6 +81,14 @@ export const useAuthStore = defineStore('auth', {
       })
       return response
     },
+    async teacherUpdateProfile(id: string, firstName: string, lastName: string) {
+      const response = await apiClient.put('/updateteachers', {
+        id: id,
+        name: firstName,
+        surname: lastName,
+      })
+      return response
+    },
     logout() {
         console.log('logout')
         this.token = null

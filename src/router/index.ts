@@ -236,6 +236,11 @@ router.beforeEach(async () => {
   if (teacherStore.teachers.length === 0 && authStore.userRole?.includes("ROLE_ADMIN")) {
     await teacherStore.fetchTeachersFromDB()
   }
+  if (teacherStore.teachers.length === 0 && authStore.userRole?.includes("ROLE_TEACHER")
+  && authStore.id != null) {
+    await teacherStore.fetchTeacherById(authStore.id)
+    // console.log(teacherStore.teachers)
+  }
   if (studentStore.students.length === 0 && authStore.userRole?.includes("ROLE_ADMIN")) {
     await studentStore.fetchStudentsFromDB()
     // console.log(studentStore.students)

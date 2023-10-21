@@ -64,13 +64,15 @@ export const useTeacherStore = defineStore('teacher', {
             
         },
         async fetchTeacherById(id: string) {
-            try {
-                const response = this.getTeacherById(id)
-                return response
-            } catch (error) {
-                console.log(error)
-                return null
-            }
+            const response = await TeacherService.getTeacherById(id)
+            this.teachers.push(response.data)
+            // try {
+            //     const response = this.getTeacherById(id)
+            //     return response
+            // } catch (error) {
+            //     console.log(error)
+            //     return null
+            // }
         },
         async fetchTeacherByPage(perPage: number, page: number) {
             try {
