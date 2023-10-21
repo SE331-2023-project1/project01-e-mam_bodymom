@@ -72,7 +72,7 @@ const addComment = () => {
       <div class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg mb-4 bg-white shadow-md">
         <div class="flex justify-center">
-          <img :src="student?.profileimage" alt="" class="crop rounded-lg" />
+          <img :src="student?.images" alt="" class="crop rounded-lg" />
         </div>
         <div class="">
           <span class="text-base text-gray-500 font-fig">ID: {{ student?.id }}</span> <br />
@@ -92,7 +92,7 @@ const addComment = () => {
               class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md
             font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
               <div class="flex justify-center items-center">
-                <img :src="teacher?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
+                <img :src="teacher?.images" class="w-10 h-10 object-cover rounded-full mr-2">
                 <div class="flex flex-col">
                   <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
                   <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->

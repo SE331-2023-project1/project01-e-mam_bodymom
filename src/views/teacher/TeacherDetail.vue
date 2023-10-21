@@ -21,7 +21,7 @@ defineProps({
         class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700 rounded-lg mb-4 bg-white shadow-md"
       >
         <div class="flex justify-center">
-          <img :src="teacher?.profileimage" alt="" class="crop rounded-lg" />
+          <img :src="teacher?.images" alt="" class="crop rounded-lg" />
         </div>
         <div class="justify-center padding-top">
           <span class="font-fig name font-bold text-black">
@@ -52,7 +52,7 @@ defineProps({
               <button class="w-full bg-amber-200 shadow-lg hover:bg-amber-300 text-white font-bold py-2 px-5 rounded-xl font-fig my-2 hover:transform hover:scale-[1.01] transition-transform duration-300">
                 <div class="flex items-center mx-auto">
                   <!-- Picture on the left -->
-                  <img :src="student?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
+                  <img :src="student?.images" class="w-10 h-10 object-cover rounded-full mr-2">
 
                   <!-- Text on the right in a flex column -->
                   <div class="flex flex-col ml-1">

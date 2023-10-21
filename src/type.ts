@@ -2,7 +2,7 @@ export interface StudentItem {
     name: string;
     surname: string;
     id: string;
-    profileimage: string;
+    profileimage: string[];
     courselist: string[];
     teacher: string[];
     comment?: any[]

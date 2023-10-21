@@ -55,12 +55,13 @@ onMounted(async () => {
 
     // Access student data here
     if (student.value) {
-    //   console.log(student.value.department);
+    //   console.log(response?.images);
       username.value = response?.username;
       id.value = response?.id;
       firstName.value = response?.name;
       lastName.value = response?.surname;
       department.value = response?.department
+      images.value = response?.images
 
     }
   } catch (error) {
@@ -118,6 +119,9 @@ const validationSchema = yup.object({
     department: yup
     .string()
     .required('The department is required'),
+
+    images: yup
+    .string()
  
  
 })
@@ -132,6 +136,7 @@ const { errors, handleSubmit } = useForm({
     firstName: '',
     lastName: '',
     department: '',
+    images: ''
 
   }
 })
@@ -147,6 +152,8 @@ const { value: firstName } = useField<string>('firstName')
 const { value: lastName } = useField<string>('lastName')
 
 const { value: department } = useField<string>('department')
+
+const { value: images } = useField<string>('images')
 
 
 
@@ -222,7 +229,7 @@ const saveAndSubmitForm = async () => {
       class="mt-2 mb-10 font-fig flex flex-col items-center justify-center p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
       <div class="flex flex-col items-center justify-center py-4 space-y-5">
         <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
-          src="src\assets\bodymoml.png" alt="Profile Picture" />
+          :src="images" alt="Profile Picture" />
 
         <!-- <button type="button"
                     class="py-3.5 px-7 text-base font-medium text-white focus:outline-none bg-emerald-600 rounded-lg border border-indigo-200 hover:bg-emerald-800 focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
