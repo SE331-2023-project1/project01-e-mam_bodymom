@@ -81,7 +81,7 @@ const addComment = () => {
           <span class="text-base text-gray-500 font-fig">ID: {{ student?.id }}</span> <br />
           <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
           <ul class="list-disc list-inside">
-            <span class="font-fig font-bold text-black text-xl course">Course List</span>
+            <!-- <span class="font-fig font-bold text-black text-xl course">Course List</span> -->
             <li v-for="course in student?.courselist" :key="course" class="text-xl course font-fig text-black">
               {{ course }}
             </li>
@@ -104,12 +104,13 @@ const addComment = () => {
             </button>
           </RouterLink>
 
-          <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'studentprofile-admin', params: { id: student.id } }">
+          <div class="mt-3">
+            <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'studentprofile-admin', params: { id: student.id } }">
             <button
-              class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md
+              class=" bg-gray-300 hover:bg-gray-400 text-black shadow-md
             font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
               <div class="flex justify-center items-center">
-                <img :src="student?.images" class="w-10 h-10 object-cover rounded-full mr-2">
+                <!-- <img :src="student?.images" class="w-10 h-10 object-cover rounded-full mr-2"> -->
                 <div class="flex flex-col">
                   <span class="teacherid font-fig text-left">Edit Profile</span>
                   <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
@@ -117,6 +118,9 @@ const addComment = () => {
               </div>
             </button>
           </RouterLink>
+          </div>
+
+          
 
 
         </div>
