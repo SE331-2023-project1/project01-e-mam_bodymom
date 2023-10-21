@@ -38,6 +38,7 @@ const { message } = storeToRefs(storeMessage)
 
 const student = ref<StudentItem | null>(null)
 
+let images = ''
 
 // student.value = useStudentStore().getStudentById(authStore.id);
 // console.log(student.value);
@@ -51,7 +52,7 @@ onMounted(async () => {
   try {
     const response = await useStudentStore().getStudentById(authStore.id);
     student.value = response;
-    // console.log(student.value);
+    // console.log(authStore.id);
 
     // Access student data here
     if (student.value) {
@@ -61,7 +62,7 @@ onMounted(async () => {
       firstName.value = response?.name;
       lastName.value = response?.surname;
       department.value = response?.department
-      images.value = response?.images
+      images = response?.images
 
     }
   } catch (error) {
@@ -120,8 +121,8 @@ const validationSchema = yup.object({
     .string()
     .required('The department is required'),
 
-    images: yup
-    .string()
+    // images: yup
+    // .string()
  
  
 })
@@ -136,7 +137,7 @@ const { errors, handleSubmit } = useForm({
     firstName: '',
     lastName: '',
     department: '',
-    images: ''
+    // images: ''
 
   }
 })
@@ -153,7 +154,7 @@ const { value: lastName } = useField<string>('lastName')
 
 const { value: department } = useField<string>('department')
 
-const { value: images } = useField<string>('images')
+// const { value: images } = useField<string>('images')
 
 
 
