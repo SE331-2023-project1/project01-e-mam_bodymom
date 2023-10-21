@@ -47,7 +47,7 @@ const { message } = storeToRefs(storeMessage)
         <h4>{{ message }}</h4>
     </div>
     <FlashMessage />
-    
+
     <main class=" flex flex-col items-center justify-center">
         <div class="font-fig flex items-center justify-center p-3 w-3/4 sm:w-2/4 h-4/5 text-2xl font-bold text-gray-900">
             Profile
@@ -59,6 +59,14 @@ const { message } = storeToRefs(storeMessage)
                 <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
                     src="src\assets\bodymoml.png" alt="Profile Picture">
 
+                <div class="flex justify-center">
+                    <!-- Change Profile button -->
+                    <button href="/updatestudents" v-if="isEditing" @click="changePicture"
+                        class="flex mt-2 text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
+                        <!-- <img src="src/assets/save.png" class="h-[15px] mr-2"> -->
+                        Change Profile Picture
+                    </button>
+                </div>
                 <!-- <button type="button"
                     class="py-3.5 px-7 text-base font-medium text-white focus:outline-none bg-emerald-600 rounded-lg border border-indigo-200 hover:bg-emerald-800 focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
                     Change picture
