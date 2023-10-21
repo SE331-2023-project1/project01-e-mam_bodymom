@@ -66,13 +66,14 @@ if (token && userRole && id) {
             <img src="../assets/login.png" class="h-[12px] ml-1 mr-2">
             <RouterLink to="/Login">Login</RouterLink>
           </li>
-          <li v-if="authStore.userRole == 'ROLE_STUDENT'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+          <li v-if="authStore.userRole == 'ROLE_STUDENT' || authStore.userRole == 'ROLE_TEACHER'" 
+          class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
             <RouterLink to="/announcements">Announcements</RouterLink>
           </li>
           <li v-if="authStore.userRole == 'ROLE_TEACHER'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
-            <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
-            <RouterLink to="/createpost">Announcements</RouterLink>
+            <img src="../assets/addpost.png" class="h-[18px] ml-1 mr-2 items-center">
+            <RouterLink to="/createpost">Add Announcement</RouterLink>
           </li>
           <li v-if="authStore.userRole == 'ROLE_STUDENT'"
             class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
