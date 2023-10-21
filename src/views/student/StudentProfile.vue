@@ -160,7 +160,7 @@ const onSubmit = handleSubmit(async (values) => {
     setTimeout(() => {
       storeMessage.resetMessage();
     }, 4000);
-    router.push({ name: 'home-page' });
+    // router.push({ name: 'home-page' });
   } catch (error) {
     storeMessage.updateMessage('Could not update profile');
     setTimeout(() => {
@@ -308,7 +308,7 @@ const saveAndSubmitForm = async () => {
             </div>
             <div class="flex justify-center">
               <!-- Save button -->
-              <button  v-if="isEditing" @click="showConfirmation"
+              <button href="/updatestudents" v-if="isEditing" @click="showConfirmation"
                 class="flex mt-2 text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
                 <img src="src/assets/save.png" class="h-[15px] mr-2">
                 Save
