@@ -3,6 +3,9 @@ import { type StudentItem, type TeacherItem } from '@/type'
 import { computed, type PropType } from 'vue'
 import { useStudentStore } from '@/stores/student'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth.ts'
+
+const authStore = useAuthStore()
 
 defineProps({
   teacher: {
@@ -37,7 +40,7 @@ defineProps({
         </li> -->
       </div>
     </div>
-    <div class="student-class flex flex-col mb-2 items-center justify-center">
+    <div class="student-class flex flex-col mb-2 items-center justify-center" v-if="authStore.userRole == 'ROLE_TEACHER'">
       <div
         class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700 rounded-lg bg-white shadow-md mb-3"
       >
