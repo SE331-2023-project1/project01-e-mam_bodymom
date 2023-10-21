@@ -83,6 +83,12 @@ export const useTeacherStore = defineStore('teacher', {
                 return null
             }
         },
+        async fetchTeacherByStudent(id: string) {
+            const response = await TeacherService.getTeacherByStudent(id)
+            this.teachers.push(response.data)
+            // console.log(response)
+
+        },
         // ส่วนของ useTeacherStore
         async addTeacher(teacher: TeacherItem) {
             try {

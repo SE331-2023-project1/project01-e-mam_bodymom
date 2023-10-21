@@ -13,5 +13,8 @@ export default {
   },
   getTeacherById(id : string) : Promise<AxiosResponse<TeacherItem>>{
     return apiClient.get<TeacherItem>('/teachers/'+id.toString())
+  },
+  getTeacherByStudent(id :string) : Promise<AxiosResponse<TeacherItem>> {
+    return apiClient.get<TeacherItem>('/teacherByStudent/'+id.toString())
   }
 }

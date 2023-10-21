@@ -2,6 +2,7 @@
 import { type StudentItem } from '@/type'
 import { computed, onMounted, type PropType } from 'vue'
 import { useStudentStore } from '@/stores/student'
+import { useTeacherStore } from '@/stores/teacher'
 import InputText from '@/components/InputText.vue'
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
@@ -11,6 +12,8 @@ import { useMessageStore } from '@/stores/message'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import StudentService from '@/services/StudentService'
+import TeacherService from '@/services/TeacherService'
+import { type TeacherItem } from '@/type'
 // Import the ref and computed functions from Vue
 
 // Define a reactive property to track if the form is in edit mode
@@ -37,6 +40,12 @@ const storeMessage = useMessageStore()
 const { message } = storeToRefs(storeMessage)
 
 const student = ref<StudentItem | null>(null)
+const teacher = ref<TeacherItem | null>(null)
+
+let teacherId = ''
+let teacherName = ''
+let teacherSurname = ''
+let teacherImages = ''
 
 let images = ''
 
@@ -52,11 +61,14 @@ onMounted(async () => {
   try {
     const response = await useStudentStore().getStudentById(authStore.id);
     student.value = response;
+    const responseTeacher = await useTeacherStore().getTeacherById(authStore.id)
+    teacher.value = responseTeacher;
+    // teacher.value = TeacherService.getTeacherById(response.teacher.id)
     // console.log(authStore.id);
 
     // Access student data here
-    if (student.value) {
-    //   console.log(response?.images);
+    if (student.value && teacher.value) {
+    //   console.log(responseTeacher);
       username.value = response?.username;
       id.value = response?.id;
       firstName.value = response?.name;
@@ -64,6 +76,11 @@ onMounted(async () => {
       department.value = response?.department
       images = response?.images
 
+      teacherId = responseTeacher?.id
+      teacherName = responseTeacher?.name
+      teacherSurname = responseTeacher?.surname
+      teacherImages = responseTeacher?.images
+    //   console.log(teacherId)
     }
   } catch (error) {
     console.error('Error fetching student data:', error);
@@ -212,8 +229,6 @@ const saveAndSubmitForm = async () => {
 };
 
 
-
-
 </script>
 
 <template>
@@ -248,6 +263,22 @@ const saveAndSubmitForm = async () => {
             class="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
             Delete picture
         </button> -->
+      </div>
+
+      <div v-if="teacherId">
+        <RouterLink :to="{ name: 'teacher-detail', params: { id: teacherId } }">
+            <button
+              class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md
+            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
+              <div class="flex justify-center items-center">
+                <img :src="teacherImages" class="w-10 h-10 object-cover rounded-full mr-2">
+                <div class="flex flex-col">
+                  <span class="teacherid font-fig text-left">{{ teacherName }} {{ teacherSurname }}</span>
+                  <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
+                </div>
+              </div>
+            </button>
+          </RouterLink>
       </div>
 
       <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
