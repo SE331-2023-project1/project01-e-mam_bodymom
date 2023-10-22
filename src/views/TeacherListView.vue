@@ -136,6 +136,9 @@ function updateKeyword (value: string) {
               @input="updateKeyword"/>
             </div>
 
+            <div class="flex justify-center w-full p-3 sm:w-2/4 text-gray-900">
+                <h1>Total teacher: {{totalTeacher}}</h1>
+            </div>
 
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
 

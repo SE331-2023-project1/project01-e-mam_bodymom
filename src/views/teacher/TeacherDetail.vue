@@ -49,6 +49,10 @@ defineProps({
           <span class="detail text-list text-black font-fig font-bold">Student List</span>
         </div>
 
+        <div v-if="authStore.userRole == 'ROLE_ADMIN'" class="flex justify-center w-full p-3 sm:w-2/4 text-gray-900">
+          <h1>Total advisee: {{ students?.data?.length }}</h1>
+          </div>
+
         <div class="justify-center items-center">
           <div v-for="(student, i) in students.data" :key="i">
             <RouterLink :to="{ name: 'student-detail', params: { id: student.id } }">

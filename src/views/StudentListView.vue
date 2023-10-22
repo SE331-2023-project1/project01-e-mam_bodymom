@@ -8,6 +8,7 @@ import { onBeforeRouteUpdate, useRouter,useRoute  } from 'vue-router'
 import type { AxiosResponse } from 'axios';
 import { useStudentStore } from '@/stores/student';
 import BaseInput from '@/components/BaseInput.vue';
+import { useAuthStore } from '@/stores/auth'
 
 
 const router = useRouter()
@@ -16,6 +17,7 @@ const route = useRoute();
 
 const students: Ref<Array<StudentItem>> = ref([])
 const totalStudent = ref<number>(0)
+const authStore = useAuthStore()
 
 const props = defineProps({
     page: {
@@ -90,6 +92,10 @@ function updateKeyword (value: string) {
               placeholder="Search..."
               class="w-full h-10  border rounded-md text-gray-900"
               @input="updateKeyword"/>
+            </div>
+
+            <div v-if="authStore.userRole == 'ROLE_ADMIN'" class="flex justify-center w-full p-3 sm:w-2/4 text-gray-900">
+                <h1>Total student: {{totalStudent}}</h1>
             </div>
             
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
