@@ -126,30 +126,74 @@
       <div v-else-if="selectedPersonType === 'teacher'">
 
         <!-- แบบฟอร์มสำหรับเพิ่มครู -->
-        <form @submit.prevent="addTeacher">
-          <div class="grid grid-cols-2 gap-4">
+        <form @submit.prevent="onSubmit">
+          <div>
+          <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
+          <InputText type="text" v-model="username" class="text-emerald-600 text-sm font-semibold" placeholder="Usename">
+          </InputText>
+          <div v-if="errors['username']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
+            {{ errors['username'] }}</div>
+        </div>
+
+        <div>
+          <label for="firstName" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
+          <InputText type="text" v-model="firstName" class="text-emerald-600 text-sm font-semibold"
+            placeholder="Enter your first name"></InputText>
+          <div v-if="errors['firstName']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
+            {{ errors['firstName'] }}</div>
+
+        </div>
+
+        <div>
+          <label for="lastName" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
+          <InputText type="text" v-model="lastName" class="text-emerald-600 text-sm font-semibold"
+            placeholder="Enter your last name"></InputText>
+          <div v-if="errors['lastName']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
+            {{ errors['lastName'] }}</div>
+
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
+          <InputText type="text" v-model="email" class="text-emerald-600 text-sm font-semibold"
+            placeholder="Enter your email address"></InputText>
+          <div v-if="errors['email']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌ {{
+            errors['email'] }}</div>
+
+        </div>
+
+        <div>
+          <div class="flex items-center justify-start">
+            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          </div>
+
+          <InputText v-model="password" type="password" class="text-emerald-600 text-sm font-semibold"
+            placeholder="Create password"></InputText>
+          <div v-if="errors['password']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
+            {{ errors['password'] }}</div>
+        </div>
+
+          <!-- <div class="grid grid-cols-2 gap-4">
             <div class="flex mb-3">
               <label for="teacherName" class="mr-2 my-auto">Name:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="teacherName" type="text" id="teacherName" required pattern="[A-Za-z]+" title="Please enter a valid name (only alphabetic characters are allowed).">
+                v-model="firstName" type="text" id="teacherName" title="Please enter a valid name (only alphabetic characters are allowed).">
             </div>
 
             <div class="flex mb-3">
               <label for="teacherSurname" class="mr-2 my-auto">Surname:</label>
               <input
                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
-                v-model="teacherSurname" type="text" id="teacherSurname" required pattern="[A-Za-z]+" title="Please enter a valid name (only alphabetic characters are allowed).">
+                v-model="lastName" type="text" id="teacherSurname" title="Please enter a valid name (only alphabetic characters are allowed).">
             </div>
           </div>
-
-
           <div class="mb-3">
             <label for="teacherProfileImage" class="mr-2">Profile Image URL:</label>
             <input  placeholder="Add link of your picture ('http://..' or 'https://..)"
               class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="teacherProfileImage" type="text" id="teacherProfileImage" required pattern="https?://.+" title="Must start with 'http://' or 'https://'">
-          </div>
+          </div> -->
 
           <!-- <div class="flex mb-3"> -->
             <!-- เลือกนักเรียนจาก dropdown list (ให้นำมาจาก store ของนักเรียน) -->
@@ -180,121 +224,199 @@
 </template>
   
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useStudentStore } from '@/stores/student';
-import { useTeacherStore } from '@/stores/teacher';
-import { useRouter } from 'vue-router';
-import { useMessageStore } from '@/stores/message';
-import { storeToRefs } from 'pinia';
+import InputText from '@/components/InputText.vue'
+import * as yup from 'yup'
+import { useField, useForm } from 'vee-validate'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter, RouterLink } from 'vue-router'
+import { useMessageStore } from '@/stores/message'
+import { storeToRefs } from 'pinia'
 
-const selectedPersonType = ref('student');
-const studentName = ref('');
-const studentSurname = ref('');
-const studentProfileImage = ref('');
-const studentCourseList = ref('');
-const studentTeacher = ref('');
-// const studentComment = ref('');
-
-const teacherName = ref('');
-const teacherSurname = ref('');
-const teacherProfileImage = ref('');
-const teacherStudents = ref('');
-
-const router = useRouter();
-
+const authStore = useAuthStore()
+const router = useRouter()
 const storeMessage = useMessageStore()
+
 const { message } = storeToRefs(storeMessage)
 
-const addStudent = () => {
-  const store = useStudentStore();
+const validationSchema = yup.object({
+  username: yup.string()
+    .required('The username is required')
+    .matches(/^(?=.*[0-9])[A-Za-z0-9]+$/, 'Username should contain only alphabetic characters and numbers'),
 
-  const generateRandomID = () => {
-  const min = 100000; // Minimum 6-digit number
-  const max = 999999; // Maximum 6-digit number
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+  firstName: yup.string()
+    .required('The firstName is required')
+    .matches(/^[A-Za-z]+$/, 'First name should contain only alphabetic characters'),
 
-  const newStudent = {
-    name: studentName.value,
-    surname: studentSurname.value,
-    id: generateRandomID().toString(), // สร้าง ID ใหม่ตามต้องการ
-    profileimage: studentProfileImage.value,
-    courselist: studentCourseList.value.split(',').map(course => course.trim()),
-    teacherID: studentTeacher.value,
-    // comment: studentComment.value.split(',').map(comment => comment.trim()),
-  };
+  lastName: yup.string()
+    .required('The lastName is required')
+    .matches(/^[A-Za-z]+$/, 'Last name should contain only alphabetic characters'),
 
-  store.addStudent(newStudent); // หรือ store.addTeacher(newTeacher);
+  email: yup.string()
+    .required('The email is required')
+    .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
 
-  console.log(newStudent)
+  password: yup.string()
+    .required('The password is required')
+    .min(6, 'Password must be at least 6 characters long.'),
+})
 
-  storeMessage.updateMessage('You are successfully for adding student.')
-  setTimeout(() => {
-    storeMessage.resetMessage()
-  }, 4000)
+const { errors, handleSubmit } = useForm({
+  validationSchema,
 
-  // ล้างค่าฟอร์ม
-  clearStudentForm();
-};
+  initialValues: {
+    username: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  }
+})
 
-const fetchTeachers = () => {
-  // นำเข้า useTeacherStore เพื่อเรียกใช้ฟังก์ชัน fetchTeachers จาก store
-  const teacherStore = useTeacherStore();
-  teacherStore.fetchTeachers();
-  // teacherStore.getTeachers
-  console.log(teacherStore.getTeachers)
+const { value: username } = useField<string>('username')
 
-};
+const { value: firstName } = useField<string>('firstName')
 
-const addTeacher = () => {
-  const storeTeacher = useTeacherStore();
+const { value: lastName } = useField<string>('lastName')
 
-  const generateRandomTID = () => {
-  const min = 100; // Minimum 3-digit number
-  const max = 999; // Maximum 3-digit number
-  const randomThreeDigitNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  return `T${randomThreeDigitNumber}`;};
+const { value: email } = useField<string>('email')
 
-  const newTeacher = {
-    name: teacherName.value,
-    surname: teacherSurname.value,
-    id: generateRandomTID().toString(), // สร้าง ID ใหม่ตามต้องการ
-    profileimage: teacherProfileImage.value,
-    studentsId: teacherStudents.value,
-  };
+const { value: password } = useField<string>('password')
+
+const onSubmit = handleSubmit((values) => {
+  authStore
+    .teacherRegister(values.username, values.firstName, values.lastName, values.email, values.password)
+    .then(() => {
+      storeMessage.updateMessage('Registration successful');
+      setTimeout(() => {
+        storeMessage.resetMessage()
+      }, 4000)
+
+    })
+    .catch(() => {
+      storeMessage.updateMessage('could not register')
+
+      setTimeout(() => {
+        storeMessage.resetMessage()
+      }, 3000)
+    })
+})
+
+
+import { ref } from 'vue';
+// import { useStudentStore } from '@/stores/student';
+// import { useTeacherStore } from '@/stores/teacher';
+// import { useRouter } from 'vue-router';
+// import { useMessageStore } from '@/stores/message';
+// import { storeToRefs } from 'pinia';
+
+const selectedPersonType = ref('student');
+// const studentName = ref('');
+// const studentSurname = ref('');
+// const studentProfileImage = ref('');
+// const studentCourseList = ref('');
+// const studentTeacher = ref('');
+// // const studentComment = ref('');
+
+// const teacherName = ref('');
+// const teacherSurname = ref('');
+// const teacherProfileImage = ref('');
+// const teacherStudents = ref('');
+
+// const router = useRouter();
+
+// const storeMessage = useMessageStore()
+// const { message } = storeToRefs(storeMessage)
+
+// const addStudent = () => {
+//   const store = useStudentStore();
+
+//   const generateRandomID = () => {
+//   const min = 100000; // Minimum 6-digit number
+//   const max = 999999; // Maximum 6-digit number
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// };
+
+//   const newStudent = {
+//     name: studentName.value,
+//     surname: studentSurname.value,
+//     id: generateRandomID().toString(), // สร้าง ID ใหม่ตามต้องการ
+//     profileimage: studentProfileImage.value,
+//     courselist: studentCourseList.value.split(',').map(course => course.trim()),
+//     teacherID: studentTeacher.value,
+//     // comment: studentComment.value.split(',').map(comment => comment.trim()),
+//   };
+
+//   store.addStudent(newStudent); // หรือ store.addTeacher(newTeacher);
+
+//   console.log(newStudent)
+
+//   storeMessage.updateMessage('You are successfully for adding student.')
+//   setTimeout(() => {
+//     storeMessage.resetMessage()
+//   }, 4000)
+
+//   // ล้างค่าฟอร์ม
+//   clearStudentForm();
+// };
+
+// const fetchTeachers = () => {
+//   // นำเข้า useTeacherStore เพื่อเรียกใช้ฟังก์ชัน fetchTeachers จาก store
+//   const teacherStore = useTeacherStore();
+//   teacherStore.fetchTeachers();
+//   // teacherStore.getTeachers
+//   console.log(teacherStore.getTeachers)
+
+// };
+
+// const addTeacher = () => {
+//   const storeTeacher = useTeacherStore();
+
+//   const generateRandomTID = () => {
+//   const min = 100; // Minimum 3-digit number
+//   const max = 999; // Maximum 3-digit number
+//   const randomThreeDigitNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+//   return `T${randomThreeDigitNumber}`;};
+
+//   const newTeacher = {
+//     name: teacherName.value,
+//     surname: teacherSurname.value,
+//     id: generateRandomTID().toString(), // สร้าง ID ใหม่ตามต้องการ
+//     profileimage: teacherProfileImage.value,
+//     studentsId: teacherStudents.value,
+//   };
 
   
 
-  storeTeacher.addTeacher(newTeacher); // เพิ่มครูใหม่ลงในสถานะของครู
-  console.log(newTeacher)
+//   storeTeacher.addTeacher(newTeacher); // เพิ่มครูใหม่ลงในสถานะของครู
+//   console.log(newTeacher)
 
-  // เรียกใช้ fetchTeachers() เพื่ออัปเดตรายการครูในหน้า TeacherListView.vue
-  fetchTeachers();
+//   // เรียกใช้ fetchTeachers() เพื่ออัปเดตรายการครูในหน้า TeacherListView.vue
+//   fetchTeachers();
 
-  storeMessage.updateMessage('You are successfully for adding teacher.')
-  setTimeout(() => {
-    storeMessage.resetMessage()
-  }, 4000)
-  // ล้างค่าฟอร์ม
-  clearTeacherForm();
-};
+//   storeMessage.updateMessage('You are successfully for adding teacher.')
+//   setTimeout(() => {
+//     storeMessage.resetMessage()
+//   }, 4000)
+//   // ล้างค่าฟอร์ม
+//   clearTeacherForm();
+// };
 
 
-const clearStudentForm = () => {
-  studentName.value = '';
-  studentSurname.value = '';
-  studentProfileImage.value = '';
-  studentCourseList.value = '';
-  studentTeacher.value = '';
-  // studentComment.value = '';
-};
+// const clearStudentForm = () => {
+//   studentName.value = '';
+//   studentSurname.value = '';
+//   studentProfileImage.value = '';
+//   studentCourseList.value = '';
+//   studentTeacher.value = '';
+//   // studentComment.value = '';
+// };
 
-const clearTeacherForm = () => {
-  teacherName.value = '';
-  teacherSurname.value = '';
-  teacherProfileImage.value = '';
-  teacherStudents.value = '';
-};
+// const clearTeacherForm = () => {
+//   teacherName.value = '';
+//   teacherSurname.value = '';
+//   teacherProfileImage.value = '';
+//   teacherStudents.value = '';
+// };
 </script>
 
   

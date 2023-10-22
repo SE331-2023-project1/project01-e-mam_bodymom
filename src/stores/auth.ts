@@ -65,12 +65,34 @@ export const useAuthStore = defineStore('auth', {
         email: email,
         password: password,
       })
-      this.token = response.data.access_token
-      this.userRole = response.data.user_role
-      this.id = response.data.id
-      localStorage.setItem('access_token', this.token as string)
-      localStorage.setItem('user_role', JSON.stringify(this.userRole))
-      localStorage.setItem('id', this.id as string)
+      // this.token = response.data.access_token
+      // this.userRole = response.data.user_role
+      // this.id = response.data.id
+      // localStorage.setItem('access_token', this.token as string)
+      // localStorage.setItem('user_role', JSON.stringify(this.userRole))
+      // localStorage.setItem('id', this.id as string)
+      return response
+    },
+    async teacherRegister(
+      username: string, 
+      firstName: string, 
+      lastName: string, 
+      email: string, 
+      password: string
+      ) {
+      const response = await apiClient.post('/api/v1/auth/register/teacher', {
+        username: username,
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        password: password,
+      })
+      // this.token = response.data.access_token
+      // this.userRole = response.data.user_role
+      // this.id = response.data.id
+      // localStorage.setItem('access_token', this.token as string)
+      // localStorage.setItem('user_role', JSON.stringify(this.userRole))
+      // localStorage.setItem('id', this.id as string)
       return response
     },
     async studentUpdateProfile(id: string, firstName: string, lastName: string) {
