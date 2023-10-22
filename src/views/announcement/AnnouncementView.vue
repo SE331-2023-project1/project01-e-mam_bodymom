@@ -6,7 +6,7 @@
         </div>
 
         <div v-for="announcement in announcements" :key="announcement.id" :announcement="announcement"
-            class="mt-5 mb-10 font-fig flex flex-col items-left justify-left p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
+            class=" mt-5 mb-10 font-fig flex flex-col items-left justify-left p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
             <!-- Announcement Header with Photo, Name, Date, and Time -->
             <div class="flex items-center space-x-3">
                 <img src="src\assets\bodymoml.png" alt="Person's Photo" class="w-20 h-20 rounded-full">
@@ -38,13 +38,16 @@
                         class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                         placeholder="" :value="announcement.description" required />
                 </div>
+
             </div>
 
-            <!-- ...other announcement content... -->
-            <div class="w-full" v-for="file in announcement.files" :key="file">
-                <!-- Use the FilePreview component to display each file source -->
+            <p class="font-fig font-semibold text-sm text-indigo-900">Attached files:</p>
+            <div class="flex w-full text-sm font-semibold mt-1 ml-1 hover:text-indigo-700" v-for="file in announcement.files" :key="file">
+                <span>-</span> <!-- Add a hyphen here -->
                 <FilePreview :fileSource="file" />
             </div>
+
+
 
         </div>
     </main>
@@ -53,11 +56,11 @@
 <script setup lang="ts">
 import { type AnnouncementItem } from '@/type'
 import NProgress from 'nprogress'
-import { computed, ref, watchEffect, type Ref , onMounted } from 'vue';
+import { computed, ref, watchEffect, type Ref, onMounted } from 'vue';
 import { useAnnouncementStore } from '@/stores/announcement'
 import FilePreview from '../../components/FilePreview.vue';
 
-const announcements = ref<AnnouncementItem[] | null> (null)
+const announcements = ref<AnnouncementItem[] | null>(null)
 // let files
 
 onMounted(async () => {
