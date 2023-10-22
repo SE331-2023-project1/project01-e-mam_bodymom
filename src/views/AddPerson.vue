@@ -3,21 +3,21 @@
         rounded-lg mb-4 bg-white shadow-md my-5 mx-auto">
 
     <div class="font-fig mx-5 text-black">
-      <h1 class="flex justify-center font-bold text-2xl mb-3 text-green-600">Add Person</h1>
+      <h1 class="flex justify-center font-bold text-2xl mb-3 text-green-600">Add Teacher</h1>
       <div class="flex mb-3">
-        <label class="my-auto" for="personType">Select Person Type:</label>
-        <select v-model="selectedPersonType" id="personType"
+        <!-- <label class="my-auto" for="personType">Select Person Type:</label> -->
+        <!-- <select v-model="selectedPersonType" id="personType"
           class="ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5">
           <option value="student">Student</option>
           <option value="teacher">Teacher</option>
-        </select>
+        </select> -->
       </div>
 
       <!-- แสดงแบบฟอร์มขึ้นอย่างใดอย่างหนึ่งขึ้นอยู่กับ selectedPersonType -->
-      <div v-if="selectedPersonType === 'student'">
+      <!-- <div v-if="selectedPersonType === 'student'"> -->
 
         <!-- แบบฟอร์มสำหรับเพิ่มนักเรียน -->
-        <form @submit.prevent="addStudent">
+        <!-- <form @submit.prevent="addStudent">
           <div class="grid grid-cols-2 gap-4">
             <div class="flex mb-3">
               <label for="studentName" class="my-auto mr-2">Name:</label>
@@ -41,19 +41,19 @@
               class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentProfileImage" type="text" id="studentProfileImage" required pattern="https?://.+"
               placeholder="Add link of your picture ('http://..' or 'https://..)" title="Must start with 'http://' or 'https://'">
-          </div>
+          </div> -->
 
 
 
-          <div class="flex mb-3">
+          <!-- <div class="flex mb-3"> -->
             <!-- สร้าง input fields สำหรับรายการคอร์ส -->
-            <label for="studentCourseList" class="my-auto mr-2">Course List:</label>
+            <!-- <label for="studentCourseList" class="my-auto mr-2">Course List:</label>
             <select
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentCourseList" id="studentCourseList" required>
-              <option value disabled>Select Course</option>
+              <option value disabled>Select Course</option> -->
               <!-- วนลูปเพื่อแสดงรายชื่อครูที่มีใน store ของครู -->
-              <option value="Math">Math</option>
+              <!-- <option value="Math">Math</option>
               <option value="Science">Science</option>
               <option value="English">English</option>
               <option value="History">History</option>
@@ -71,19 +71,19 @@
               <option value="PE">PE</option>
               <option value="Drama">Drama</option>
               <option value="Astronomy">Astronomy</option>
-              <option value="Languages">Languages</option>
+              <option value="Languages">Languages</option> -->
 
 
-            </select>
+            <!-- </select> -->
             <!-- <input
               class="w-full bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentCourseList" type="text" id="studentCourseList" required> -->
-          </div>
+          <!-- </div> -->
 
 
-          <div class="flex mb-3">
+          <!-- <div class="flex mb-3"> -->
             <!-- เลือกครูจาก dropdown list (ให้นำมาจาก store ของครู) -->
-            <label for="studentTeacher" class="my-auto mr-2">Teacher:</label>
+            <!-- <label for="studentTeacher" class="my-auto mr-2">Teacher:</label>
             <select
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5"
               v-model="studentTeacher" id="studentTeacher">
@@ -97,7 +97,7 @@
               <option value="T789">Olivia Wilson</option>
               <option value="T890">William Anderson</option>
               <option value="T901">Sophia Martinez</option>
-              <option value="T012">Daniel Taylor</option>
+              <option value="T012">Daniel Taylor</option> -->
 
 
 
@@ -105,14 +105,14 @@
               <!-- <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }} {{
                 teacher.surname
               }}</option> -->
-            </select>
+            <!-- </select>
 
-          </div>
+          </div> -->
 
 
           
 
-          <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
+          <!-- <div id="flashMessage" class="mb-2 animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
               <h4>{{ message }}</h4>
             </div>
             <FlashMessage />
@@ -121,9 +121,10 @@
             rounded-lg font-bold text-white" type="submit">Add Student</button>
           </div>
         </form>
-      </div>
+      </div> -->
 
-      <div v-else-if="selectedPersonType === 'teacher'">
+      <!-- <div v-else-if="selectedPersonType === 'teacher'"> -->
+      <div>
 
         <!-- แบบฟอร์มสำหรับเพิ่มครู -->
         <form @submit.prevent="onSubmit">
