@@ -16,5 +16,9 @@ export default {
   },
   getTeacherByStudent(id :string) : Promise<AxiosResponse<TeacherItem>> {
     return apiClient.get<TeacherItem>('/teacherByStudent/'+id.toString())
+  },
+  getTeacherByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<TeacherItem[]>>{
+    return apiClient.get<TeacherItem[]>('/teachers?filter=' + keyword + '&_limit=' + perPage + '&_page=' + page)
   }
+
 }

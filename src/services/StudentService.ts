@@ -18,7 +18,7 @@ export default {
     return apiClient.get<StudentItem[]>('/studentsByTeacher/'+id.toString())
   },
 
-  getEventsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<StudentItem[]>>{
-    return apiClient.get<StudentItem[]>('/students?name=' + keyword + '&_limit=' + perPage + '&_page=' + page)
+  getStudentsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<StudentItem[]>>{
+    return apiClient.get<StudentItem[]>('/students?filter=' + keyword + '&_limit=' + perPage + '&_page=' + page)
   }
 }
