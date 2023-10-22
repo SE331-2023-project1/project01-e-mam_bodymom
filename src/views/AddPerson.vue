@@ -128,7 +128,7 @@
 
         <!-- แบบฟอร์มสำหรับเพิ่มครู -->
         <form @submit.prevent="onSubmit">
-          <div>
+          <div class="mb-2">
           <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
           <InputText type="text" v-model="username" class="text-emerald-600 text-sm font-semibold" placeholder="Usename">
           </InputText>
@@ -136,7 +136,7 @@
             {{ errors['username'] }}</div>
         </div>
 
-        <div>
+        <div class="mb-2">
           <label for="firstName" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
           <InputText type="text" v-model="firstName" class="text-emerald-600 text-sm font-semibold"
             placeholder="Enter your first name"></InputText>
@@ -145,7 +145,7 @@
 
         </div>
 
-        <div>
+        <div class="mb-2">
           <label for="lastName" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
           <InputText type="text" v-model="lastName" class="text-emerald-600 text-sm font-semibold"
             placeholder="Enter your last name"></InputText>
@@ -154,7 +154,7 @@
 
         </div>
 
-        <div>
+        <div class="mb-2">
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
           <InputText type="text" v-model="email" class="text-emerald-600 text-sm font-semibold"
             placeholder="Enter your email address"></InputText>
@@ -163,7 +163,7 @@
 
         </div>
 
-        <div>
+        <div class="mb-4">
           <div class="flex items-center justify-start">
             <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
           </div>
