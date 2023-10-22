@@ -26,6 +26,7 @@ import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth.ts'
+import { useAnnouncementStore } from '@/stores/announcement'
 
 import AddPerson from '../views/AddPerson.vue';
   
@@ -233,6 +234,7 @@ router.beforeEach(async () => {
   const teacherStore = useTeacherStore()
   const studentStore = useStudentStore()
   const authStore = useAuthStore()
+  const announcementStore = useAnnouncementStore()
   if (teacherStore.teachers.length === 0 && authStore.userRole?.includes("ROLE_ADMIN")) {
     await teacherStore.fetchTeachersFromDB()
   }
@@ -259,7 +261,9 @@ router.beforeEach(async () => {
     await studentStore.fetchStudentById(authStore.id)
     // console.log(studentStore.students)
   }
-
+  if (announcementStore.announcements.length === 0 ) {
+    await announcementStore.fetchAnnouncements()
+  }
   })
 
   router.afterEach(() => {
