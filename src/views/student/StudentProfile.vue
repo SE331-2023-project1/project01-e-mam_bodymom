@@ -61,14 +61,16 @@ onMounted(async () => {
   try {
     const response = await useStudentStore().getStudentById(authStore.id);
     student.value = response;
-    const responseTeacher = await useTeacherStore().getTeacherById(authStore.id)
+    // console.log(student.value)
+    const responseTeacher = await useTeacherStore().getTeacher()
     teacher.value = responseTeacher;
+    // console.log(teacher.value)
     // teacher.value = TeacherService.getTeacherById(response.teacher.id)
     // console.log(authStore.id);
 
     // Access student data here
     if (student.value && teacher.value) {
-      //   console.log(responseTeacher);
+        // console.log(responseTeacher);
       username.value = response?.username;
       id.value = response?.id;
       firstName.value = response?.name;
@@ -80,7 +82,7 @@ onMounted(async () => {
       teacherName = responseTeacher?.name
       teacherSurname = responseTeacher?.surname
       teacherImages = responseTeacher?.images
-      //   console.log(teacherId)
+        // console.log(response)
     }
   } catch (error) {
     console.error('Error fetching student data:', error);

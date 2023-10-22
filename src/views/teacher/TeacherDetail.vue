@@ -31,7 +31,7 @@ defineProps({
             {{ teacher?.name }} {{ teacher?.surname }}</span
           > <br>
           <span class="font-fig text-base text-gray-500">Department: {{ teacher?.department }}</span> <br />
-          <span class="font-fig text-base text-gray-500">Academic Position: {{ teacher?.academicposition }}</span>
+          <span class="font-fig text-base text-gray-500">Academic Position: {{ teacher?.academic }}</span>
 
         </div>
         <!-- <b class="text-black">Student id list</b> -->

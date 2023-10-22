@@ -20,6 +20,12 @@ export const useTeacherStore = defineStore('teacher', {
             return new Promise<TeacherItem | null>((resolve) => {
                 resolve(response || null)
             })
+        },
+        getTeacher: (state) => () => {
+            const response = state.teachers[0]
+            return new Promise<TeacherItem | null>((resolve) => {
+                resolve(response || null)
+            })
         }
         // getTeacherById: (state) => (id: string) => {
         //     return new Promise<TeacherItem | undefined>((resolve, reject) => {
