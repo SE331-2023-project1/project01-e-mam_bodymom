@@ -89,6 +89,14 @@ export const useAuthStore = defineStore('auth', {
       })
       return response
     },
+    async announcementPost(title: string, description: string, files: string[]) {
+      const response = await apiClient.post('/announcement', {
+        title: title,
+        description: description,
+        files: files
+      })
+      return response
+    },
     logout() {
         console.log('logout')
         this.token = null

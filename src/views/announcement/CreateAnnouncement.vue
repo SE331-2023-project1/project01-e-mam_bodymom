@@ -137,8 +137,10 @@
 
 <script setup lang="ts">
 import { useMessageStore } from '@/stores/message'
+import { useAuthStore } from '@/stores/auth'
 import { storeToRefs } from 'pinia'
 const storeMessage = useMessageStore()
+const authStore = useAuthStore()
 const { message } = storeToRefs(storeMessage)
 const eventName = ref("");
 const eventDetail = ref("");
@@ -157,6 +159,8 @@ const onSubmit = () => {
     // You can send your post data to the server or perform any necessary actions
     // This method is called when the user confirms the post in the dialog
 
+    authStore.announcementPost(eventName.value, eventDetail.value)
+    location.reload()
     // Display a success message
     storeMessage.updateMessage('Announcement posted!');
     reset(); 

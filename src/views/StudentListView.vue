@@ -91,10 +91,10 @@ function updateKeyword (value: string) {
               @input="updateKeyword"/>
             </div>
             
-            <!-- <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
                 <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
                 
-            </div> -->
+            </div>
 
             <div class="flex flex-col items-center">
                 <div class="pagination flex">
