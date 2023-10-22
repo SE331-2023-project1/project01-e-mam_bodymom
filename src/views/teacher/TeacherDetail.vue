@@ -61,7 +61,7 @@ defineProps({
                   <div class="flex flex-col ml-1">
                     <!-- Create separation and place Student ID on a new line -->
                     <p class="font-fig detail text-left text-black">{{ student?.name }} {{ student?.surname }}</p>
-                    <p class="font-fig text-left text-black text-xs"> Student ID: {{ student?.id }}</p>
+                    <p class="font-fig text-left text-black text-xs"> Student ID: {{ student?.username }}</p>
                     <!-- <p class="font-fig text-left text-black">{{ student?.name }}</p> -->
                   </div>
                 </div>
