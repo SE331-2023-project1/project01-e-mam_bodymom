@@ -9,7 +9,7 @@
             class=" mt-5 mb-10 font-fig flex flex-col items-left justify-left p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
             <!-- Announcement Header with Photo, Name, Date, and Time -->
             <div class="flex items-center space-x-3">
-                <img :src="teacher?.images" alt="Person's Photo" class="w-20 h-20 rounded-full">
+                <img :src="teacher?.images" alt="Person's Photo" class="object-cover w-20 h-20 rounded-full">
                 <div>
                     <p class="font-fig font-semibold text-md">{{teacher?.name}}</p>
                     <p class="font-fig text-sm font-semibold text-gray-600">Date: {{currentDate}}</p>
