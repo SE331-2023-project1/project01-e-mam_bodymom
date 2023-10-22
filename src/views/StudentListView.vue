@@ -7,6 +7,7 @@ import NProgress from 'nprogress'
 import { onBeforeRouteUpdate, useRouter,useRoute  } from 'vue-router'
 import type { AxiosResponse } from 'axios';
 import { useStudentStore } from '@/stores/student';
+import BaseInput from '@/components/BaseInput.vue';
 
 
 const router = useRouter()
@@ -55,13 +56,13 @@ onMounted(() => {
 });
 
 const keyword = ref('')
-
 function updateKeyword (value: string) {
+    console.log(keyword.value)
   let queryFunction;
   if (keyword.value === '') {
-    queryFunction = StudentService.getStudents(3, 1)
+    queryFunction = StudentService.getStudents(5, 1)
   } else {
-    queryFunction = StudentService.getEventsByKeyword(keyword.value, 3, 1)
+    queryFunction = StudentService.getStudentsByKeyword(keyword.value, 5, 1)
   }
   queryFunction.then((response: AxiosResponse<StudentItem[]>) => {
     students.value = response.data
@@ -87,7 +88,7 @@ function updateKeyword (value: string) {
               v-model="keyword"
               type="text"
               placeholder="Search..."
-              class="w-full h-10  border rounded-md "
+              class="w-full h-10  border rounded-md text-gray-900"
               @input="updateKeyword"/>
             </div>
             
