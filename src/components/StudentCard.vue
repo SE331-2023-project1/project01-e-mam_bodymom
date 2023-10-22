@@ -22,7 +22,7 @@ defineProps({
           <img :src="student?.images" alt="" class="w-24 h-24 object-cover rounded-full" />
         </div>
         <div class="">
-          <span class="font-fig text-xs text-gray-500">ID: {{ student?.id }}</span> <br />
+          <span class="font-fig text-xs text-gray-500">StudentID: {{ student?.username }}</span> <br />
           <span class="font-fig font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
 
           <ul class="list-disc list-inside">

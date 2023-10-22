@@ -15,8 +15,8 @@ const { message } = storeToRefs(storeMessage)
 
 const validationSchema = yup.object({
   username: yup.string()
-    .required('The username is required')
-    .matches(/^(?=.*[0-9])[A-Za-z0-9]+$/, 'Username should contain only alphabetic characters and numbers'),
+    .required('The Student ID is required')
+    .matches(/^[0-9]+$/, 'Student ID should contain only numbers'),
 
   firstName: yup.string()
     .required('The firstName is required')
@@ -95,8 +95,8 @@ const onSubmit = handleSubmit((values) => {
     <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" @submit.prevent="onSubmit">
         <div>
-          <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
-          <InputText type="text" v-model="username" class="text-emerald-600 text-sm font-semibold" placeholder="Username">
+          <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Student ID</label>
+          <InputText type="text" v-model="username" class="text-emerald-600 text-sm font-semibold" placeholder="Student ID">
           </InputText>
           <div v-if="errors['username']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
             {{ errors['username'] }}</div>
