@@ -242,8 +242,7 @@ const { message } = storeToRefs(storeMessage)
 const validationSchema = yup.object({
   username: yup.string()
     .required('The username is required')
-    .matches(/^(?=.*[0-9])[A-Za-z0-9]+$/, 'Username should contain only alphabetic characters and numbers'),
-
+    .matches(/^[A-Za-z0-9]+$/, 'Username should contain only alphabetic characters and numbers'),
   firstName: yup.string()
     .required('The firstName is required')
     .matches(/^[A-Za-z]+$/, 'First name should contain only alphabetic characters'),
@@ -287,14 +286,14 @@ const onSubmit = handleSubmit((values) => {
   authStore
     .teacherRegister(values.username, values.firstName, values.lastName, values.email, values.password)
     .then(() => {
-      storeMessage.updateMessage('Registration successful');
+      storeMessage.updateMessage('Add Teacher Successfully');
       setTimeout(() => {
         storeMessage.resetMessage()
       }, 4000)
 
     })
     .catch(() => {
-      storeMessage.updateMessage('could not register')
+      storeMessage.updateMessage('could not add teacher')
 
       setTimeout(() => {
         storeMessage.resetMessage()
