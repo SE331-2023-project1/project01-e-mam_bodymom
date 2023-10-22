@@ -42,15 +42,7 @@ onBeforeRouteUpdate((to, from, next) => {
     students.value = store.getStudentByPage(6, toPage)
     totalStudent.value = store.getStudent.length
     next()
-    // StudentService.getStudents(6, toPage)
-    //     .then((response: AxiosResponse<StudentItem[]>) => {
-    //         students.value = response.data;
-    //         totalStudent.value = response.headers['x-total-count'];
-    //         next();
-    //     })
-    //     .catch(() => {
-    //         next({ name: 'NetworkError' });
-    //     });
+    
 });
 
 const hasNextPage = computed(() => {
@@ -62,15 +54,47 @@ onMounted(() => {
     fetchStudents();
 });
 
+const keyword = ref('')
+
+function updateKeyword (value: string) {
+  let queryFunction;
+  if (keyword.value === '') {
+    queryFunction = StudentService.getStudents(3, 1)
+  } else {
+    queryFunction = StudentService.getEventsByKeyword(keyword.value, 3, 1)
+  }
+  queryFunction.then((response: AxiosResponse<StudentItem[]>) => {
+    students.value = response.data
+    console.log('events', students.value)
+    totalStudent.value = response.headers['x-total-count']
+    console.log('totalStudent', totalStudent.value)
+  }).catch(() => {
+    router.push({name: 'NetworkError'})
+  })
+}
+
 </script>
 
 <template> 
+
     <div class="my-5">
+        
         <main class="flex flex-col items-center justify-center">
 
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-                <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
+
+            <div class="flex justify-center w-full p-3 sm:w-2/4 ">
+             <BaseInput 
+              v-model="keyword"
+              type="text"
+              placeholder="Search..."
+              class="w-full h-10  border rounded-md "
+              @input="updateKeyword"/>
             </div>
+            
+            <!-- <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+                <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
+                
+            </div> -->
 
             <div class="flex flex-col items-center">
                 <div class="pagination flex">
