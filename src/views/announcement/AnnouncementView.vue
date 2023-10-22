@@ -9,11 +9,11 @@
             class="mt-5 mb-10 font-fig flex flex-col items-left justify-left p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
             <!-- Announcement Header with Photo, Name, Date, and Time -->
             <div class="flex items-center space-x-3">
-                <img src="src\assets\bodymoml.png" alt="Person's Photo" class="w-20 h-20 rounded-full">
+                <img :src="teacher?.images" alt="Person's Photo" class="w-20 h-20 rounded-full">
                 <div>
-                    <p class="font-fig font-semibold text-md">Uppahman</p>
-                    <p class="font-fig text-sm font-semibold text-gray-600">Date: October 18, 2023</p>
-                    <p class="font-fig text-sm font-semibold text-gray-600">Time: 10:00 AM</p>
+                    <p class="font-fig font-semibold text-md">{{teacher?.name}}</p>
+                    <p class="font-fig text-sm font-semibold text-gray-600">Date: {{currentDate}}</p>
+                    <p class="font-fig text-sm font-semibold text-gray-600">Time: {{currentTime}}</p>
                 </div>
             </div>
             <div class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
@@ -56,16 +56,39 @@ import NProgress from 'nprogress'
 import { computed, ref, watchEffect, type Ref , onMounted } from 'vue';
 import { useAnnouncementStore } from '@/stores/announcement'
 import FilePreview from '../../components/FilePreview.vue';
+import { useTeacherStore } from '../../stores/teacher'
+import { type TeacherItem } from '@/type'
 
 const announcements = ref<AnnouncementItem[] | null> (null)
+const teacher = ref<TeacherItem | null>(null)
+
+const currentTime = ref('');
+const currentDate = ref('');
+
+// Function to update the currentTime and currentDate
+const updateDateTime = () => {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const formattedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+  currentTime.value = formattedTime;
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  currentDate.value = now.toLocaleDateString(undefined, options);
+};
 // let files
 
 onMounted(async () => {
     try {
         const response = await useAnnouncementStore().getAnnouncement
         announcements.value = response
+        const response2 = await useTeacherStore().getTeacher()
+        teacher.value = response2
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
         if (announcements.value) {
-            console.log(announcements.value)
+            // console.log(announcements.value)
+            // console.log(teacher.value)
         }
     } catch (error) {
         console.log('Error fetching student data:', error)
