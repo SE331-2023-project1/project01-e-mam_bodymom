@@ -9,6 +9,14 @@ import TeacherDetail from '../views/teacher/TeacherDetail.vue'
 import NetworkErrorView from '../views/NetworkErrorView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import HomePage from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegisterView from '../views/RegisterView.vue'
+import AnnouncementView from '../views/announcement/AnnouncementView.vue'
+import StudentProfile from '../views/student/StudentProfile.vue'
+import TeacherProfile from '../views/teacher/TeacherProfile.vue'
+import CreateAnnouncement from '../views/announcement/CreateAnnouncement.vue'
+import StudentProfileAdmin from '../views/student/StudentProfileAdmin.vue'
+import TeacherProfileAdmin from '../views/teacher/TeacherProfileAdmin.vue'
 import NProgress from 'nprogress'
 import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
@@ -18,9 +26,11 @@ import type { StudentItem } from '@/type'
 import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
 import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth.ts'
+import { useAnnouncementStore } from '@/stores/announcement'
 
 import AddPerson from '../views/AddPerson.vue';
-
+  
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -28,6 +38,48 @@ const router = createRouter({
       path: '/',
       name: 'home-page',
       component: HomePage
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: LoginView
+    },
+    {
+      path: '/announcements',
+      name: 'announcement-view',
+      component: AnnouncementView
+    },
+    {
+      path: '/createpost',
+      name: 'create-announcement',
+      component: CreateAnnouncement
+    },
+    {
+      path: '/studentprofile',
+      name: 'studentprofile-view',
+      component: StudentProfile,
+    },
+    {
+      path: '/studentprofile-admin/:id',
+      name: 'studentprofile-admin',
+      component: StudentProfileAdmin,
+      props: true
+    },
+    {
+      path: '/teacherprofile',
+      name: 'teaacherprofile-view',
+      component: TeacherProfile
+    },
+    {
+      path: '/teacherprofile-admin/:id',
+      name: 'teacherprofile-admin',
+      component: TeacherProfileAdmin,
+      props: true
+    },
+    {
+      path: '/register',
+      name: 'register-page',
+      component: RegisterView
     },
     {
       path: '/students',
@@ -119,6 +171,7 @@ const router = createRouter({
           // console.log(studentStore)
 
           useStudentStore().getStudentById(id)
+          // console.log(id)
 
         } catch (error: any) {
           if (error.response && error.response.status === 404) {
@@ -154,7 +207,7 @@ const router = createRouter({
           path: '',
           name: 'student-detail',
           component: StudentDetail,
-        }
+        },
       ]
     },
     {
@@ -187,13 +240,38 @@ router.beforeEach(async () => {
   NProgress.start()
   const teacherStore = useTeacherStore()
   const studentStore = useStudentStore()
-  if (teacherStore.teachers.length === 0) {
+  const authStore = useAuthStore()
+  const announcementStore = useAnnouncementStore()
+  if (teacherStore.teachers.length === 0 && authStore.userRole?.includes("ROLE_ADMIN")) {
     await teacherStore.fetchTeachersFromDB()
   }
-  if (studentStore.students.length === 0) {
-    await studentStore.fetchStudentsFromDB()
+  if (teacherStore.teachers.length === 0 && authStore.userRole?.includes("ROLE_TEACHER")
+  && authStore.id != null) {
+    await teacherStore.fetchTeacherById(authStore.id)
+    // console.log(teacherStore.teachers)
   }
-
+  if (teacherStore.teachers.length === 0 && authStore.userRole?.includes("ROLE_STUDENT")
+  && authStore.id != null) { 
+    await teacherStore.fetchTeacherByStudent(authStore.id)
+    console.log(teacherStore.teachers)
+  }
+  if (studentStore.students.length === 0 && authStore.userRole?.includes("ROLE_ADMIN")) {
+    await studentStore.fetchStudentsFromDB()
+    // console.log(studentStore.students)
+  }
+  if (studentStore.students.length === 0 && authStore.userRole?.includes("ROLE_TEACHER")
+  && authStore.id != null) {
+    await studentStore.fetchStudentsByTeacher(authStore.id)
+    // console.log(studentStore.students)
+  }
+  if (studentStore.students.length === 0 && authStore.userRole?.includes("ROLE_STUDENT")
+  && authStore.id != null) {
+    await studentStore.fetchStudentById(authStore.id)
+    // console.log(studentStore.students)
+  }
+  if (announcementStore.announcements.length === 0 ) {
+    await announcementStore.fetchAnnouncements()
+  }
   })
 
   router.afterEach(() => {

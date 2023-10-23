@@ -7,6 +7,7 @@ import App from './App.vue'
 import router from './router'
 import './assets/nprogess.css'
 // import '@/assets/nprogress.css'; 
+import '@/services/AxiosInterceptorSetup.ts'
 
 const app = createApp(App)
 

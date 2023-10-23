@@ -6,6 +6,7 @@ import { storeToRefs } from 'pinia';
 import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
 import { useMessageStore } from '@/stores/message';
+import { useAuthStore } from '@/stores/auth'
 
 const props = defineProps({
   student: {
@@ -19,6 +20,8 @@ const props = defineProps({
     require: true
   }
 })
+
+const authStore = useAuthStore()
 
 const store = useMessageStore()
 const { message } = storeToRefs(store)
@@ -67,18 +70,18 @@ const addComment = () => {
 
 <template>
   <div v-if="student">
-    <!-- {{ console.log(student) }} -->
+    <!-- {{ console.log(student.teacher) }} -->
     <div class="student-class flex flex-col items-center justify-center">
       <div class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg mb-4 bg-white shadow-md">
         <div class="flex justify-center">
-          <img :src="student?.profileimage" alt="" class="crop rounded-lg" />
+          <img :src="student?.images" alt="" class="crop rounded-lg" />
         </div>
         <div class="">
-          <span class="text-base text-gray-500 font-fig">ID: {{ student?.id }}</span> <br />
+          <span class="text-base text-gray-500 font-fig">ID: {{ student?.username }}</span> <br />
           <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
           <ul class="list-disc list-inside">
-            <span class="font-fig font-bold text-black text-xl course">Course List</span>
+            <!-- <span class="font-fig font-bold text-black text-xl course">Course List</span> -->
             <li v-for="course in student?.courselist" :key="course" class="text-xl course font-fig text-black">
               {{ course }}
             </li>
@@ -87,19 +90,37 @@ const addComment = () => {
           <br>
 
           <!-- {{ console.log(teacher) }} -->
-          <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.id } }">
+          <RouterLink :to="{ name: 'teacher-detail', params: { id: student.teacher.id } }">
             <button
               class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md
             font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
               <div class="flex justify-center items-center">
-                <img :src="teacher?.profileimage" class="w-10 h-10 object-cover rounded-full mr-2">
+                <img :src="teacher?.images" class="w-10 h-10 object-cover rounded-full mr-2">
                 <div class="flex flex-col">
                   <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
-                  <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacherID }}</span>
+                  <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
                 </div>
               </div>
             </button>
           </RouterLink>
+
+          <div class="mt-3">
+            <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'studentprofile-admin', params: { id: student.id } }">
+            <button
+              class=" bg-gray-300 hover:bg-gray-400 text-black shadow-md
+            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
+              <div class="flex justify-center items-center">
+                <!-- <img :src="student?.images" class="w-10 h-10 object-cover rounded-full mr-2"> -->
+                <div class="flex flex-col">
+                  <span class="teacherid font-fig text-left">Edit Profile</span>
+                  <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
+                </div>
+              </div>
+            </button>
+          </RouterLink>
+          </div>
+
+          
 
 
         </div>
@@ -108,7 +129,7 @@ const addComment = () => {
   </div>
 
   <!-- comment section -->
-  <div class=" flex flex-col mb-2 items-center justify-center">
+  <div class=" flex flex-col mb-2 items-center justify-center" v-if="authStore.userRole == 'ROLE_TEACHER'">
     <div class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg bg-white shadow-md mb-8">
 

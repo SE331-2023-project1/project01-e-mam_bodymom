@@ -5,6 +5,7 @@ import { useStudentStore } from '@/stores/student'
 import { type TeacherItem } from '@/type'
 import { type StudentItem } from '@/type'
 import { storeToRefs } from 'pinia'
+import StudentService from "@/services/StudentService";
 
 const props = defineProps({
   id: {
@@ -16,19 +17,17 @@ const teachers = ref<TeacherItem | null>(null)
 const students = ref<StudentItem[]>([])
 
 const teacherStore = useTeacherStore()
-// const storeStudent = useStudentStore()
-teacherStore.getTeacherById(props.id!)
-  .then((response) => {
-    teachers.value = response
-  })
+const storeStudent = useStudentStore()
 
-  useStudentStore().getStudentsByTeacherId(props.id!)
-  .then((response) => {
-    students.value = response
+teacherStore.getTeacherById(props.id!).then((response) => {
+  teachers.value = response
 })
-// const students = storeToRefs(storeStudent).students
-// const id = ref(teachers?.value?.id)
-console.log(students)
+
+StudentService.getStudentsByTeacher(props.id!).then((response) => {
+  students.value = response
+  // console.log(response)
+})
+// console.log(students.value)
 </script>
 
 <template>

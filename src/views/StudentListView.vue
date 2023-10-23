@@ -7,6 +7,8 @@ import NProgress from 'nprogress'
 import { onBeforeRouteUpdate, useRouter,useRoute  } from 'vue-router'
 import type { AxiosResponse } from 'axios';
 import { useStudentStore } from '@/stores/student';
+import BaseInput from '@/components/BaseInput.vue';
+import { useAuthStore } from '@/stores/auth'
 
 
 const router = useRouter()
@@ -15,6 +17,7 @@ const route = useRoute();
 
 const students: Ref<Array<StudentItem>> = ref([])
 const totalStudent = ref<number>(0)
+const authStore = useAuthStore()
 
 const props = defineProps({
     page: {
@@ -42,15 +45,7 @@ onBeforeRouteUpdate((to, from, next) => {
     students.value = store.getStudentByPage(6, toPage)
     totalStudent.value = store.getStudent.length
     next()
-    // StudentService.getStudents(6, toPage)
-    //     .then((response: AxiosResponse<StudentItem[]>) => {
-    //         students.value = response.data;
-    //         totalStudent.value = response.headers['x-total-count'];
-    //         next();
-    //     })
-    //     .catch(() => {
-    //         next({ name: 'NetworkError' });
-    //     });
+    
 });
 
 const hasNextPage = computed(() => {
@@ -62,14 +57,50 @@ onMounted(() => {
     fetchStudents();
 });
 
+const keyword = ref('')
+function updateKeyword (value: string) {
+    console.log(keyword.value)
+  let queryFunction;
+  if (keyword.value === '') {
+    queryFunction = StudentService.getStudents(5, 1)
+  } else {
+    queryFunction = StudentService.getStudentsByKeyword(keyword.value, 5, 1)
+  }
+  queryFunction.then((response: AxiosResponse<StudentItem[]>) => {
+    students.value = response.data
+    console.log('events', students.value)
+    totalStudent.value = response.headers['x-total-count']
+    console.log('totalStudent', totalStudent.value)
+  }).catch(() => {
+    router.push({name: 'NetworkError'})
+  })
+}
+
 </script>
 
 <template> 
+
     <div class="my-5">
+        
         <main class="flex flex-col items-center justify-center">
 
+
+            <div class="flex justify-center w-full p-3 sm:w-2/4 ">
+             <BaseInput 
+              v-model="keyword"
+              type="text"
+              placeholder="Search..."
+              class="w-full h-10  border rounded-md text-gray-900"
+              @input="updateKeyword"/>
+            </div>
+
+            <div v-if="authStore.userRole == 'ROLE_ADMIN'" class="flex justify-center w-full p-3 sm:w-2/4 text-gray-900">
+                <h1>Total student: {{totalStudent}}</h1>
+            </div>
+            
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
                 <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
+                
             </div>
 
             <div class="flex flex-col items-center">

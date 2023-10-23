@@ -7,12 +7,10 @@ import NProgress from 'nprogress'
 import { onBeforeRouteUpdate, useRouter,useRoute } from 'vue-router'
 import type { AxiosResponse } from 'axios';
 import { useTeacherStore } from '@/stores/teacher';
-
+import BaseInput from '@/components/BaseInput.vue';
 const router = useRouter();
 const route = useRoute();
-
 const store = useTeacherStore();
-
 
 const teachers: Ref<Array<TeacherItem>> = ref([])
 const totalTeacher = ref<number>(0)
@@ -29,8 +27,6 @@ const props = defineProps({
         required: true
     }
 })
-
-
 
 const fetchTeachers = () => {
     
@@ -92,7 +88,6 @@ onBeforeRouteUpdate((to, from, next) => {
     
 });
 
-
 const hasNextPage = computed(() => {
     const totalPages = Math.ceil(totalTeacher.value / 6);
     return props.page < totalPages;
@@ -105,11 +100,45 @@ onMounted(() => {
     fetchTeachers();
 });
 
+
+const keyword = ref('')
+function updateKeyword (value: string) {
+    console.log(keyword.value)
+  let queryFunction;
+  if (keyword.value === '') {
+    queryFunction = TeacherService.getTeachers(5, 1)
+  } else {
+    queryFunction = TeacherService.getTeacherByKeyword(keyword.value, 5, 1)
+  }
+  queryFunction.then((response: AxiosResponse<TeacherItem[]>) => {
+    teachers.value = response.data
+    console.log('events', teachers.value)
+    totalTeacher.value = response.headers['x-total-count']
+    console.log('totalStudent', totalTeacher.value)
+  }).catch(() => {
+    router.push({name: 'NetworkError'})
+  })
+}
+
 </script>
 
 <template>
     <div class="my-5">
         <main class="flex flex-col items-center justify-center">
+
+
+            <div class="flex justify-center w-full p-3 sm:w-2/4 ">
+             <BaseInput 
+              v-model="keyword"
+              type="text"
+              placeholder="Search..."
+              class="w-full h-10  border rounded-md text-gray-900"
+              @input="updateKeyword"/>
+            </div>
+
+            <div class="flex justify-center w-full p-3 sm:w-2/4 text-gray-900">
+                <h1>Total teacher: {{totalTeacher}}</h1>
+            </div>
 
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
 

@@ -1,26 +1,24 @@
-import axios from 'axios'
-import type { AxiosInstance, AxiosResponse } from 'axios'
+import apiClient from './AxiosClient'
+import type { AxiosResponse } from 'axios'
 import type { StudentItem } from '@/type'
-
-const apiClient: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL_STUDENT,
-  withCredentials: false,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-})
 
 export default {
   getStudents(perPage: number, page: number): Promise<AxiosResponse<StudentItem[]>> {
     // perPage is limit
     // page is number of pages
-    return apiClient.get<StudentItem[]>('?_limit=' + perPage + '&_page=' + page)
+    return apiClient.get<StudentItem[]>('/students?_limit=' + perPage + '&_page=' + page)
   },
   getAllStudents() : Promise<AxiosResponse<StudentItem[]>> {
-    return apiClient.get<StudentItem[]>('')
+    return apiClient.get<StudentItem[]>('/AllStudents')
   },
   getStudentById(id : string) : Promise<AxiosResponse<StudentItem>>{
-    return apiClient.get<StudentItem>('/'+id.toString())
+    return apiClient.get<StudentItem>('/students/'+id.toString())
+  },
+  getStudentsByTeacher(id :string) : Promise<AxiosResponse<StudentItem[]>> {
+    return apiClient.get<StudentItem[]>('/studentsByTeacher/'+id.toString())
+  },
+
+  getStudentsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<StudentItem[]>>{
+    return apiClient.get<StudentItem[]>('/students?filter=' + keyword + '&_limit=' + perPage + '&_page=' + page)
   }
 }

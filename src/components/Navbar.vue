@@ -2,6 +2,28 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import { useRouter } from 'vue-router';
+import { useMessageStore } from '@/stores/message'
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth.ts'
+
+const store = useMessageStore()
+const { message } = storeToRefs(store)
+const authStore = useAuthStore()
+const router = useRouter()
+const token = localStorage.getItem('access_token')
+const userRole = localStorage.getItem('user_role')
+const id = localStorage.getItem('id')
+
+function logout() {
+  authStore.logout()
+  router.push({ name: 'login' })
+}
+
+if (token && userRole && id) {
+  authStore.reload(token, JSON.parse(userRole), id)
+} else {
+  authStore.logout()
+}
 </script>
 
 <template>
@@ -9,7 +31,7 @@ import { useRouter } from 'vue-router';
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="/" class="flex items-center">
         <!-- <img src="../assets/logo.png" class="h-14 mr-3" alt="Logo" /> -->
-        <img src="../assets/bodymom.png" class="h-10">
+        <img src="../assets/bodymomb.png" class="h-[40px]">
         <!-- <span class="font-cp self-center text-2xl font-semibold whitespace-nowrap text-violet-700">BodyMom</span> -->
       </a>
       <button data-collapse-toggle="navbar-default" type="button"
@@ -24,23 +46,59 @@ import { useRouter } from 'vue-router';
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul
           class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-500 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white text-black">
-          <li class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+          <li v-if="authStore.userRole == 'ROLE_ADMIN' || authStore.userRole == 'ROLE_TEACHER'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/student.png" class="h-[20px] mr-2">
             <RouterLink to="/students">Students</RouterLink>
           </li>
 
-          <li class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+          <li v-if="authStore.userRole == 'ROLE_ADMIN'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/teacher.png" class="h-[20px] mr-2">
             <RouterLink to="/teachers">Teachers</RouterLink>
           </li>
-          <li class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">  
+          <li v-if="authStore.userRole == 'ROLE_ADMIN'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/add.png" class="h-[12px] ml-1 mr-2">
-          <RouterLink to="/add">Add Person</RouterLink>
+            <RouterLink to="/add">Add Person</RouterLink>
           </li>
+          <li v-if="!authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+            <img src="../assets/login.png" class="h-[12px] ml-1 mr-2">
+            <RouterLink to="/Login">Login</RouterLink>
+          </li>
+          <li v-if="authStore.userRole == 'ROLE_STUDENT' || authStore.userRole == 'ROLE_TEACHER'" 
+          class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+            <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
+            <RouterLink to="/announcements">Announcements</RouterLink>
+          </li>
+          <li v-if="authStore.userRole == 'ROLE_TEACHER'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+            <img src="../assets/addpost.png" class="h-[18px] ml-1 mr-2 items-center">
+            <RouterLink to="/createpost">Add Announcement</RouterLink>
+          </li>
+          <li v-if="authStore.userRole == 'ROLE_STUDENT'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+            <img src="../assets/profile.png" class="h-[21px] ml-1 mr-2 items-center">
+            <RouterLink to="/studentprofile">Profile</RouterLink>
+          </li>
+          <li v-if="authStore.userRole == 'ROLE_TEACHER'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+            <img src="../assets/profile.png" class="h-[21px] ml-1 mr-2 items-center">
+            <RouterLink to="/teacherprofile">Profile</RouterLink>
+          </li>
+          <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+            <!-- <router-link to="/profile" class="nav-link">
+              <font-awesome-icon icon="user"/> {{ authStore.currentUserName }}
+            </router-link> -->
+            <a href="/" class="nav-link hover:cursor-pointer" @click="logout">
+
+              LogOut
+            </a>
+          </li>
+
 
         </ul>
       </div>
     </div>
-  </nav>
+</nav>
 
 <RouterView /></template>

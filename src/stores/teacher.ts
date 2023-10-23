@@ -15,8 +15,14 @@ export const useTeacherStore = defineStore('teacher', {
             return state.teachers.slice(startIndex, endIndex);
         },
         getTeacherById: (state) => async (id: string) => {
-            const response = state.teachers.find(teacher => teacher.id === id)
-            console.log(response)
+            const response = state.teachers.find(teacher => teacher.id == id)
+            // console.log(response)
+            return new Promise<TeacherItem | null>((resolve) => {
+                resolve(response || null)
+            })
+        },
+        getTeacher: (state) => () => {
+            const response = state.teachers[0]
             return new Promise<TeacherItem | null>((resolve) => {
                 resolve(response || null)
             })
@@ -64,13 +70,15 @@ export const useTeacherStore = defineStore('teacher', {
             
         },
         async fetchTeacherById(id: string) {
-            try {
-                const response = this.getTeacherById(id)
-                return response
-            } catch (error) {
-                console.log(error)
-                return null
-            }
+            const response = await TeacherService.getTeacherById(id)
+            this.teachers.push(response.data)
+            // try {
+            //     const response = this.getTeacherById(id)
+            //     return response
+            // } catch (error) {
+            //     console.log(error)
+            //     return null
+            // }
         },
         async fetchTeacherByPage(perPage: number, page: number) {
             try {
@@ -80,6 +88,12 @@ export const useTeacherStore = defineStore('teacher', {
                 console.log(error)
                 return null
             }
+        },
+        async fetchTeacherByStudent(id: string) {
+            const response = await TeacherService.getTeacherByStudent(id)
+            this.teachers.push(response.data)
+            // console.log(response)
+
         },
         // ส่วนของ useTeacherStore
         async addTeacher(teacher: TeacherItem) {
