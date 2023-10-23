@@ -81,6 +81,16 @@ const onSubmit = handleSubmit((values) => {
     })
 })
 
+import { ref } from 'vue';
+const mediaURLs = ref<string[]>([]);
+
+const onFileUploaded = (mediaURLs: string[]) => {
+  // Assuming mediaURLs contains at least one URL
+  images.value = [mediaURLs[0]];
+  console.log(images.value)
+};
+
+
 </script>
 
 <template>
@@ -97,7 +107,9 @@ const onSubmit = handleSubmit((values) => {
     </div>
 
     <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
+      <ImageUpload @fileUploaded="onFileUploaded" v-model="mediaURLs" />
       <form class="space-y-6" @submit.prevent="onSubmit">
+        
         <div>
           <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Student ID</label>
           <InputText type="text" v-model="username" class="text-emerald-600 text-sm font-semibold" placeholder="Student ID">
@@ -144,7 +156,7 @@ const onSubmit = handleSubmit((values) => {
             {{ errors['password'] }}</div>
         </div>
 
-        <ImageUpload v-model="images"/>
+        
 
         <div>
           <button type="submit"
