@@ -31,6 +31,22 @@ defineProps({
           <span class="font-fig text-base text-gray-500">Academic Position: {{ teacher?.academic }}</span>
 
         </div>
+        
+          <div class="mt-3">
+            <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'teacherprofile-admin', params: { id: teacher?.id } }">
+              <button
+              class=" bg-gray-300 hover:bg-gray-400 text-black shadow-md
+            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
+              <div class="flex justify-center items-center">
+                <!-- <img :src="student?.images" class="w-10 h-10 object-cover rounded-full mr-2"> -->
+                <div class="flex flex-col">
+                  <span class="teacherid font-fig text-left">Edit Profile</span>
+                  <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
+                </div>
+              </div>
+            </button>
+          </RouterLink>
+          </div>
         <!-- <b class="text-black">Student id list</b> -->
         <!-- <li v-for="studentId in teacher.studentsId" :key="studentId" class="text-xl font-fig">
           {{ studentId }}

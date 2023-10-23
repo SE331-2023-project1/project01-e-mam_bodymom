@@ -16,6 +16,7 @@ import StudentProfile from '../views/student/StudentProfile.vue'
 import TeacherProfile from '../views/teacher/TeacherProfile.vue'
 import CreateAnnouncement from '../views/announcement/CreateAnnouncement.vue'
 import StudentProfileAdmin from '../views/student/StudentProfileAdmin.vue'
+import TeacherProfileAdmin from '../views/teacher/TeacherProfileAdmin.vue'
 import NProgress from 'nprogress'
 import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
@@ -68,6 +69,12 @@ const router = createRouter({
       path: '/teacherprofile',
       name: 'teaacherprofile-view',
       component: TeacherProfile
+    },
+    {
+      path: '/teacherprofile-admin/:id',
+      name: 'teacherprofile-admin',
+      component: TeacherProfileAdmin,
+      props: true
     },
     {
       path: '/register',

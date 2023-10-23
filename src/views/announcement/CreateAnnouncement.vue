@@ -14,11 +14,11 @@
             class="mt-2 mb-10 font-fig flex flex-col items-center justify-center p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
             <!-- Announcement Header with Photo, Name, Date, and Time -->
             <div class="flex items-center space-x-3">
-                <img src="src\assets\bodymoml.png" alt="Person's Photo" class="w-20 h-20 rounded-full">
+                <img :src="teacher?.images" alt="Person's Photo" class="w-20 h-20 rounded-full">
                 <div>
-                    <p class="font-fig font-semibold text-md">Uppahman</p>
-                    <p class="font-fig text-sm font-semibold text-gray-600">Date: October 18, 2023</p>
-                    <p class="font-fig text-sm font-semibold text-gray-600">Time: 10:00 AM</p>
+                    <p class="font-fig font-semibold text-md">{{teacher?.name}}</p>
+                    <p class="font-fig text-sm font-semibold text-gray-600">Date: {{currentDate}}</p>
+                    <p class="font-fig text-sm font-semibold text-gray-600">Time: {{currentTime}}</p>
                 </div>
             </div>
 
@@ -139,12 +139,30 @@
 import { useMessageStore } from '@/stores/message'
 import { useAuthStore } from '@/stores/auth'
 import { storeToRefs } from 'pinia'
+import { useTeacherStore } from '@/stores/teacher'
+import { type TeacherItem } from '@/type'
 const storeMessage = useMessageStore()
 const authStore = useAuthStore()
 const { message } = storeToRefs(storeMessage)
 const eventName = ref("");
 const eventDetail = ref("");
+const teacher = ref<TeacherItem | null>(null)
 // import { ref } from 'vue';
+
+const currentTime = ref('');
+const currentDate = ref('');
+
+// Function to update the currentTime and currentDate
+const updateDateTime = () => {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const formattedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+  currentTime.value = formattedTime;
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  currentDate.value = now.toLocaleDateString(undefined, options);
+};
 
 const showConfirmation = () => {
     if (!eventName.value || !eventDetail.value) {
@@ -169,6 +187,20 @@ const onSubmit = () => {
     
     }, 4000);
 };
+
+onMounted(async () => {
+    try {
+        const response = await useTeacherStore().getTeacher()
+        teacher.value = response
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+        if (teacher.value) {
+            console.log(teacher.value)
+        }
+    } catch (error) {
+        console.log('Error fetching student data:', error)
+    }
+})
 
 import { ref, onMounted } from 'vue';
 
