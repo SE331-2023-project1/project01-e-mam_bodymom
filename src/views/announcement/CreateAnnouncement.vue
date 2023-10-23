@@ -102,23 +102,18 @@
 
                                 <div class="w-100"></div>
                                 <div class="col-12 mt-3 text-center">
-                                    <!-- <p class="text-primary">* You should send data "image" & "imageList" via API to upload
-                                        image files.</p> -->
-                                    <!-- <button @click="reset"
-                                        class="text-white bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
-                                        Reset Input Fields</button> -->
+                                  
                                 </div>
                             </div>
                         </div>
 
                         <UploadFile @fileUploaded="handleFileUploaded" />
-                        <!-- <pre>{{ event.files }}</pre> -->
 
                         <div class="flex justify-center">
 
                             <!-- Post button -->
                             <button @click="showConfirmation"
-                                class="flex text-white bg-emerald-500 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
+                                class="flex text-white bg-emerald-500 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center mt-5">
                                 Post
                             </button>
 
