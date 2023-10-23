@@ -44,7 +44,7 @@ export default {
       const formData = new FormData();
       formData.append("file", this.selectedFile);
 
-      fetch("http://localhost:8080/uploadFile", {
+      fetch(import.meta.env.VITE_UPLOAD_URL, {
         method: "POST",
         body: formData,
       })
