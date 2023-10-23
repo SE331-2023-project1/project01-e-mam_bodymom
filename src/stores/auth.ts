@@ -56,7 +56,8 @@ export const useAuthStore = defineStore('auth', {
       firstName: string, 
       lastName: string, 
       email: string, 
-      password: string
+      password: string,
+      images: string[]
       ) {
       const response = await apiClient.post('/api/v1/auth/register/student', {
         username: username,
@@ -64,6 +65,7 @@ export const useAuthStore = defineStore('auth', {
         lastname: lastName,
         email: email,
         password: password,
+        images: images
       })
       // this.token = response.data.access_token
       // this.userRole = response.data.user_role

@@ -6,6 +6,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useRouter, RouterLink } from 'vue-router'
 import { useMessageStore } from '@/stores/message'
 import { storeToRefs } from 'pinia'
+import ImageUpload from '@/components/ImageUpload.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -44,6 +45,7 @@ const { errors, handleSubmit } = useForm({
     lastName: '',
     email: '',
     password: '',
+    images: []
   }
 })
 
@@ -57,9 +59,11 @@ const { value: email } = useField<string>('email')
 
 const { value: password } = useField<string>('password')
 
+const { value: images } = useField<string[]>('images')
+
 const onSubmit = handleSubmit((values) => {
   authStore
-    .studentRegister(values.username, values.firstName, values.lastName, values.email, values.password)
+    .studentRegister(values.username, values.firstName, values.lastName, values.email, values.password, values.images)
     .then(() => {
       router.push({ name: 'Login' })
       storeMessage.updateMessage('Registration successful');
@@ -139,6 +143,8 @@ const onSubmit = handleSubmit((values) => {
           <div v-if="errors['password']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
             {{ errors['password'] }}</div>
         </div>
+
+        <ImageUpload v-model="images"/>
 
         <div>
           <button type="submit"
