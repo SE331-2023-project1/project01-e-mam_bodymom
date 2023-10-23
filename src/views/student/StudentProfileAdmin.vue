@@ -174,12 +174,14 @@ const onSubmit = handleSubmit(async (values) => {
     storeMessage.updateMessage('Update profile successful');
     setTimeout(() => {
       storeMessage.resetMessage();
+      location.reload()
     }, 4000);
     // router.push({ name: 'home-page' });
   } catch (error) {
     storeMessage.updateMessage('Could not update profile');
     setTimeout(() => {
       storeMessage.resetMessage();
+      location.reload()
     }, 3000);
   }
 });

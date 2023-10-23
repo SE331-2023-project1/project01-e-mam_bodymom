@@ -196,12 +196,13 @@ const onSubmit = () => {
     // This method is called when the user confirms the post in the dialog
 
     authStore.announcementPost(eventName.value, eventDetail.value,mediaURL.value)
-    location.reload()
+    // location.reload()
     // Display a success message
     storeMessage.updateMessage('Announcement posted!');
     reset(); 
     setTimeout(() => {
         storeMessage.resetMessage();
+        location.reload()
     
     }, 4000);
 };
