@@ -23,6 +23,7 @@ export interface CommentInfo{
     comment: string;
 }
 export interface AnnouncementItem {
+    images: string [],
     id: string,
     title: string,
     description: string,

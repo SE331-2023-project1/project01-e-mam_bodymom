@@ -46,12 +46,12 @@
                             placeholder="Write detail here..." :value="eventDetail" @input="eventDetail = $event.target.value" required>
                     </div>
                         </div>
-
+<!-- 
                         <div id="app" class="container my-3">
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <p class="mb-3 font-fig text-md font-semibold text-indigo-900">Upload File</p>
-                                </div>
+                                </div> -->
                                 <!-- <div class="col-md-5 offset-md-1">
                                     <h5>1. single file</h5>
                                     <form>
@@ -71,7 +71,7 @@
                                         </div>
                                     </form>
                                 </div> -->
-
+<!-- 
                                 <div class="col-md-5">
                                     <form>
                                         <div class="form-group">
@@ -85,9 +85,9 @@
                                             <div class="border p-2 mt-3">
                                                 <p class="font-fig text-sm font-semibold text-indigo-900">Preview Here:</p>
                                                 <template v-if="previewList.length">
-                                                    <div v-for="(item, index) in previewList" :key="index">
+                                                    <div v-for="(item, index) in previewList" :key="index"> -->
                                                         <!-- <img :src="item" class="img-fluid mx-auto object-cover h-40" /> -->
-                                                        <p
+                                                        <!-- <p
                                                             class="flex justify-center font-fig text-sm font-semibold text-gray-600 ">
                                                             file name: {{ imageList[index].name }}</p>
                                                         <p
@@ -97,19 +97,22 @@
                                                 </template>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                    </form> -->
+                                <!-- </div> -->
 
                                 <div class="w-100"></div>
                                 <div class="col-12 mt-3 text-center">
                                     <!-- <p class="text-primary">* You should send data "image" & "imageList" via API to upload
                                         image files.</p> -->
-                                    <button @click="reset"
+                                    <!-- <button @click="reset"
                                         class="text-white bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
-                                        Reset Input Fields</button>
+                                        Reset Input Fields</button> -->
                                 </div>
                             </div>
                         </div>
+
+                        <UploadFile @fileUploaded="handleFileUploaded" />
+                        <!-- <pre>{{ event.files }}</pre> -->
 
                         <div class="flex justify-center">
 
@@ -127,10 +130,10 @@
                 </div>
 
 
-            </div>
+            <!-- </div>
 
 
-        </div>
+        </div> -->
 
     </main>
 </template>
@@ -141,6 +144,8 @@ import { useAuthStore } from '@/stores/auth'
 import { storeToRefs } from 'pinia'
 import { useTeacherStore } from '@/stores/teacher'
 import { type TeacherItem } from '@/type'
+import UploadFile from '@/components/UploadFile.vue';
+
 const storeMessage = useMessageStore()
 const authStore = useAuthStore()
 const { message } = storeToRefs(storeMessage)
@@ -151,6 +156,24 @@ const teacher = ref<TeacherItem | null>(null)
 
 const currentTime = ref('');
 const currentDate = ref('');
+
+
+const mediaURL = ref<string[]>([]); // Initialize mediaURL as an empty array of strings
+
+
+// Define the method to handle the uploaded file
+const handleFileUploaded = (newMediaURL: string) => {
+    mediaURL.value.push(newMediaURL); // Push the new URL to the array
+  console.log('mediaURL:', mediaURL.value);
+  // Do other actions as needed
+};
+
+
+
+
+
+
+
 
 // Function to update the currentTime and currentDate
 const updateDateTime = () => {
@@ -177,7 +200,7 @@ const onSubmit = () => {
     // You can send your post data to the server or perform any necessary actions
     // This method is called when the user confirms the post in the dialog
 
-    authStore.announcementPost(eventName.value, eventDetail.value)
+    authStore.announcementPost(eventName.value, eventDetail.value,mediaURL.value)
     location.reload()
     // Display a success message
     storeMessage.updateMessage('Announcement posted!');
@@ -203,6 +226,7 @@ onMounted(async () => {
 })
 
 import { ref, onMounted } from 'vue';
+import type { string } from 'yup'
 
 const preview = ref<string | null>(null);
 const image = ref<File | null>(null);
