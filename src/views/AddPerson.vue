@@ -41,6 +41,25 @@
 
         </div>
 
+        <div>
+          <label for="department" class="block text-sm font-medium leading-6 text-gray-900">Department</label>
+          <InputText type="text" v-model="department" class="text-emerald-600 text-sm font-semibold"
+            placeholder="Enter your department"></InputText>
+          <div v-if="errors['department']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
+            {{ errors['department'] }}</div>
+
+        </div>
+
+        <div>
+          <label for="academic" class="block text-sm font-medium leading-6 text-gray-900">Academic</label>
+          <InputText type="text" v-model="academic" class="text-emerald-600 text-sm font-semibold"
+            placeholder="Enter your last name"></InputText>
+          <div v-if="errors['academic']" class="text-red-500 text-sm my-2" style="font-weight: 600; font-size: small;">❌
+            {{ errors['academic'] }}</div>
+
+        </div>
+
+
         <div class="mb-2">
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
           <InputText type="text" v-model="email" class="text-emerald-600 text-sm font-semibold"
@@ -105,6 +124,14 @@ const validationSchema = yup.object({
     .required('The lastName is required')
     .matches(/^[A-Za-z]+$/, 'Last name should contain only alphabetic characters'),
 
+    department: yup.string()
+    .required('The department is required')
+    .matches(/^[A-Za-z]+$/, 'Department should contain only alphabetic characters'),
+
+  academic: yup.string()
+    .required('The academic is required')
+    .matches(/^[A-Za-z.]+$/, 'Academic should contain only alphabetic characters and dot(.)'),
+
   email: yup.string()
     .required('The email is required')
     .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
@@ -123,7 +150,9 @@ const { errors, handleSubmit } = useForm({
     lastName: '',
     email: '',
     password: '',
-    images: []
+    images: [],
+    department: '',
+    academic: ''
   }
 })
 
@@ -133,6 +162,10 @@ const { value: firstName } = useField<string>('firstName')
 
 const { value: lastName } = useField<string>('lastName')
 
+const { value: department } = useField<string>('department')
+
+const { value: academic } = useField<string>('academic')
+
 const { value: email } = useField<string>('email')
 
 const { value: password } = useField<string>('password')
@@ -140,19 +173,22 @@ const { value: password } = useField<string>('password')
 
 const onSubmit = handleSubmit((values) => {
   authStore
-    .teacherRegister(values.username, values.firstName, values.lastName, values.email, values.password, values.images)
+    .teacherRegister(values.username, values.firstName, values.lastName, 
+    values.email, values.password, values.images,
+    values.department, values.academic)
     .then(() => {
       storeMessage.updateMessage('Add Teacher Successfully');
       setTimeout(() => {
         storeMessage.resetMessage()
+        location.reload()
       }, 4000)
-
     })
     .catch(() => {
       storeMessage.updateMessage('could not add teacher')
 
       setTimeout(() => {
         storeMessage.resetMessage()
+        location.reload()
       }, 3000)
     })
 })

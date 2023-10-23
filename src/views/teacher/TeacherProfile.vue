@@ -205,11 +205,13 @@ const saveAndSubmitForm = async () => {
     storeMessage.updateMessage(successMessage);
     setTimeout(() => {
       storeMessage.resetMessage();
+      location.reload()
     }, 4000);
   } catch (error) {
     storeMessage.updateMessage(errorMessage);
     setTimeout(() => {
       storeMessage.resetMessage();
+      location.reload()
     }, 3000);
   }
 };
@@ -233,14 +235,14 @@ const saveAndSubmitForm = async () => {
        <div class="flex flex-col items-center justify-center py-4 space-y-5">
          <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
            :src="images" alt="Profile Picture" />
-           <div class="flex justify-center">
+           <!-- <div class="flex justify-center"> -->
                <!-- Change Profile button -->
-               <button href="/updatestudents" v-if="isEditing" @click="changePicture"
-                 class="flex mt-2 text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
+               <!-- <button href="/updatestudents" v-if="isEditing" @click="changePicture"
+                 class="flex mt-2 text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center"> -->
                  <!-- <img src="src/assets/save.png" class="h-[15px] mr-2"> -->
-                 Change Profile Picture
+                 <!-- Change Profile Picture
                </button>
-             </div>
+             </div> -->
        </div>
  
        <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
