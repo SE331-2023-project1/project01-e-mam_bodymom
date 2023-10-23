@@ -306,14 +306,14 @@ const saveAndSubmitForm = async () => {
                <!-- Edit button -->
                <button v-if="!isEditing" @click="enterEditMode"
                  class="flex text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
-                 <img src="src/assets/edit.png" class="h-[15px] mr-2">
+                 <img src="../../assets/edit.png" class="h-[15px] mr-2">
                  Edit
                </button>
  
                <!-- edit button when editing mode - disabled -->
                <button v-if="isEditing" disabled
                  class="flex opacity-50 text-white bg-gray-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center items-center justify-center">
-                 <img src="src/assets/edit.png" class="h-[15px] mr-2">
+                 <img src="../../assets/edit.png" class="h-[15px] mr-2">
                  Edit
                </button>
              </div>
@@ -321,7 +321,7 @@ const saveAndSubmitForm = async () => {
                <!-- Save button -->
                <button href="/updatestudents" v-if="isEditing" @click="showConfirmation"
                  class="flex mt-2 text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
-                 <img src="src/assets/save.png" class="h-[15px] mr-2">
+                 <img src="../../assets/save.png" class="h-[15px] mr-2">
                  Save
                </button>
              </div>

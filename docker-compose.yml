@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+    web:
+        image: "uphman/se331-frontend:latest"
+        ports:
+            - 8001:80
