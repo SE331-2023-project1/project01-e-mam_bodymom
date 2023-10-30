@@ -11,6 +11,7 @@ import { useMessageStore } from '@/stores/message'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import StudentService from '@/services/StudentService'
+import ImageUpload from '@/components/ImageUpload.vue'
 // Import the ref and computed functions from Vue
 
 const props = defineProps({
@@ -70,44 +71,19 @@ onMounted(async () => {
       department.value = response?.department
       images = response?.images
 
+         // Initialize mediaURLs with existing images
+    if (response.images) {
+      mediaURLs.value = response.images;
+      console.log( mediaURLs.value)
+    }
+
     }
   } catch (error) {
     console.error('Error fetching student data:', error);
   }
 });
 
-// console.log(student.value)
 
-// const fetchStudentData = async () => {
-//   const response = await useStudentStore().getStudentById(authStore.id);
-//   student.value = response;
-//   console.log(student.value);
-
-//   // Now you can use student.value here or anywhere else in your component.
-// };
-
-// fetchStudentData();
-
-
-
-// StudentService.getStudentById(authStore.id).then((response) => {
-//   student.value = response
-//   console.log(student.value.data)
-// })
-
-// const fetchStudentData = async () => {
-//   try {
-//     const response = await StudentService.getStudentById(authStore.id);
-//     student.value = response;
-//     console.log(student.value)
-//   } catch (error) {
-//     console.error('Error fetching student data:', error);
-//   }
-// };
-
-// const response = StudentService.getStudentById(authStore.id);
-// student.value = response
-// console.log(student.value.data)
 
 const validationSchema = yup.object({
 
@@ -169,7 +145,10 @@ const onSubmit = handleSubmit(async (values) => {
   try {
     console.log(values)
 
-    await authStore.studentUpdateProfile(props.id, values.firstName, values.lastName);
+     // Include uploaded image URLs in the values object
+     values.images = mediaURLs.value;
+
+    await authStore.studentUpdateProfile(props.id, values.firstName, values.lastName,values.images);
 
     storeMessage.updateMessage('Update profile successful');
     setTimeout(() => {
@@ -214,6 +193,13 @@ const saveAndSubmitForm = async () => {
   }
 };
 
+let mediaURLs = ref<string[]>([]); // Initialize as an empty array
+// console.log(mediaURLs.value)
+
+  const onFileUploaded = (uploadedURLs: string[]) => {
+  // Assuming mediaURLs contains at least one URL
+  mediaURLs.value = uploadedURLs;
+};
 
 
 
@@ -251,6 +237,8 @@ const saveAndSubmitForm = async () => {
 
 
             <form class="" @submit.prevent="onSubmit">
+
+              <ImageUpload v-model="mediaURLs" @fileUploaded="onFileUploaded" />
 
             <div
               class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">

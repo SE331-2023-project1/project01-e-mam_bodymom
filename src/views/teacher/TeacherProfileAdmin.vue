@@ -13,6 +13,7 @@ import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import StudentService from '@/services/StudentService'
 import { type TeacherItem } from '@/type'
+import ImageUpload from '@/components/ImageUpload.vue'
 // Import the ref and computed functions from Vue
 
 const props = defineProps({
@@ -70,44 +71,18 @@ onMounted(async () => {
       department.value = response?.department
       images = response?.images
 
+      if (response.images) {
+      mediaURLs.value = response.images;
+      console.log( mediaURLs.value)
+    }
+
     }
   } catch (error) {
     console.error('Error fetching student data:', error);
   }
 });
 
-// console.log(student.value)
 
-// const fetchStudentData = async () => {
-//   const response = await useStudentStore().getStudentById(authStore.id);
-//   student.value = response;
-//   console.log(student.value);
-
-//   // Now you can use student.value here or anywhere else in your component.
-// };
-
-// fetchStudentData();
-
-
-
-// StudentService.getStudentById(authStore.id).then((response) => {
-//   student.value = response
-//   console.log(student.value.data)
-// })
-
-// const fetchStudentData = async () => {
-//   try {
-//     const response = await StudentService.getStudentById(authStore.id);
-//     student.value = response;
-//     console.log(student.value)
-//   } catch (error) {
-//     console.error('Error fetching student data:', error);
-//   }
-// };
-
-// const response = StudentService.getStudentById(authStore.id);
-// student.value = response
-// console.log(student.value.data)
 
 const validationSchema = yup.object({
 
@@ -139,7 +114,7 @@ const { errors, handleSubmit } = useForm({
     firstName: '',
     lastName: '',
     department: '',
-    images: ''
+    // images: ''
 
   }
 })
@@ -166,9 +141,10 @@ const saveChanges = () => {
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    // console.log(values)
+    console.log(values)
+    values.images = mediaURLs.value;
 
-    await authStore.teacherUpdateProfile(props.id, values.firstName, values.lastName);
+    await authStore.teacherUpdateProfile(props.id, values.firstName, values.lastName,values.images);
 
     storeMessage.updateMessage('Update profile successful');
     setTimeout(() => {
@@ -213,6 +189,16 @@ const saveAndSubmitForm = async () => {
   }
 };
 
+
+let mediaURLs = ref<string[]>([]); // Initialize as an empty array
+
+
+  const onFileUploaded = (uploadedURLs: string[]) => {
+  // Assuming mediaURLs contains at least one URL
+  mediaURLs.value = uploadedURLs;
+  console.log(mediaURLs.value)
+};
+
 </script>
 
 <template>
@@ -229,19 +215,16 @@ const saveAndSubmitForm = async () => {
        class="mt-2 mb-10 font-fig flex flex-col  p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
        <form class="" @submit.prevent="onSubmit">
 
+       
+
        <div class="flex flex-col items-center justify-center py-4 space-y-5">
          <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
            :src="images" alt="Profile Picture" />
-           <!-- <div class="flex justify-center"> -->
-               <!-- Change Profile button -->
-               <!-- <button href="/updatestudents" v-if="isEditing" @click="changePicture"
-                 class="flex mt-2 text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center"> -->
-                 <!-- <img src="src/assets/save.png" class="h-[15px] mr-2"> -->
-                 <!-- Change Profile Picture
-               </button> -->
-             <!-- </div> -->
+       
        </div>
- 
+
+       <ImageUpload v-model="mediaURLs" @fileUploaded="onFileUploaded" />
+
        <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
          <div class="flex flex-col items-center space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 ">
            <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">
@@ -297,12 +280,7 @@ const saveAndSubmitForm = async () => {
              </div>
  
              <div class="flex justify-center">
-               <!-- <button type="submit" @click="toggleEditMode"
-                         :class="`${buttonColor} hover:${buttonColor} flex focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-white text-sm w-full sm:w-auto px-5 py-2 text-center items-center`">
-                         <img :src="buttonImage" class="h-[15px] mr-2">
-                         {{ buttonLabel }}
-                     </button> -->
-               <!-- Edit button -->
+        
                <button v-if="!isEditing" @click="enterEditMode"
                  class="flex text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
                  <img src="../../assets/edit.png" class="h-[15px] mr-2">

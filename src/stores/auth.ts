@@ -102,11 +102,12 @@ export const useAuthStore = defineStore('auth', {
       })
       return response
     },
-    async teacherUpdateProfile(id: string, firstName: string, lastName: string) {
+    async teacherUpdateProfile(id: string, firstName: string, lastName: string,images:string[]) {
       const response = await apiClient.put('/updateteachers', {
         id: id,
         name: firstName,
         surname: lastName,
+        images: images
       })
       return response
     },

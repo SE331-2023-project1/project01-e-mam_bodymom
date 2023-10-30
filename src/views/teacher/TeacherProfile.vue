@@ -13,7 +13,8 @@ import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import StudentService from '@/services/StudentService'
 import { type TeacherItem } from '@/type'
-// Import the ref and computed functions from Vue
+import ImageUpload from '@/components/ImageUpload.vue'
+
 
 // Define a reactive property to track if the form is in edit mode
 let isEditing = ref(false);
@@ -23,14 +24,7 @@ const enterEditMode = () => {
   isEditing.value = true;
 };
 
-// // Create a computed property for the button label
-// const buttonLabel = computed(() => (isEditing.value ? 'Save' : 'Edit'));
 
-// // Create a computed property for the button color
-// const buttonColor = computed(() => (isEditing.value ? 'bg-emerald-500 focus:ring-emerald-300' : 'bg-indigo-500'));
-
-// Create a computed property for the button image source
-// const buttonImage = computed(() => (isEditing.value ? 'src/assets/save.png' : 'src/assets/edit.png'));
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -43,13 +37,7 @@ const teacher = ref<TeacherItem | null>(null)
 
 let images = ''
 
-// student.value = useStudentStore().getStudentById(authStore.id);
-// console.log(student.value);
 
-// useStudentStore().getStudentById(authStore.id).then((response) => {
-//     student.value = response
-//     console.log(student.value)
-// })
 
 onMounted(async () => {
   try {
@@ -66,6 +54,11 @@ onMounted(async () => {
       lastName.value = response?.surname;
       department.value = response?.department
       images = response?.images
+
+      if (response.images) {
+      mediaURLs.value = response.images;
+      console.log( mediaURLs.value)
+    }
 
     }
   } catch (error) {
@@ -140,7 +133,7 @@ const { errors, handleSubmit } = useForm({
     firstName: '',
     lastName: '',
     department: '',
-    images: ''
+    // images: ''
 
   }
 })
@@ -169,9 +162,11 @@ const saveChanges = () => {
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    // console.log(values)
+    console.log(values)
+       // Include uploaded image URLs in the values object
+       values.images = mediaURLs.value;
 
-    await authStore.teacherUpdateProfile(values.id, values.firstName, values.lastName);
+    await authStore.teacherUpdateProfile(values.id, values.firstName, values.lastName,values.images);
 
     storeMessage.updateMessage('Update profile successful');
     setTimeout(() => {
@@ -216,6 +211,16 @@ const saveAndSubmitForm = async () => {
   }
 };
 
+
+let mediaURLs = ref<string[]>([]); // Initialize as an empty array
+
+
+  const onFileUploaded = (uploadedURLs: string[]) => {
+  // Assuming mediaURLs contains at least one URL
+  mediaURLs.value = uploadedURLs;
+  console.log(mediaURLs.value)
+};
+
 </script>
 
 <template>
@@ -235,16 +240,9 @@ const saveAndSubmitForm = async () => {
        <div class="flex flex-col items-center justify-center py-4 space-y-5">
          <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
            :src="images" alt="Profile Picture" />
-           <!-- <div class="flex justify-center"> -->
-               <!-- Change Profile button -->
-               <!-- <button href="/updatestudents" v-if="isEditing" @click="changePicture"
-                 class="flex mt-2 text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center"> -->
-                 <!-- <img src="src/assets/save.png" class="h-[15px] mr-2"> -->
-                 <!-- Change Profile Picture
-               </button>
-             </div> -->
+      
        </div>
- 
+       <ImageUpload v-model="mediaURLs" @fileUploaded="onFileUploaded" />
        <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
          <div class="flex flex-col items-center space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 ">
            <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">

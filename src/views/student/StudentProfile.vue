@@ -17,10 +17,6 @@ import { type TeacherItem } from '@/type'
 import ImageUpload from '@/components/ImageUpload.vue'
 
 
-import axios from 'axios'; // Import Axios or your preferred HTTP client
-
-// Import the ref and computed functions from Vue
-
 // Define a reactive property to track if the form is in edit mode
 let isEditing = ref(false);
 
@@ -187,7 +183,7 @@ const saveAndSubmitForm = async () => {
     storeMessage.updateMessage(successMessage);
     setTimeout(() => {
       storeMessage.resetMessage();
-      // location.reload()
+      location.reload()
     }, 4000);
   } catch (error) {
     storeMessage.updateMessage(errorMessage);
