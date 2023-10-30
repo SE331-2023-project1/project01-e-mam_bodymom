@@ -91,36 +91,33 @@ const addComment = () => {
 
           <!-- {{ console.log(teacher) }} -->
           <RouterLink :to="{ name: 'teacher-detail', params: { id: student.teacher.id } }">
-            <button
-              class=" bg-amber-300 hover:bg-amber-400 text-black shadow-md
-            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
-              <div class="flex justify-center items-center">
-                <img :src="teacher?.images" class="w-10 h-10 object-cover rounded-full mr-2">
-                <div class="flex flex-col">
-                  <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
-                  <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
-                </div>
-              </div>
-            </button>
+           
           </RouterLink>
 
           <div class="mt-3">
-            <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'studentprofile-admin', params: { id: student.id } }">
-            <button
-              class=" bg-gray-300 hover:bg-gray-400 text-black shadow-md
-            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300">
-              <div class="flex justify-center items-center">
-                <!-- <img :src="student?.images" class="w-10 h-10 object-cover rounded-full mr-2"> -->
-                <div class="flex flex-col">
-                  <span class="teacherid font-fig text-left">Edit Profile</span>
-                  <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
+          <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'studentprofile-admin', params: { id: student.id } }">
+            <div>
+            <button class="bg-amber-300 hover:bg-amber-400 text-black shadow-md font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300 mb-5">
+              <div class="flex items-center">
+                <img :src="teacher?.images" class="w-10 h-10 object-cover rounded-full mr-2">
+                 <div class="flex flex-col">
+                  <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
+                 </div>
                 </div>
-              </div>
-            </button>
-          </RouterLink>
-          </div>
+               </button>
+             </div>
 
-          
+             <div>
+               <button class="bg-gray-300 hover:bg-gray-400 text-black shadow-md font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300 mb-0 ">
+                  <div class="flex items-center">
+                    <div class="flex flex-col">
+                      <span class="teacherid font-fig text-left">Edit Profile</span>
+                    </div>
+                  </div>
+               </button>
+              </div>
+            </RouterLink>
+        </div>
 
 
         </div>
