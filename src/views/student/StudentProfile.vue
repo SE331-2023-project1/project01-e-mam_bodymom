@@ -14,6 +14,11 @@ import { ref } from 'vue'
 import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
 import { type TeacherItem } from '@/type'
+import ImageUpload from '@/components/ImageUpload.vue'
+
+
+import axios from 'axios'; // Import Axios or your preferred HTTP client
+
 // Import the ref and computed functions from Vue
 
 // Define a reactive property to track if the form is in edit mode
@@ -24,14 +29,6 @@ const enterEditMode = () => {
   isEditing.value = true;
 };
 
-// // Create a computed property for the button label
-// const buttonLabel = computed(() => (isEditing.value ? 'Save' : 'Edit'));
-
-// // Create a computed property for the button color
-// const buttonColor = computed(() => (isEditing.value ? 'bg-emerald-500 focus:ring-emerald-300' : 'bg-indigo-500'));
-
-// Create a computed property for the button image source
-// const buttonImage = computed(() => (isEditing.value ? 'src/assets/save.png' : 'src/assets/edit.png'));
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -49,19 +46,13 @@ let teacherImages = ''
 
 let images = ''
 
-// student.value = useStudentStore().getStudentById(authStore.id);
-// console.log(student.value);
 
-// useStudentStore().getStudentById(authStore.id).then((response) => {
-//     student.value = response
-//     console.log(student.value)
-// })
 
 onMounted(async () => {
   try {
     const response = await useStudentStore().getStudentById(authStore.id);
     student.value = response;
-    // console.log(student.value)
+    console.log(student.value?.images)
     const responseTeacher = await useTeacherStore().getTeacher()
     teacher.value = responseTeacher;
     // console.log(teacher.value)
@@ -78,6 +69,12 @@ onMounted(async () => {
       department.value = response?.department
       images = response?.images
 
+      // Initialize mediaURLs with existing images
+    if (response.images) {
+      mediaURLs.value = response.images;
+      console.log( mediaURLs.value)
+    }
+    
       teacherId = responseTeacher?.id
       teacherName = responseTeacher?.name
       teacherSurname = responseTeacher?.surname
@@ -88,39 +85,6 @@ onMounted(async () => {
     console.error('Error fetching student data:', error);
   }
 });
-
-// console.log(student.value)
-
-// const fetchStudentData = async () => {
-//   const response = await useStudentStore().getStudentById(authStore.id);
-//   student.value = response;
-//   console.log(student.value);
-
-//   // Now you can use student.value here or anywhere else in your component.
-// };
-
-// fetchStudentData();
-
-
-
-// StudentService.getStudentById(authStore.id).then((response) => {
-//   student.value = response
-//   console.log(student.value.data)
-// })
-
-// const fetchStudentData = async () => {
-//   try {
-//     const response = await StudentService.getStudentById(authStore.id);
-//     student.value = response;
-//     console.log(student.value)
-//   } catch (error) {
-//     console.error('Error fetching student data:', error);
-//   }
-// };
-
-// const response = StudentService.getStudentById(authStore.id);
-// student.value = response
-// console.log(student.value.data)
 
 const validationSchema = yup.object({
   id: yup.string()
@@ -185,15 +149,17 @@ const saveChanges = () => {
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    // console.log(values)
+    console.log(values);
 
-    await authStore.studentUpdateProfile(values.id, values.firstName, values.lastName);
+    // Include uploaded image URLs in the values object
+    values.images = mediaURLs.value;
+
+    await authStore.studentUpdateProfile(values.id, values.firstName, values.lastName, values.images);
 
     storeMessage.updateMessage('Update profile successful');
     setTimeout(() => {
       storeMessage.resetMessage();
     }, 4000);
-    // router.push({ name: 'home-page' });
   } catch (error) {
     storeMessage.updateMessage('Could not update profile');
     setTimeout(() => {
@@ -221,7 +187,7 @@ const saveAndSubmitForm = async () => {
     storeMessage.updateMessage(successMessage);
     setTimeout(() => {
       storeMessage.resetMessage();
-      location.reload()
+      // location.reload()
     }, 4000);
   } catch (error) {
     storeMessage.updateMessage(errorMessage);
@@ -230,6 +196,14 @@ const saveAndSubmitForm = async () => {
       location.reload()
     }, 3000);
   }
+};
+
+let mediaURLs = ref<string[]>([]); // Initialize as an empty array
+// console.log(mediaURLs.value)
+
+  const onFileUploaded = (uploadedURLs: string[]) => {
+  // Assuming mediaURLs contains at least one URL
+  mediaURLs.value = uploadedURLs;
 };
 
 
@@ -251,14 +225,6 @@ const saveAndSubmitForm = async () => {
       <div class="flex flex-col items-center justify-center py-4 space-y-5">
         <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500" :src="images"
           alt="Profile Picture" />
-        <!-- <div class="flex justify-center"> -->
-          <!-- Change Profile button -->
-          <!-- <button href="/updatestudents" v-if="isEditing" @click="changePicture"
-            class="flex mt-2 text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center"> -->
-            <!-- <img src="src/assets/save.png" class="h-[15px] mr-2"> -->
-            <!-- Change Profile Picture
-          </button>
-        </div> -->
       </div>
 
       <div v-if="teacherId">
@@ -285,6 +251,8 @@ const saveAndSubmitForm = async () => {
 
 
             <form class="" @submit.prevent="onSubmit">
+
+              <ImageUpload v-model="mediaURLs" @fileUploaded="onFileUploaded" />
 
               <div
                 class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
@@ -338,12 +306,6 @@ const saveAndSubmitForm = async () => {
               </div>
 
               <div class="flex justify-center">
-                <!-- <button type="submit" @click="toggleEditMode"
-                        :class="`${buttonColor} hover:${buttonColor} flex focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-white text-sm w-full sm:w-auto px-5 py-2 text-center items-center`">
-                        <img :src="buttonImage" class="h-[15px] mr-2">
-                        {{ buttonLabel }}
-                    </button> -->
-                <!-- Edit button -->
                 <button v-if="!isEditing" @click="enterEditMode"
                   class="flex text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">
                   <img src="src/assets/edit.png" class="h-[15px] mr-2">

@@ -67,12 +67,7 @@ export const useAuthStore = defineStore('auth', {
         password: password,
         images: images
       })
-      // this.token = response.data.access_token
-      // this.userRole = response.data.user_role
-      // this.id = response.data.id
-      // localStorage.setItem('access_token', this.token as string)
-      // localStorage.setItem('user_role', JSON.stringify(this.userRole))
-      // localStorage.setItem('id', this.id as string)
+    
       return response
     },
     async teacherRegister(
@@ -95,19 +90,15 @@ export const useAuthStore = defineStore('auth', {
         department: department,
         academic: academic
       })
-      // this.token = response.data.access_token
-      // this.userRole = response.data.user_role
-      // this.id = response.data.id
-      // localStorage.setItem('access_token', this.token as string)
-      // localStorage.setItem('user_role', JSON.stringify(this.userRole))
-      // localStorage.setItem('id', this.id as string)
+   
       return response
     },
-    async studentUpdateProfile(id: string, firstName: string, lastName: string) {
+    async studentUpdateProfile(id: string, firstName: string, lastName: string,images:string[]) {
       const response = await apiClient.put('/updatestudents', {
         id: id,
         name: firstName,
         surname: lastName,
+        images: images
       })
       return response
     },
