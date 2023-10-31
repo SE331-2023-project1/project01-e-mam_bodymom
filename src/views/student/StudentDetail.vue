@@ -79,7 +79,7 @@ const addComment = () => {
         <div class="my-auto">
           <span class="text-base text-gray-500 text-md font-semibold font-fig">Student Detail: </span> <br />
           <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span><br />
-          <span class="text-base text-black text-md font-fig">student ID: {{ student?.username }}</span> <br />
+          <span class="text-base text-black text-md font-fig">Student ID: {{ student?.username }}</span> <br />
           <span class="text-base text-black text-md font-fig">Username: {{ student?.username }}</span> <br />
           <span class="text-base text-black text-md font-fig">Department: {{ student?.department }}</span> <br />
 

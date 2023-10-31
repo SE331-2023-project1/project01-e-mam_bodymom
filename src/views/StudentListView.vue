@@ -90,7 +90,7 @@ function updateKeyword (value: string) {
               @input="updateKeyword"/>
             </div>
 
-            <div v-if="authStore.userRole == 'ROLE_ADMIN'" class="flex justify-center w-full p-3 sm:w-2/4 text-gray-900">
+            <div v-if="authStore.userRole == 'ROLE_ADMIN' || authStore.userRole == 'ROLE_TEACHER'" class="flex justify-center w-full p-3 sm:w-2/4 text-gray-900">
                 <h1>Total student: {{totalStudent}}</h1>
             </div>
             

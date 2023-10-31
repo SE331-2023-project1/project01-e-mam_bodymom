@@ -224,23 +224,7 @@ const onFileUploaded = (uploadedURLs: string[]) => {
 
       </div>
 
-      <div v-if="teacherId">
-        <p class="font-fig text-sm font-semibold text-indigo-900 mb-2">Advisor:</p>
 
-        <RouterLink :to="{ name: 'teacher-detail', params: { id: teacherId } }">
-          <button
-            class="mb-2 bg-amber-300 hover:bg-amber-400 text-black shadow-md
-            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-100">
-            <div class="flex justify-center items-center ">
-              <img :src="teacherImages" class="w-10 h-10 object-cover rounded-full mr-2">
-              <div class="flex flex-col">
-                <span class="teacherid font-fig text-left text-sm font-semibold">{{ teacherName }} {{ teacherSurname
-                }}</span>
-              </div>
-            </div>
-          </button>
-        </RouterLink>
-      </div>
 
       <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
         <div class="flex flex-col items-center space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 ">
@@ -336,5 +320,100 @@ const onFileUploaded = (uploadedURLs: string[]) => {
 
 
     </div>
+
+    <div
+      class="mt-2 mb-10 font-fig flex flex-col  p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
+      <div v-if="teacherId">
+        <p class="flex justify-center font-fig text-sm font-semibold text-indigo-900 mb-1">Your Advisor Detail:</p>
+      </div>
+
+      <div class="flex flex-col items-center justify-center py-4 space-y-5">
+        <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-pink-300 dark:ring-pink-500"
+          :src="teacherImages" alt="Profile Picture" />
+
+        
+      </div>
+
+      <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
+        <div class="flex flex-col items-center space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 ">
+          <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">
+
+            <div
+              class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+              <div class="w-full">
+                <label for="first_name" class="block mb-2 text-sm font-semibold text-indigo-900">
+                  First name</label>
+                <input type="text" id="first_name"  disabled 
+                  class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                  placeholder="" v-model="teacherName" required>
+              </div>
+
+              <div class="w-full">
+                <label for="last_name" class="block mb-2 text-sm font-semibold text-indigo-900 ">
+                  Last name</label>
+                <input type="text" id="last_name"  disabled 
+                  class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                  placeholder="" v-model="teacherSurname" required>
+              </div>
+            </div>
+
+
+            <div
+              class="flex flex-col items-center mb-5 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+              <div class="w-full">
+                <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
+                  Academic Position</label>
+                <input type="text" id="academicposition" disabled 
+                  class="bg-gray-300 border border-indigo-300 text-gray-500 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                  placeholder="" v-model="teacher" required>
+              </div>
+
+
+            </div>
+
+            <div
+              class="flex flex-col items-center mb-5 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+              <div class="w-full">
+                <label for="department" class="block mb-2 text-sm font-semibold text-indigo-900">
+                  Department</label>
+                <input type="text" id="department" disabled
+                  class="bg-gray-300 border border-indigo-300 text-gray-500 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                  placeholder="" v-model="department" required>
+              </div>
+
+
+            </div>
+
+            <!-- <div class="flex justify-center items-center">
+              <RouterLink :to="{ name: 'teacher-detail', params: { id: teacherId } }">
+              <button
+                class="flex justify-center items-left mb-2 bg-amber-300 hover:bg-amber-400 text-black shadow-md
+            font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-100">
+                <div class="flex justify-center items-center">
+                  <img :src="teacherImages" class="w-10 h-10 object-cover rounded-full mr-2">
+                  <div class="flex items-start">
+                    <div class="flex teacherid font-fig text-left text-sm font-semibold">{{ teacherName }} {{
+                      teacherSurname
+                    }}
+                    </div>
+                  </div>
+                </div>
+
+              </button>
+            </RouterLink>
+
+            </div> -->
+            
+
+
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
   </main>
 </template>
