@@ -7,6 +7,7 @@ import { commentStudent } from '@/stores/comment'
 import { commentStudentId } from '@/stores/comment_id'
 import { useMessageStore } from '@/stores/message';
 import { useAuthStore } from '@/stores/auth'
+import { useTeacherStore } from '@/stores/teacher'
 
 const props = defineProps({
   student: {
@@ -20,6 +21,8 @@ const props = defineProps({
     require: true
   }
 })
+
+const teachers = useTeacherStore().fetchTeachers()
 
 const authStore = useAuthStore()
 
@@ -210,16 +213,13 @@ const addComment = () => {
       </div>
 
       <!-- Dropdown for selecting a teacher -->
-      <div class="relative" v-if="teachers.length > 0"> <!-- Check if you have a list of teachers -->
         <label for="teacherDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select a Teacher:</label>
         <select id="teacherDropdown"
           class="block w-full mt-1 p-2 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
           <option value="">Select a teacher</option>
-          <option v-for="teacher in teachers" :value="teacher.id" :key="teacher.id">{{ teacher.name }} {{ teacher.surname
-          }}</option>
+          <option v-for="teacher in teachers" :value="teacher.id" :key="teacher.id">{{ teacher?.name}} {{ teacher?.surname}} </option>
         </select>
 
-      </div>
     </div>
   </div>
 </template>

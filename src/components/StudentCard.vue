@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { StudentItem } from '@/type'
 import type { PropType } from 'vue'
+import { useAuthStore } from '@/stores/auth.ts'
+
+const authStore = useAuthStore()
 
 defineProps({
   student: {
@@ -22,7 +25,8 @@ defineProps({
         </div>
         <div class="">
           <span class="font-fig text-xs text-gray-500">StudentID: {{ student?.username }}</span> <br />
-          <span class="font-fig font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
+          <span class="font-fig font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span> <br />
+          <span v-if="authStore.userRole == 'ROLE_ADMIN'" class="font-fig font-bold text-gray-400">Advisor: {{student?.teacher?.name}}</span>
 
           <ul class="list-disc list-inside">
             <li v-for="course in student?.courselist" :key="course" class="text-gray-700 text-sm font-fig">
