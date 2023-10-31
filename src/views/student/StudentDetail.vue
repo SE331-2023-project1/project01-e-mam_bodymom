@@ -76,9 +76,15 @@ const addComment = () => {
         <div class="flex justify-center">
           <img :src="student?.images" alt="" class="crop rounded-lg" />
         </div>
-        <div class="">
-          <span class="text-base text-gray-500 font-fig">ID: {{ student?.username }}</span> <br />
-          <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
+        <div class="my-auto">
+          <span class="text-base text-gray-500 text-md font-semibold font-fig">Student Detail: </span> <br />
+          <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span><br />
+          <span class="text-base text-black text-md font-fig">student ID: {{ student?.username }}</span> <br />
+          <span class="text-base text-black text-md font-fig">Username: {{ student?.username }}</span> <br />
+          <span class="text-base text-black text-md font-fig">Department: {{ student?.department }}</span> <br />
+
+
+
           <ul class="list-disc list-inside">
             <li v-for="course in student?.courselist" :key="course" class="text-xl course font-fig text-black">
               {{ course }}
@@ -130,7 +136,7 @@ const addComment = () => {
       <div class="items-center mx-2">
       
         <span class="font-fig text-xs font-semibold text-gray-600 ">
-          Anonymous comment
+          Comment by {{ teacher?.name }} {{ teacher?.surname }}
         </span>
 
         <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
@@ -145,7 +151,7 @@ const addComment = () => {
         <div v-for="(commentItem, index) in keepCommt_id" :key="index">
           
 
-          <span class="font-fig text-xs font-semibold text-gray-600 ">Anonymous comment</span>
+          <span class="font-fig text-xs font-semibold text-gray-600 ">Comment by {{ teacher?.name }} {{ teacher?.surname }}</span>
           <div class="flex items-center bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
             <img src="../../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
             <span class="text-black font-fig">{{ commentItem.comment }}</span>
