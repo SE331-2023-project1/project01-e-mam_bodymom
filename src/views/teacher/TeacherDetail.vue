@@ -6,6 +6,12 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.ts'
 
 const authStore = useAuthStore()
+const student = useStudentStore().fetchStudents()
+var allStudents
+student.then((response) => {
+  console.log(response)
+  allStudents = response
+})
 
 defineProps({
   teacher: {
@@ -108,8 +114,7 @@ defineProps({
       <label for="studentDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select advisee:</label>
       <select id="studentDropdown"
         class="block w-full mt-1 p-2 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
-        <option value="student in students" :value="students.id" :key="students.id">{{ students.name }} {{ students.surname
-        }}
+        <option v-for="stu in allStudents" :value="stu.id" :key="stu.id">{{ stu?.name }} {{ stu?.surname }}
         </option>
       </select>
 
