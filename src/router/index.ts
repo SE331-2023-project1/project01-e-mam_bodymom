@@ -17,6 +17,7 @@ import TeacherProfile from '../views/teacher/TeacherProfile.vue'
 import CreateAnnouncement from '../views/announcement/CreateAnnouncement.vue'
 import StudentProfileAdmin from '../views/student/StudentProfileAdmin.vue'
 import TeacherProfileAdmin from '../views/teacher/TeacherProfileAdmin.vue'
+import CommentView from '../views/CommentView.vue'
 import NProgress from 'nprogress'
 import StudentService from '@/services/StudentService'
 import TeacherService from '@/services/TeacherService'
@@ -207,7 +208,7 @@ const router = createRouter({
           path: '',
           name: 'student-detail',
           component: StudentDetail,
-        },
+        }
       ]
     },
     {
@@ -232,6 +233,11 @@ const router = createRouter({
       beforeEnter: () => {
         useTeacherStore().fetchTeachers()
       }
+    },
+    {
+      path: '/comment',
+      name: 'comment',
+      component: CommentView
     }
   ]
 })
