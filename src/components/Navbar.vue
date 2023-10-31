@@ -5,6 +5,10 @@ import { useRouter } from 'vue-router';
 import { useMessageStore } from '@/stores/message'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth.ts'
+import { useStudentStore } from '@/stores/student'
+import { useTeacherStore } from '@/stores/teacher'
+import { type TeacherItem } from '@/type'
+import { type StudentItem } from '@/type'
 
 const store = useMessageStore()
 const { message } = storeToRefs(store)
@@ -13,6 +17,38 @@ const router = useRouter()
 const token = localStorage.getItem('access_token')
 const userRole = localStorage.getItem('user_role')
 const id = localStorage.getItem('id')
+const teacherStore = useTeacherStore()
+const studentStore = useStudentStore()
+
+const teacher = ref<TeacherItem | null>(null)
+const student = ref<StudentItem | null>(null)
+var images = ''
+
+onMounted(async () => {
+  try {
+    const response_teacher = await useTeacherStore().fetchTeacherById(id)
+    teacher.value = response_teacher;
+    const response_student = await useStudentStore().fetchStudentById(id)
+    student.value = response_student;
+    // Access student data here
+    if (authStore.userRole == 'ROLE_TEACHER') {
+      images = response_teacher?.images
+      console.log("This is teacher")
+      console.log(response_teacher?.images)
+      console.log(images)
+    } else if (authStore.userRole == 'ROLE_STUDENT') {
+      images = student.value.images
+      console.log("This is student")
+    } else {
+      console.log("Not login")
+    }
+
+  } catch (error) {
+    console.error('Error fetching student data:', error);
+  }
+});
+
+
 
 function logout() {
   authStore.logout()
@@ -75,12 +111,12 @@ if (token && userRole && id) {
           </li>
           <li v-if="authStore.userRole == 'ROLE_STUDENT'"
             class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
-            <img src="../assets/profile.png" class="h-[21px] ml-1 mr-2 items-center">
+            <img :src=images.value class="h-[21px] ml-1 mr-2 items-center">
             <RouterLink to="/studentprofile">Profile</RouterLink>
           </li>
           <li v-if="authStore.userRole == 'ROLE_TEACHER'"
             class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
-            <img src="../assets/profile.png" class="h-[21px] ml-1 mr-2 items-center">
+            <img :src=images class="h-[21px] ml-1 mr-2 items-center">
             <RouterLink to="/teacherprofile">Profile</RouterLink>
           </li>
           <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
