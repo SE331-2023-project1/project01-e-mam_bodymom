@@ -102,7 +102,7 @@ const addComment = () => {
 
           <div class="mt-3">
             <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')"
-              :to="{ name: 'teacher-detail', params: { id: student.id } }">
+              :to="{ name: 'teacher-detail', params: { id: student.teacher.id } }">
               <div>
                 <button
                   class="bg-amber-300 hover:bg-amber-400 text-black shadow-md font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300 mb-5">
