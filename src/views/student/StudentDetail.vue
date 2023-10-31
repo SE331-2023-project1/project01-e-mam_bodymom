@@ -69,6 +69,13 @@ const addComment = () => {
   }, 4000)
 };
 
+const relationSet = () => {
+  store.updateMessage('Relation Setting has been saved successfully.')
+  setTimeout(() => {
+    store.resetMessage()
+  }, 4000)
+};
+
 </script>
 
 <template>
@@ -213,12 +220,25 @@ const addComment = () => {
       </div>
 
       <!-- Dropdown for selecting a teacher -->
-        <label for="teacherDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select a Teacher:</label>
-        <select id="teacherDropdown"
-          class="block w-full mt-1 p-2 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
-          <option value="">Select a teacher</option>
-          <option v-for="teacher in teachers" :value="teacher.id" :key="teacher.id">{{ teacher?.name}} {{ teacher?.surname}} </option>
-        </select>
+      <label for="teacherDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select a sdvisor:</label>
+      <select id="teacherDropdown"
+        class="block w-full mt-1 p-2 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+        <option value="">Select a advisor</option>
+        <option v-for="teacher in teachers" :value="teacher.id" :key="teacher.id">{{ teacher?.name }} {{ teacher?.surname }}
+        </option>
+      </select>
+
+      <div id="flashMessage" class="animate-pulse text-center text-base font-fig mt-2 bg-green-500 font-fig text-white"
+            v-if="message">
+            <h4>{{ message }}</h4>
+          </div>
+          <FlashMessage />
+
+      <!-- relation setting button -->
+      <div class="flex justify-center mt-3">
+        <button type="submit"  @click="relationSet" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
+               text-black py-1 px-2 rounded-xl font-fig font-semibold">Done</button>
+      </div>
 
     </div>
   </div>
