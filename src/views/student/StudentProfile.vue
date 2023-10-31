@@ -128,7 +128,7 @@ const { value: department } = useField<string>('department')
 const saveChanges = () => {
   // Add your logic to save changes here
   isEditing.value = false;
-  let showImageUpload = ref(false);
+  showImageUpload.value = false;
 
 };
 

@@ -28,15 +28,6 @@ const enterEditMode = () => {
   showImageUpload.value = true; // Show the ImageUpload component when entering edit mode
 };
 
-// // Create a computed property for the button label
-// const buttonLabel = computed(() => (isEditing.value ? 'Save' : 'Edit'));
-
-// // Create a computed property for the button color
-// const buttonColor = computed(() => (isEditing.value ? 'bg-emerald-500 focus:ring-emerald-300' : 'bg-indigo-500'));
-
-// Create a computed property for the button image source
-// const buttonImage = computed(() => (isEditing.value ? 'src/assets/save.png' : 'src/assets/edit.png'));
-
 const authStore = useAuthStore()
 const router = useRouter()
 const storeMessage = useMessageStore()
@@ -44,15 +35,6 @@ const storeMessage = useMessageStore()
 const { message } = storeToRefs(storeMessage)
 
 const student = ref<StudentItem | null>(null)
-
-
-// student.value = useStudentStore().getStudentById(authStore.id);
-// console.log(student.value);
-
-// useStudentStore().getStudentById(authStore.id).then((response) => {
-//     student.value = response
-//     console.log(student.value)
-// })
 
 let images = ''
 
@@ -132,7 +114,7 @@ const { value: department } = useField<string>('department')
 const saveChanges = () => {
   // Add your logic to save changes here
   isEditing.value = false;
-  showImageUpload = ref(false);
+  showImageUpload.value = false;
 
 };
 
