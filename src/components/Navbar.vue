@@ -83,7 +83,7 @@ if (token && userRole && id) {
           </li>
           <li v-if="authStore.userRole == 'ROLE_TEACHER'"
             class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
-            <img :src="teacherStore.teachers[0].images[0]" class="h-[21px] ml-1 mr-2 items-center">
+            <img :src="teacherStore.teachers[0].images[0]" class="ml-1 mr-2 items-center object-cover w-[25px] h-[25px]  rounded-full ring-2 ring-lime-500 shadow-md">
             <RouterLink to="/teacherprofile">Profile</RouterLink>
           </li>
           <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
