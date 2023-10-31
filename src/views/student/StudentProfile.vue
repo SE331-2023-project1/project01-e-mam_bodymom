@@ -19,10 +19,14 @@ import ImageUpload from '@/components/ImageUpload.vue'
 
 // Define a reactive property to track if the form is in edit mode
 let isEditing = ref(false);
+let showImageUpload = ref(false);
+
 
 // Function to enter edit mode
 const enterEditMode = () => {
   isEditing.value = true;
+  showImageUpload.value = true; // Show the ImageUpload component when entering edit mode
+
 };
 
 
@@ -62,11 +66,11 @@ onMounted(async () => {
       images = response?.images
 
       // Initialize mediaURLs with existing images
-    if (response.images) {
-      mediaURLs.value = response.images;
-      console.log( mediaURLs.value)
-    }
-    
+      if (response.images) {
+        mediaURLs.value = response.images;
+        console.log(mediaURLs.value)
+      }
+
       teacherId = responseTeacher?.id
       teacherName = responseTeacher?.name
       teacherSurname = responseTeacher?.surname
@@ -124,6 +128,8 @@ const { value: department } = useField<string>('department')
 const saveChanges = () => {
   // Add your logic to save changes here
   isEditing.value = false;
+  let showImageUpload = ref(false);
+
 };
 
 const onSubmit = handleSubmit(async (values) => {
@@ -135,7 +141,7 @@ const onSubmit = handleSubmit(async (values) => {
 
     await authStore.studentUpdateProfile(values.id, values.firstName, values.lastName, values.images);
 
-    storeMessage.updateMessage('Update profile successful');
+    storeMessage.updateMessage;
     setTimeout(() => {
       storeMessage.resetMessage();
     }, 4000);
@@ -148,10 +154,13 @@ const onSubmit = handleSubmit(async (values) => {
 });
 
 const showConfirmation = () => {
-  if (confirm("Are you sure you want to post this announcement?")) {
+  if (confirm("Are you sure you want to save these changes?")) {
     saveAndSubmitForm();
   }
 };
+
+let isUploadingFile = ref(false);
+
 
 // Function to save changes and submit the form
 const saveAndSubmitForm = async () => {
@@ -167,21 +176,25 @@ const saveAndSubmitForm = async () => {
     setTimeout(() => {
       storeMessage.resetMessage();
       location.reload()
-    }, 4000);
+    }, 1000);
   } catch (error) {
     storeMessage.updateMessage(errorMessage);
     setTimeout(() => {
       storeMessage.resetMessage();
       location.reload()
-    }, 3000);
+    }, 1000);
   }
 };
 
 let mediaURLs = ref<string[]>([]); // Initialize as an empty array
 
-  const onFileUploaded = (uploadedURLs: string[]) => {
+const onFileUploaded = (uploadedURLs: string[]) => {
   // Assuming mediaURLs contains at least one URL
   mediaURLs.value = uploadedURLs;
+
+  // storeMessage.updateMessage('File uploaded successfully');
+  showImageUpload.value = true;
+
 };
 
 
@@ -201,8 +214,14 @@ let mediaURLs = ref<string[]>([]); // Initialize as an empty array
     <div
       class="mt-2 mb-10 font-fig flex flex-col items-center justify-center p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
       <div class="flex flex-col items-center justify-center py-4 space-y-5">
-        <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500" :src="images"
-          alt="Profile Picture" />
+        <!-- Profile picture (outside of edit mode) -->
+        <img v-if="!isEditing" class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
+          :src="images" alt="Profile Picture" />
+
+        <!-- Uploaded image (inside edit mode) -->
+        <img v-if="isEditing && mediaURLs.length > 0" :src="mediaURLs[0]" alt="Uploaded Image"
+          class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500" />
+
       </div>
 
       <div v-if="teacherId">
@@ -215,7 +234,8 @@ let mediaURLs = ref<string[]>([]); // Initialize as an empty array
             <div class="flex justify-center items-center ">
               <img :src="teacherImages" class="w-10 h-10 object-cover rounded-full mr-2">
               <div class="flex flex-col">
-                <span class="teacherid font-fig text-left text-sm font-semibold">{{ teacherName }} {{ teacherSurname }}</span>
+                <span class="teacherid font-fig text-left text-sm font-semibold">{{ teacherName }} {{ teacherSurname
+                }}</span>
               </div>
             </div>
           </button>
@@ -229,7 +249,8 @@ let mediaURLs = ref<string[]>([]); // Initialize as an empty array
 
             <form class="" @submit.prevent="onSubmit">
 
-              <ImageUpload v-model="mediaURLs" @fileUploaded="onFileUploaded" />
+              <ImageUpload v-model="mediaURLs" :disabled="!isEditing" @fileUploaded="onFileUploaded"
+                v-if="showImageUpload" />
 
               <div
                 class="flex flex-col items-center mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">

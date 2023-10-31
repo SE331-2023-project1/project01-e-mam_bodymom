@@ -215,7 +215,7 @@ let mediaURLs = ref<string[]>([]); // Initialize as an empty array
           <div class="items-center mt-4 lg:mb-2 lg:mt-2 w-full text-[#202142]">
 
 
-            <form class="" @submit.prevent="onSubmit">
+        <form class="" @submit.prevent="onSubmit">
 
               <ImageUpload v-model="mediaURLs" @fileUploaded="onFileUploaded" />
 
