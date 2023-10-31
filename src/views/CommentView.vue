@@ -74,65 +74,71 @@ const addComment = () => {
 <template>
   <!-- comment section -->
   <div class=" flex flex-col mb-2 items-center justify-center">
-    <div class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700
-        rounded-lg bg-white shadow-md mb-8">
+    <div
+      class="mt-5 mb-10 font-fig flex flex-col p-3 w-3/4 sm:w-2/4 h-auto text-xl font-bold text-gray-900 bg-white border border-gray-300 rounded-lg shadow-md">
 
       <div class="items-center mx-2">
-      
-        <img :src="teacher?.images" class="ml-1 mr-2 items-center object-cover w-[50px] h-[50px]  rounded-full ring-2 ring-pink-500">
-        <span class="font-fig text-xs font-semibold text-gray-600 ">
-          Comment by {{teacher?.name}} {{teacher?.surname}}
+        <div class="flex mb-5 mt-2">
+          <img :src="teacher?.images"
+            class="ml-1 mr-3 items-center object-cover w-[50px] h-[50px]  rounded-full ring-2 ring-pink-500">
+            <span class="flex flex-col justify-center item-center font-fig text-[18px] font-semibold text-gray-600 ">
+              Your advisor: {{ teacher?.name }} {{ teacher?.surname }}</span>
+        </div>
+        <span class="flex flex-col justify-center item-center font-fig text-xs font-semibold text-gray-600 ">
+          Comment by {{ teacher?.name }} {{ teacher?.surname }}
         </span>
 
         <div class="bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
           <span class="text-black font-fig flex items-center">
             <img src="../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
-            Your project is good now!
+            <span class="text-[18px] font-fig">Your project is good now!</span>
           </span>
         </div>
 
 
-        
-        <div v-for="(commentItem, index) in keepCommt_id" :key="index">
-          
 
-          <span class="font-fig text-xs font-semibold text-gray-600 ">{{student.name}} {{student.surname}}</span>
-          <div class="flex items-center bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
+        <div v-for="(commentItem, index) in keepCommt_id" :key="index">
+
+
+          <span class="font-fig text-xs font-semibold text-gray-600 ">{{ student.name }} {{ student.surname }}</span>
+          <div class="flex items-center bg-pink-200 p-2 mb-2 rounded-lg mt-1 ">
             <img src="../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
-            <span class="text-black font-fig">{{ commentItem.comment }}</span>
+            <span class="text-black font-fig text-[18px]">
+              {{ commentItem.comment }}
+            </span>
           </div>
         </div>
-        
-        
+
+
         <!-- comment box -->
         <div class="my-3">
-          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
-              <h4>{{ message }}</h4>
-            </div>
-            <FlashMessage />
+          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white"
+            v-if="message">
+            <h4>{{ message }}</h4>
+          </div>
+          <FlashMessage />
           <form @submit.prevent="addComment">
             <!-- label -->
             <div class="mx-1 mb-1">
-              <label for="name" class="text-black font-bold font-fig">Comment:</label>
+              <label for="name" class="text-black font-bold font-fig text-[15px]">Comment:</label>
             </div>
-          
-              <!-- input -->
-              <div>
-                <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-            focus:ring-green-500 focus:border-green-500 block p-2.5"
-                  placeholder="Write your reply comment here..."></textarea>
-              </div>
 
-              
-              <!-- button -->
-              <div class="flex justify-center mt-3">
-                <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
-               text-black py-1 px-2 rounded-xl font-fig font-semibold">Add Comment</button>
-              </div>
+            <!-- input -->
+            <div>
+              <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            focus:ring-green-500 focus:border-green-500 block p-2.5"
+                placeholder="Write your reply comment here..."></textarea>
+            </div>
+
+
+            <!-- button -->
+            <div class="flex justify-center mt-3">
+              <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
+               text-black py-1 px-2 rounded-xl text-[15px] font-fig font-semibold">Add Comment</button>
+            </div>
           </form>
         </div>
       </div>
     </div>
 
-  </div>
-</template>
+  </div></template>

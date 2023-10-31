@@ -78,7 +78,7 @@ if (token && userRole && id) {
           </li>
           <li v-if="authStore.userRole == 'ROLE_STUDENT'" 
           class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
-            <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
+            <img src="../assets/comment.png" class="h-[18px] ml-1 mr-2 items-center">
             <RouterLink to="/comment">Comment</RouterLink>
           </li>
           <li v-if="authStore.userRole == 'ROLE_STUDENT' || authStore.userRole == 'ROLE_TEACHER'"
