@@ -220,7 +220,7 @@ const relationSet = () => {
       </div>
 
       <!-- Dropdown for selecting a teacher -->
-      <label for="teacherDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select a sdvisor:</label>
+      <label for="teacherDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select a advisor:</label>
       <select id="teacherDropdown"
         class="block w-full mt-1 p-2 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
         <option value="">Select a advisor</option>

@@ -70,7 +70,7 @@ if (token && userRole && id) {
           <li v-if="authStore.userRole == 'ROLE_ADMIN'"
             class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/add.png" class="h-[12px] ml-1 mr-2">
-            <RouterLink to="/add">Add Person</RouterLink>
+            <RouterLink to="/add">Add Teacher</RouterLink>
           </li>
           <li v-if="!authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/login.png" class="h-[12px] ml-1 mr-2">

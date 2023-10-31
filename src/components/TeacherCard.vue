@@ -28,7 +28,7 @@ defineProps({
           <span class="font-fig font-semibold text-sm text-gray-500"> {{ teacher?.academicposition }} </span>
           <!-- <span class="font-fig font-semibold text-sm text-gray-500">Advisee: {{ teacher?.ownStudent?.name }} </span> -->
           <div v-for="student in teacher?.ownStudent" :key="student.id">
-            <span class="font-fig font-semibold text-sm text-gray-400">Advisee: {{ student?.name }}</span>
+            <span class="font-fig font-semibold text-sm text-gray-500">Advisee: {{ student?.name }}</span>
           </div>
           <span class="font-fig font-semibold text-sm text-gray-500">Total Advisee: {{ teacher?.ownStudent?.length }}</span>
 

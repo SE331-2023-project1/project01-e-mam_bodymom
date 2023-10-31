@@ -2,10 +2,15 @@
 import { type StudentItem, type TeacherItem } from '@/type'
 import { computed, type PropType } from 'vue'
 import { useStudentStore } from '@/stores/student'
+import { useMessageStore } from '@/stores/message';
+import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.ts'
 
 const authStore = useAuthStore()
+
+const store = useMessageStore()
+const { message } = storeToRefs(store)
 
 defineProps({
   teacher: {
@@ -15,6 +20,13 @@ defineProps({
     type: Object as PropType<StudentItem[]>
   }
 })
+
+const relationSet = () => {
+  store.updateMessage('Relation Setting has been saved successfully.')
+  setTimeout(() => {
+    store.resetMessage()
+  }, 4000)
+};
 </script>
 
 <template>
@@ -105,9 +117,10 @@ defineProps({
       </div>
 
       <!-- Dropdown for selecting a student -->
-      <label for="studentDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select advisee:</label>
+      <label for="studentDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select a advisee:</label>
       <select id="studentDropdown"
         class="block w-full mt-1 p-2 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+        <option value="">Select a advisee</option>
         <option value="student in students" :value="students.id" :key="students.id">{{ students.name }} {{ students.surname
         }}
         </option>
