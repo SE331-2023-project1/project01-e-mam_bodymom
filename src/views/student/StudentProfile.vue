@@ -43,6 +43,7 @@ let teacherId = ''
 let teacherName = ''
 let teacherSurname = ''
 let teacherImages = ''
+let teacherAcademic = ''
 
 let images = ''
 
@@ -75,6 +76,7 @@ onMounted(async () => {
       teacherName = responseTeacher?.name
       teacherSurname = responseTeacher?.surname
       teacherImages = responseTeacher?.images
+      teacherAcademic = responseTeacher?.academic
     }
   } catch (error) {
     console.error('Error fetching student data:', error);
@@ -365,7 +367,7 @@ const onFileUploaded = (uploadedURLs: string[]) => {
                   Academic Position</label>
                 <input type="text" id="academicposition" disabled 
                   class="bg-gray-300 border border-indigo-300 text-gray-500 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                  placeholder="" v-model="teacher" required>
+                  placeholder="" v-model="teacherAcademic" required>
               </div>
 
 
