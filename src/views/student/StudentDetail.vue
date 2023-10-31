@@ -94,33 +94,40 @@ const addComment = () => {
           <br>
 
           <RouterLink :to="{ name: 'teacher-detail', params: { id: student.teacher.id } }">
-           
+
           </RouterLink>
 
           <div class="mt-3">
-          <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'studentprofile-admin', params: { id: student.id } }">
-            <div>
-            <button class="bg-amber-300 hover:bg-amber-400 text-black shadow-md font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300 mb-5">
-              <div class="flex items-center">
-                <img :src="teacher?.images" class="w-10 h-10 object-cover rounded-full mr-2">
-                 <div class="flex flex-col">
-                  <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
-                 </div>
-                </div>
-               </button>
-             </div>
+            <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')"
+              :to="{ name: 'teacher-detail', params: { id: student.id } }">
+              <div>
+                <button
+                  class="bg-amber-300 hover:bg-amber-400 text-black shadow-md font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300 mb-5">
+                  <div class="flex items-center">
+                    <img :src="teacher?.images" class="w-10 h-10 object-cover rounded-full mr-2">
+                    <div class="flex flex-col">
+                      <span class="teacherid font-fig text-left">{{ teacher?.name }} {{ teacher?.surname }}</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </RouterLink>
 
-             <div>
-               <button class="bg-gray-300 hover:bg-gray-400 text-black shadow-md font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300 mb-0 ">
+            <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')"
+              :to="{ name: 'studentprofile-admin', params: { id: student.id } }">
+
+              <div>
+                <button
+                  class="bg-gray-300 hover:bg-gray-400 text-black shadow-md font-bold py-2 px-5 rounded-xl font-fig hover:transform hover:scale-[1.05] transition-transform duration-300 mb-0 ">
                   <div class="flex items-center">
                     <div class="flex flex-col">
                       <span class="teacherid font-fig text-left">Edit Profile</span>
                     </div>
                   </div>
-               </button>
+                </button>
               </div>
             </RouterLink>
-        </div>
+          </div>
 
 
         </div>
@@ -134,7 +141,7 @@ const addComment = () => {
         rounded-lg bg-white shadow-md mb-8">
 
       <div class="items-center mx-2">
-      
+
         <span class="font-fig text-xs font-semibold text-gray-600 ">
           Comment by {{ teacher?.name }} {{ teacher?.surname }}
         </span>
@@ -147,47 +154,72 @@ const addComment = () => {
         </div>
 
 
-        
-        <div v-for="(commentItem, index) in keepCommt_id" :key="index">
-          
 
-          <span class="font-fig text-xs font-semibold text-gray-600 ">Comment by {{ teacher?.name }} {{ teacher?.surname }}</span>
+        <div v-for="(commentItem, index) in keepCommt_id" :key="index">
+
+
+          <span class="font-fig text-xs font-semibold text-gray-600 ">Comment by {{ teacher?.name }} {{ teacher?.surname
+          }}</span>
           <div class="flex items-center bg-emerald-100 p-2 mb-2 rounded-lg mt-1 ">
             <img src="../../assets/comment.png" class="h-5 mx-2" alt="Comment Icon">
             <span class="text-black font-fig">{{ commentItem.comment }}</span>
           </div>
         </div>
-        
-        
+
+
         <!-- comment box -->
         <div class="my-3">
-          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white" v-if="message">
-              <h4>{{ message }}</h4>
-            </div>
-            <FlashMessage />
+          <div id="flashMessage" class="animate-pulse text-center text-base font-fig bg-green-500 font-fig text-white"
+            v-if="message">
+            <h4>{{ message }}</h4>
+          </div>
+          <FlashMessage />
           <form @submit.prevent="addComment">
             <!-- label -->
             <div class="mx-1 mb-1">
               <label for="name" class="text-black font-bold font-fig">Comment:</label>
             </div>
-          
-              <!-- input -->
-              <div>
-                <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-            focus:ring-green-500 focus:border-green-500 block p-2.5"
-                  placeholder="Write your comment here..."></textarea>
-              </div>
 
-              
-              <!-- button -->
-              <div class="flex justify-center mt-3">
-                <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
+            <!-- input -->
+            <div>
+              <textarea v-model="comment_input" id="name" required class="resize-y w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            focus:ring-green-500 focus:border-green-500 block p-2.5"
+                placeholder="Write your comment here..."></textarea>
+            </div>
+
+
+            <!-- button -->
+            <div class="flex justify-center mt-3">
+              <button type="submit" class="submit-btn shadow-sm bg-emerald-300 hover:bg-emerald-400 hover:text-emerald-800
                text-black py-1 px-2 rounded-xl font-fig font-semibold">Add Comment</button>
-              </div>
+            </div>
           </form>
         </div>
       </div>
     </div>
 
+  </div>
+
+  <div class="flex flex-col mb-2 items-center justify-center" v-if="authStore.userRole == 'ROLE_ADMIN'">
+    <div class="grid gap-1 p-3 w-3/4 h-4/5 border border-gray-700
+      rounded-lg bg-white shadow-md mb-8">
+
+      <div class="flex items-center mx-2">
+        <img src="../../assets/setting.png" class="list mr-1" />
+        <span class="detail text-list text-black font-fig font-bold">Relation Setting</span>
+      </div>
+
+      <!-- Dropdown for selecting a teacher -->
+      <div class="relative" v-if="teachers.length > 0"> <!-- Check if you have a list of teachers -->
+        <label for="teacherDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select a Teacher:</label>
+        <select id="teacherDropdown"
+          class="block w-full mt-1 p-2 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+          <option value="">Select a teacher</option>
+          <option v-for="teacher in teachers" :value="teacher.id" :key="teacher.id">{{ teacher.name }} {{ teacher.surname
+          }}</option>
+        </select>
+
+      </div>
+    </div>
   </div>
 </template>

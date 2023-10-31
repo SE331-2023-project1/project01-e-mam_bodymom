@@ -24,14 +24,12 @@ defineProps({
         <div class="flex justify-center">
           <img :src="teacher?.images" alt="" class="crop rounded-lg" />
         </div>
-        <div class="justify-center padding-top">
+        <div class="my-auto">
           <span class="font-fig name font-bold text-black">
             {{ teacher?.name }} {{ teacher?.surname }}</span> <br>
           <span class="font-fig text-base text-gray-500">Department: {{ teacher?.department }}</span> <br />
           <span class="font-fig text-base text-gray-500">Academic Position: {{ teacher?.academic }}</span>
 
-        </div>
-        
           <div class="mt-3">
             <RouterLink v-if="authStore.userRole?.includes('ROLE_ADMIN')" :to="{ name: 'teacherprofile-admin', params: { id: teacher?.id } }">
               <button
@@ -47,6 +45,10 @@ defineProps({
             </button>
           </RouterLink>
           </div>
+
+        </div>
+        
+          
         <!-- <b class="text-black">Student id list</b> -->
         <!-- <li v-for="studentId in teacher.studentsId" :key="studentId" class="text-xl font-fig">
           {{ studentId }}
