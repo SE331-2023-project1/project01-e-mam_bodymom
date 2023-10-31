@@ -5,7 +5,6 @@ const router = useRouter()
 
 <template>
     <div class="flex flex-col font-fig items-center justify-center text-black my-8">
-        <!-- <img src="../assets/network.png" class="notfound"> -->
         <h1 class="text-3xl font-bold">Uh-oh!</h1>
         <h3 class="text-center mt-1 text-xl">
             It looks like you're experiencing some network issues, please take a breath <br> and
@@ -15,7 +14,4 @@ const router = useRouter()
         <p class="text-center mt-1 text-lg">Sorry, we can't get the data from the server.</p>
         <p class="text-center mt-1 text-lg">Please try again later.</p>
     </div>
-    
-    
-    <!-- <RouterLink :to="{name: 'event-list'}">Back to home page</RouterLink> -->
 </template>

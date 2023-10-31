@@ -15,9 +15,6 @@
         Your browser does not support the video tag.
       </video>
     </div>
-    <!-- <div v-else>
-      <p>Unsupported file type. Cannot preview this file.</p>
-    </div> -->
   </div>
 </template>
 

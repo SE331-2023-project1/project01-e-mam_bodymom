@@ -18,9 +18,6 @@
         <div>
           <div class="flex items-center justify-between">
             <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-            <!-- <div class="text-sm">
-              <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password</a>
-            </div> -->
           </div>
           <div class="mt-2">
             <InputText v-model="password" type="password" class="text-emerald-600 text-sm font-semibold"
@@ -71,12 +68,9 @@ const authStore = useAuthStore()
 const validationSchema = yup.object({
   email: yup.string()
     .required('Please enter your username.')
-  //   .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, 'Please enter a valid email address ending with example.com'),
   ,
   password: yup
     .string()
-  // .required('Please enter your password.')
-  // .min(6, 'Password must be at least 6 characters long.'), // Minimum 7 characters required
 })
 
 const { errors, handleSubmit } = useForm({
@@ -94,14 +88,7 @@ const onSubmit = handleSubmit((values) => {
   authStore.login(values.email, values.password)
     .then(() => {
       console.log('login success')
-      // storeMessage.updateMessage('Login successful');
-      // setTimeout(() => {
-      //   storeMessage.resetMessage()
-      // }, 1000)
-      // setTimeout(() => {
-
       router.push({ name: 'home-page' })
-      // }, 1000)
 
     }).catch((err) => {
       console.log('error', err)

@@ -4,8 +4,6 @@ import type { StudentItem } from '@/type'
 
 export default {
   getStudents(perPage: number, page: number): Promise<AxiosResponse<StudentItem[]>> {
-    // perPage is limit
-    // page is number of pages
     return apiClient.get<StudentItem[]>('/students?_limit=' + perPage + '&_page=' + page)
   },
   getAllStudents() : Promise<AxiosResponse<StudentItem[]>> {

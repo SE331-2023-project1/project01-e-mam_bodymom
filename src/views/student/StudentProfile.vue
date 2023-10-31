@@ -51,13 +51,9 @@ onMounted(async () => {
     console.log(student.value?.images)
     const responseTeacher = await useTeacherStore().getTeacher()
     teacher.value = responseTeacher;
-    // console.log(teacher.value)
-    // teacher.value = TeacherService.getTeacherById(response.teacher.id)
-    // console.log(authStore.id);
 
     // Access student data here
     if (student.value && teacher.value) {
-        // console.log(responseTeacher);
       username.value = response?.username;
       id.value = response?.id;
       firstName.value = response?.name;
@@ -75,7 +71,6 @@ onMounted(async () => {
       teacherName = responseTeacher?.name
       teacherSurname = responseTeacher?.surname
       teacherImages = responseTeacher?.images
-        // console.log(response)
     }
   } catch (error) {
     console.error('Error fetching student data:', error);
@@ -100,13 +95,8 @@ const validationSchema = yup.object({
     .string()
     .required('The department is required'),
 
-  // images: yup
-  // .string()
-
-
 })
 
-// console.log(student)
 
 const { errors, handleSubmit } = useForm({
   validationSchema,
@@ -116,12 +106,9 @@ const { errors, handleSubmit } = useForm({
     firstName: '',
     lastName: '',
     department: '',
-    // images: ''
 
   }
 })
-
-// console.log(student.value.data)
 
 const { value: id } = useField<string>('id')
 
@@ -132,10 +119,6 @@ const { value: firstName } = useField<string>('firstName')
 const { value: lastName } = useField<string>('lastName')
 
 const { value: department } = useField<string>('department')
-
-// const { value: images } = useField<string>('images')
-
-
 
 // Function to save changes and exit edit mode
 const saveChanges = () => {
@@ -195,7 +178,6 @@ const saveAndSubmitForm = async () => {
 };
 
 let mediaURLs = ref<string[]>([]); // Initialize as an empty array
-// console.log(mediaURLs.value)
 
   const onFileUploaded = (uploadedURLs: string[]) => {
   // Assuming mediaURLs contains at least one URL
@@ -234,7 +216,6 @@ let mediaURLs = ref<string[]>([]); // Initialize as an empty array
               <img :src="teacherImages" class="w-10 h-10 object-cover rounded-full mr-2">
               <div class="flex flex-col">
                 <span class="teacherid font-fig text-left text-sm font-semibold">{{ teacherName }} {{ teacherSurname }}</span>
-                <!-- <span class="teacherid font-fig text-left">Teacher ID: {{ student.teacher.id }}</span> -->
               </div>
             </div>
           </button>

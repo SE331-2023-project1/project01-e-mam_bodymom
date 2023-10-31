@@ -16,7 +16,6 @@ export const useTeacherStore = defineStore('teacher', {
         },
         getTeacherById: (state) => async (id: string) => {
             const response = state.teachers.find(teacher => teacher.id == id)
-            // console.log(response)
             return new Promise<TeacherItem | null>((resolve) => {
                 resolve(response || null)
             })
@@ -27,58 +26,27 @@ export const useTeacherStore = defineStore('teacher', {
                 resolve(response || null)
             })
         }
-        // getTeacherById: (state) => (id: string) => {
-        //     return new Promise<TeacherItem | undefined>((resolve, reject) => {
-        //         const teacher = state.teachers.find(teacher => teacher.teacherId === id);
-        //         if (teacher) {
-        //             resolve(teacher);
-        //         } else {
-        //             const error = new Error('Teacher not found');
-        //             // Custom status for the error
-        //             (error as any).status = 404;
-        //             reject(error);
-        //         }
-        //     });
-        // },
     },
     actions: {
         setTeacher(teachers: TeacherItem[]) {
             this.teachers = teachers
         },
         fetchTeachers() {
-            // const response = this.getTeachers
             try {
                 return this.teachers
             } catch (error) {
                 console.log(error)
                 return null
             }
-
-            // this.setTeacher(response)
-            
         },
         async fetchTeachersFromDB() {
             const response = await TeacherService.getAllTeachers()
-            // try {
-            //     return response.data
-            // } catch (error) {
-            //     console.log(error)
-            //     return null
-            // }
-
             this.setTeacher(response.data)
             
         },
         async fetchTeacherById(id: string) {
             const response = await TeacherService.getTeacherById(id)
             this.teachers.push(response.data)
-            // try {
-            //     const response = this.getTeacherById(id)
-            //     return response
-            // } catch (error) {
-            //     console.log(error)
-            //     return null
-            // }
         },
         async fetchTeacherByPage(perPage: number, page: number) {
             try {
@@ -92,8 +60,6 @@ export const useTeacherStore = defineStore('teacher', {
         async fetchTeacherByStudent(id: string) {
             const response = await TeacherService.getTeacherByStudent(id)
             this.teachers.push(response.data)
-            // console.log(response)
-
         },
         // ส่วนของ useTeacherStore
         async addTeacher(teacher: TeacherItem) {

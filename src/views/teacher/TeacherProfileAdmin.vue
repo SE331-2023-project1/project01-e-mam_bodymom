@@ -28,15 +28,6 @@ const enterEditMode = () => {
   isEditing.value = true;
 };
 
-// // Create a computed property for the button label
-// const buttonLabel = computed(() => (isEditing.value ? 'Save' : 'Edit'));
-
-// // Create a computed property for the button color
-// const buttonColor = computed(() => (isEditing.value ? 'bg-emerald-500 focus:ring-emerald-300' : 'bg-indigo-500'));
-
-// Create a computed property for the button image source
-// const buttonImage = computed(() => (isEditing.value ? 'src/assets/save.png' : 'src/assets/edit.png'));
-
 const authStore = useAuthStore()
 const router = useRouter()
 const storeMessage = useMessageStore()
@@ -48,19 +39,10 @@ const teacher = ref<TeacherItem | null>(null)
 
 let images = ''
 
-// student.value = useStudentStore().getStudentById(authStore.id);
-// console.log(student.value);
-
-// useStudentStore().getStudentById(authStore.id).then((response) => {
-//     student.value = response
-//     console.log(student.value)
-// })
-
 onMounted(async () => {
   try {
     const response = await useTeacherStore().getTeacherById(props.id!);
     teacher.value = response;
-    // console.log(response);
 
     // Access student data here
     if (teacher.value) {
@@ -105,8 +87,6 @@ const validationSchema = yup.object({
  
 })
 
-// console.log(student)
-
 const { errors, handleSubmit } = useForm({
   validationSchema,
 
@@ -114,12 +94,9 @@ const { errors, handleSubmit } = useForm({
     firstName: '',
     lastName: '',
     department: '',
-    // images: ''
 
   }
 })
-
-// console.log(student.value.data)
 
 const { value: username } = useField<string>('username')
 
@@ -128,10 +105,6 @@ const { value: firstName } = useField<string>('firstName')
 const { value: lastName } = useField<string>('lastName')
 
 const { value: department } = useField<string>('department')
-
-// const { value: images } = useField<string>('images')
-
-
 
 // Function to save changes and exit edit mode
 const saveChanges = () => {
@@ -150,7 +123,6 @@ const onSubmit = handleSubmit(async (values) => {
     setTimeout(() => {
       storeMessage.resetMessage();
     }, 4000);
-    // router.push({ name: 'home-page' });
   } catch (error) {
     storeMessage.updateMessage('Could not update profile');
     setTimeout(() => {

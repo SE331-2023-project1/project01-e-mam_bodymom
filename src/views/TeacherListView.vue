@@ -14,7 +14,6 @@ const store = useTeacherStore();
 
 const teachers: Ref<Array<TeacherItem>> = ref([])
 const totalTeacher = ref<number>(0)
-// const total;
 
 const props = defineProps({
     page: {
@@ -29,63 +28,16 @@ const props = defineProps({
 })
 
 const fetchTeachers = () => {
-    
-    // const response = await TeacherService.getTeachers(6, props.page);
-    // const response = await TeacherService.getAllTeachers();
-    // const response = store.fetchTeachers()
-    
-    // console.log(response)
-    // store.setTeacher(response)
-    // store.fetchTeachers()
     console.log(store.getTeachers)
     teachers.value = store.getTeacherByPage(6, props.page)
     totalTeacher.value = store.getTeachers.length
-    // console.log(totalTeacher.value)
-
-    // if (store.getTeachers) {
-    //     const response2 = store.getTeachers;
-    //     teachers.value.push(...response2)
-    // }
-    
-    // totalTeacher.value = teachers.value.length
-    // totalTeacher.value = response.headers['x-total-count'];
-    // console.log(total?.length)
-    // console.log(teachers.value);
-    // console.log(props.page)
 };
-
-
-
-// console.log(teachers)
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = to.query.page ? Number(to.query.page) : 1
     teachers.value = store.getTeacherByPage(6, toPage)
-    // console.log(teachers.value)
     totalTeacher.value = store.getTeachers.length
     next()
-
-    // TeacherService.getTeachers(6, toPage)
-    //     .then((response: AxiosResponse<TeacherItem[]>) => {
-    //         teachers.value = response.data;
-    //         if (store.getTeachers) {
-    //             const response2 = store.getTeachers;
-    //             teachers.value.push(...response2)
-    //         } 
-    //         totalTeacher.value = response.headers['x-total-count'];
-    //         totalTeacher.value =+ 1
-    //         next();
-    //     })
-    //     .catch(() => {
-    //         next({ name: 'NetworkError' });
-    //     });
-    
-    // const response = store.getTeachers
-    
-    // teachers.value = response
-    // console.log(teachers.value)
-    // next()
-    
 });
 
 const hasNextPage = computed(() => {
@@ -94,9 +46,6 @@ const hasNextPage = computed(() => {
 });
 
 onMounted(() => {
-    // teachers.value = store.getTeacherByPage(6, props.page)
-    // totalTeacher.value = store.getTeachers.length
-    // console.log(teachers.value)
     fetchTeachers();
 });
 

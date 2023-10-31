@@ -100,14 +100,9 @@ const validationSchema = yup.object({
     department: yup
     .string()
     .required('The department is required'),
-
-    // images: yup
-    // .string()
- 
  
 })
 
-// console.log(student)
 
 const { errors, handleSubmit } = useForm({
   validationSchema,
@@ -116,12 +111,10 @@ const { errors, handleSubmit } = useForm({
     firstName: '',
     lastName: '',
     department: '',
-    // images: ''
 
   }
 })
 
-// console.log(student.value.data)
 
 const { value: username } = useField<string>('username')
 
@@ -130,9 +123,6 @@ const { value: firstName } = useField<string>('firstName')
 const { value: lastName } = useField<string>('lastName')
 
 const { value: department } = useField<string>('department')
-
-// const { value: images } = useField<string>('images')
-
 
 
 // Function to save changes and exit edit mode
@@ -155,7 +145,6 @@ const onSubmit = handleSubmit(async (values) => {
       storeMessage.resetMessage();
       location.reload()
     }, 4000);
-    // router.push({ name: 'home-page' });
   } catch (error) {
     storeMessage.updateMessage('Could not update profile');
     setTimeout(() => {
@@ -194,7 +183,6 @@ const saveAndSubmitForm = async () => {
 };
 
 let mediaURLs = ref<string[]>([]); // Initialize as an empty array
-// console.log(mediaURLs.value)
 
   const onFileUploaded = (uploadedURLs: string[]) => {
   // Assuming mediaURLs contains at least one URL
@@ -220,15 +208,6 @@ let mediaURLs = ref<string[]>([]); // Initialize as an empty array
       <div class="flex flex-col items-center justify-center py-4 space-y-5">
         <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
           :src="images" alt="Profile Picture" />
-
-        <!-- <button type="button"
-                    class="py-3.5 px-7 text-base font-medium text-white focus:outline-none bg-emerald-600 rounded-lg border border-indigo-200 hover:bg-emerald-800 focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
-                    Change picture
-                </button> -->
-        <!-- <button type="button"
-            class="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
-            Delete picture
-        </button> -->
       </div>
 
       <div class="items-center mt-4 mb-2 lg:mb-2 lg:mt-2 w-full text-[#202142]">
@@ -292,11 +271,6 @@ let mediaURLs = ref<string[]>([]); // Initialize as an empty array
             </div>
 
             <div class="flex justify-center">
-              <!-- <button type="submit" @click="toggleEditMode"
-                        :class="`${buttonColor} hover:${buttonColor} flex focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-white text-sm w-full sm:w-auto px-5 py-2 text-center items-center`">
-                        <img :src="buttonImage" class="h-[15px] mr-2">
-                        {{ buttonLabel }}
-                    </button> -->
               <!-- Edit button -->
               <button v-if="!isEditing" @click="enterEditMode"
                 class="flex text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center justify-center items-center">

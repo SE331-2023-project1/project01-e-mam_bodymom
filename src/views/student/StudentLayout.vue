@@ -18,36 +18,17 @@ const teacherStore = useTeacherStore()
 studentStore.getStudentById(props.id!)
 .then((response) =>{
     student.value = response
-    // console.log(props.id)
     teacherStore.getTeacherById(response?.teacher.id)
     .then((responseT) => {
         teacher.value = responseT
-        // console.log(teacher.value)
     })
 })
 
-// console.log(studentStore.getStudentById(props.id))
-
-// teacherStore.getTeacherById(student.value?.teacherID!)
-// .then((response) => {
-//     teacher.value = response
-// })
-
-// console.log(student.value)
-
-// const students = storeToRefs(studentStore).students
-// const teachers = storeToRefs(teacherStore).teachers
-// const id = ref(students?.value?.id)
-
-
-// console.log(students.value)
-// console.log(students.value?.surname)
 </script>
 
 <template>
     <div v-if="student">
         <div class="text-lg text-center text-black font-sans hover:font-serif flex flex-col p-4">
-            <!-- <RouterLink :to="{name: 'student-detail', params: { id }}">Details</RouterLink> -->
         </div>
         <RouterView :student="student" :teacher="teacher"></RouterView>
 

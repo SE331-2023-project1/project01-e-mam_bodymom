@@ -12,7 +12,6 @@ defineProps({
 
 <template>
   <RouterLink :to="{name: 'student-detail', params: {id: student?.id}}">
-    <!-- {{ console.log(student) }} -->
     <div class="student-class flex flex-col items-center justify-center">
       <div
         class="grid gap-5 grid-cols-2 p-3 w-80 h-[120px] cursor-pointer border border-gray-700 rounded-lg mb-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-md hover:bg-gray-100 bg-white"

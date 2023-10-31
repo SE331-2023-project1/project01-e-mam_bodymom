@@ -46,59 +46,6 @@
                             placeholder="Write detail here..." :value="eventDetail" @input="eventDetail = $event.target.value" required>
                     </div>
                         </div>
-<!-- 
-                        <div id="app" class="container my-3">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <p class="mb-3 font-fig text-md font-semibold text-indigo-900">Upload File</p>
-                                </div> -->
-                                <!-- <div class="col-md-5 offset-md-1">
-                                    <h5>1. single file</h5>
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="my-file">Select Image</label>
-                                            <input type="file" accept="image/*" @change="previewImage"
-                                                class="form-control-file" id="my-file">
-
-                                            <div class="border p-2 mt-3">
-                                                <p>Preview Here:</p>
-                                                <template v-if="preview">
-                                                    <img :src="preview" class="img-fluid" />
-                                                    <p class="mb-0">file name: {{ image.name }}</p>
-                                                    <p class="mb-0">size: {{ image.size / 1024 }}KB</p>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div> -->
-<!-- 
-                                <div class="col-md-5">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="my-files"
-                                                class="font-fig text-sm font-semibold text-indigo-900">Select Images</label>
-                                            <input type="file" accept="image/*,.pdf" multiple="multiple"
-                                                @change="previewMultiImages"
-                                                class="form-control-file lg:ml-2 text-white bg-pink-400 font-medium rounded-lg text-sm w-full sm:w-auto text-center justify-center items-center"
-                                                id="my-files">
-
-                                            <div class="border p-2 mt-3">
-                                                <p class="font-fig text-sm font-semibold text-indigo-900">Preview Here:</p>
-                                                <template v-if="previewList.length">
-                                                    <div v-for="(item, index) in previewList" :key="index"> -->
-                                                        <!-- <img :src="item" class="img-fluid mx-auto object-cover h-40" /> -->
-                                                        <!-- <p
-                                                            class="flex justify-center font-fig text-sm font-semibold text-gray-600 ">
-                                                            file name: {{ imageList[index].name }}</p>
-                                                        <p
-                                                            class="flex justify-center font-fig mb-2 text-sm font-semibold text-gray-600">
-                                                            size: {{ imageList[index].size / 1024 }}KB</p>
-                                                    </div>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </form> -->
-                                <!-- </div> -->
 
                                 <div class="w-100"></div>
                                 <div class="col-12 mt-3 text-center">
@@ -123,12 +70,6 @@
 
                     </div>
                 </div>
-
-
-            <!-- </div>
-
-
-        </div> -->
 
     </main>
 </template>
@@ -162,12 +103,6 @@ const handleFileUploaded = (newMediaURL: string) => {
   console.log('mediaURL:', mediaURL.value);
   // Do other actions as needed
 };
-
-
-
-
-
-
 
 
 // Function to update the currentTime and currentDate
@@ -228,35 +163,6 @@ const preview = ref<string | null>(null);
 const image = ref<File | null>(null);
 const previewList = ref<string[]>([]);
 const imageList = ref<File[]>([]);
-
-// const previewImage = (event: Event) => {
-//     const file = (event.target as HTMLInputElement).files?.[0];
-//     if (file) {
-//         const reader = new FileReader();
-//         reader.onload = () => {
-//             preview.value = reader.result as string;
-//         };
-//         reader.readAsDataURL(file);
-//         image.value = file;
-//     }
-// };
-
-// const previewMultiImages = (event: Event) => {
-//     const files = (event.target as HTMLInputElement).files;
-//     previewList.value = [];
-//     imageList.value = [];
-//     for (let i = 0; i < files.length; i++) {
-//         const file = files[i];
-//         if (file) {
-//             const reader = new FileReader();
-//             reader.onload = () => {
-//                 previewList.value.push(reader.result as string);
-//             };
-//             reader.readAsDataURL(file);
-//             imageList.value.push(file);
-//         }
-//     }
-// };
 
 const previewMultiImages = (event: Event) => {
     const files = (event.target as HTMLInputElement).files;

@@ -89,109 +89,10 @@ onMounted(async () => {
         teacher.value = response2
         updateDateTime();
         setInterval(updateDateTime, 60000);
-        if (announcements.value) {
-            // console.log(announcements.value)
-            // console.log(teacher.value)
-        }
     } catch (error) {
         console.log('Error fetching student data:', error)
     }
 })
 
-// const mediaFiles = ref<Array<{ type: string; source: string }>>([
-//     // {
-//     //     type: 'image',
-//     //     source: 'URL_TO_IMG',
-//     // },
-//     // {
-//     //     type: 'gif',
-//     //     source: 'URL_TO_GIF',
-//     // },
-//     // {
-//     //     type: 'pdf',
-//     //     source: 'URL_TO_PDF',
-//     // },
-//     // Add more media files with different types here
-// ]);
-
-// const selectedMedia = ref(0);
-
-// const mediaSource = computed(() => mediaFiles.value[selectedMedia.value].source);
-// const isImage = computed(() => mediaFiles.value[selectedMedia.value].type === 'image');
-// const isGif = computed(() => mediaFiles.value[selectedMedia.value].type === 'gif');
-// const isPdf = computed(() => mediaFiles.value[selectedMedia.value].type === 'pdf');
-// const mediaExists = computed(() => mediaFiles.value.length > 0);
-
-// const prevMedia = () => {
-//     if (selectedMedia.value > 0) {
-//         selectedMedia.value--;
-//     } else {
-//         selectedMedia.value = mediaFiles.value.length - 1; // Loop to the last media file
-//     }
-// };
-
-// const nextMedia = () => {
-//     if (selectedMedia.value < mediaFiles.value.length - 1) {
-//         selectedMedia.value++;
-//     } else {
-//         selectedMedia.value = 0; // Loop back to the first media file
-//     }
-// };
-
-// export default {
-//     data() {
-//         return {
-//             mediaFiles: [
-//                 // {
-//                 //     type: 'image',
-//                 //     source: 'URL_TO_IMG',
-//                 // },
-//                 // {
-//                 //     type: 'gif',
-//                 //     source: 'URL_TO_GIF',
-//                 // },
-//                 // {
-//                 //     type: 'pdf',
-//                 //     source: 'URL_TO_PDF',
-//                 // },
-//                 // Add more media files with different types here
-//             ],
-//             selectedMedia: 0, // Initially select the first media file
-//         };
-//     },
-//     computed: {
-//         mediaSource() {
-//             return this.mediaFiles[this.selectedMedia].source;
-//         },
-//         isImage() {
-//             return this.mediaFiles[this.selectedMedia].type === 'image';
-//         },
-//         isGif() {
-//             return this.mediaFiles[this.selectedMedia].type === 'gif';
-//         },
-//         isPdf() {
-//             return this.mediaFiles[this.selectedMedia].type === 'pdf';
-//         },
-//         mediaExists() {
-//             return this.mediaFiles.length > 0;
-//         },
-//     },
-//     methods: {
-//         prevMedia() {
-//             if (this.selectedMedia > 0) {
-//                 this.selectedMedia--;
-//             } else {
-//                 this.selectedMedia = this.mediaFiles.length - 1; // Loop to the last media file
-//             }
-//         },
-//         nextMedia() {
-//             if (this.selectedMedia < this.mediaFiles.length - 1) {
-//                 this.selectedMedia++;
-//             } else {
-//                 this.selectedMedia = 0; // Loop back to the first media file
-//             }
-//         },
-//     },
-// };
 </script>
   

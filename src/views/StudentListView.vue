@@ -32,13 +32,9 @@ const props = defineProps({
 })
 
 const fetchStudents = async () => {
-    // const response = await StudentService.getStudents(6, props.page);
     students.value = store.getStudentByPage(6, props.page)
     totalStudent.value = store.getStudent.length
-    // console.log(students.value);
 };
-
-// console.log(students)
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = to.query.page ? Number(to.query.page) : 1

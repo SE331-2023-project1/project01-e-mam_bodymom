@@ -70,7 +70,6 @@ const addComment = () => {
 
 <template>
   <div v-if="student">
-    <!-- {{ console.log(student.teacher) }} -->
     <div class="student-class flex flex-col items-center justify-center">
       <div class="grid gap-5 grid-cols-2 p-3 w-3/4 h-4/5 border border-gray-700
         rounded-lg mb-4 bg-white shadow-md">
@@ -81,7 +80,6 @@ const addComment = () => {
           <span class="text-base text-gray-500 font-fig">ID: {{ student?.username }}</span> <br />
           <span class="font-fig name font-bold text-black"> {{ student?.name }} {{ student?.surname }}</span>
           <ul class="list-disc list-inside">
-            <!-- <span class="font-fig font-bold text-black text-xl course">Course List</span> -->
             <li v-for="course in student?.courselist" :key="course" class="text-xl course font-fig text-black">
               {{ course }}
             </li>
@@ -89,7 +87,6 @@ const addComment = () => {
 
           <br>
 
-          <!-- {{ console.log(teacher) }} -->
           <RouterLink :to="{ name: 'teacher-detail', params: { id: student.teacher.id } }">
            
           </RouterLink>
