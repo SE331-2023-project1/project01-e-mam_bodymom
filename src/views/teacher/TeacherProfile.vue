@@ -170,15 +170,15 @@ const saveAndSubmitForm = async () => {
     await onSubmit();
     console.log(onSubmit())
     storeMessage.updateMessage(successMessage);
-    location.reload()
     setTimeout(() => {
       storeMessage.resetMessage();
+      location.reload()
     }, 1000);
   } catch (error) {
     storeMessage.updateMessage(errorMessage);
-    location.reload()
     setTimeout(() => {
       storeMessage.resetMessage();
+      location.reload()
     }, 1000);
   }
 };
