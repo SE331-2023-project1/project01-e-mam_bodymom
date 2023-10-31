@@ -2,6 +2,8 @@
 import { type StudentItem, type TeacherItem } from '@/type'
 import { computed, type PropType } from 'vue'
 import { useStudentStore } from '@/stores/student'
+import { useMessageStore } from '@/stores/message';
+import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.ts'
 
@@ -13,6 +15,9 @@ student.then((response) => {
   allStudents = response
 })
 
+const store = useMessageStore()
+const { message } = storeToRefs(store)
+
 defineProps({
   teacher: {
     type: Object as PropType<TeacherItem>
@@ -21,6 +26,13 @@ defineProps({
     type: Object as PropType<StudentItem[]>
   }
 })
+
+const relationSet = () => {
+  store.updateMessage('Relation Setting has been saved successfully.')
+  setTimeout(() => {
+    store.resetMessage()
+  }, 4000)
+};
 </script>
 
 <template>
@@ -111,11 +123,11 @@ defineProps({
       </div>
 
       <!-- Dropdown for selecting a student -->
-      <label for="studentDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select advisee:</label>
+      <label for="studentDropdown" class="block text-sm font-semibold text-indigo-900 mt-2">Select a advisee:</label>
       <select id="studentDropdown"
         class="block w-full mt-1 p-2 border border-indigo-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
-        <option v-for="stu in allStudents" :value="stu.id" :key="stu.id">{{ stu?.name }} {{ stu?.surname }}
-        </option>
+        <option value="">Select a advisee</option>
+        <option v-for="stu in allStudents" :value="stu.id" :key="stu.id">{{ stu?.name }} {{ stu?.surname }}</option>
       </select>
 
       <div id="flashMessage" class="animate-pulse text-center text-base font-fig mt-2 bg-green-500 font-fig text-white"
