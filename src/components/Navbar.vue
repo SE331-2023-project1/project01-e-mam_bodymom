@@ -30,7 +30,16 @@ if (token && userRole && id) {
 </script>
 
 <template>
-  <nav class="bg-white shadow-md border-gray-200 font-display">
+  <nav class="relative bg-white shadow-md border-gray-200 font-display">
+    <div v-if="authStore.userRole == 'ROLE_TEACHER'"
+     class="absolute bg-teal-500 shadow-md rounded-bl-lg text-white px-2 py-2 text-sm font-fig top-0 right-0">Log-in as Teacher</div>
+
+     <div v-if="authStore.userRole == 'ROLE_STUDENT'"
+     class="absolute bg-pink-400 shadow-md rounded-bl-lg text-white px-2 py-2 text-sm font-fig top-0 right-0">Log-in as Student</div>
+
+     <div v-if="authStore.userRole == 'ROLE_ADMIN'"
+     class="absolute bg-fuchsia-400 shadow-md rounded-bl-lg text-white px-2 py-2 text-sm font-fig top-0 right-0">Log-in as Admin</div>
+
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="/" class="flex items-center">
         <img src="../assets/bodymomb.png" class="h-[40px]">
@@ -67,23 +76,26 @@ if (token && userRole && id) {
             <img src="../assets/login.png" class="h-[12px] ml-1 mr-2">
             <RouterLink to="/Login">Login</RouterLink>
           </li>
-          <li v-if="authStore.userRole == 'ROLE_STUDENT' || authStore.userRole == 'ROLE_TEACHER'" 
-          class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+          <li v-if="authStore.userRole == 'ROLE_STUDENT' || authStore.userRole == 'ROLE_TEACHER'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/announce.png" class="h-[18px] ml-1 mr-2 items-center">
             <RouterLink to="/announcements">Announcements</RouterLink>
           </li>
-          <li v-if="authStore.userRole == 'ROLE_TEACHER'" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
+          <li v-if="authStore.userRole == 'ROLE_TEACHER'"
+            class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
             <img src="../assets/addpost.png" class="h-[18px] ml-1 mr-2 items-center">
             <RouterLink to="/createpost">Add Announcement</RouterLink>
           </li>
           <li v-if="authStore.userRole == 'ROLE_STUDENT'"
             class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
-            <img :src="studentStore.students[0].images[0]" class="ml-1 mr-2 items-center object-cover w-[25px] h-[25px]  rounded-full ring-2 ring-pink-500">
+            <img :src="studentStore.students[0].images[0]"
+              class="ml-1 mr-2 items-center object-cover w-[25px] h-[25px]  rounded-full ring-2 ring-pink-500">
             <RouterLink to="/studentprofile">Profile</RouterLink>
           </li>
           <li v-if="authStore.userRole == 'ROLE_TEACHER'"
             class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
-            <img :src="teacherStore.teachers[0].images[0]" class="ml-1 mr-2 items-center object-cover w-[25px] h-[25px]  rounded-full ring-2 ring-lime-500 shadow-md">
+            <img :src="teacherStore.teachers[0].images[0]"
+              class="ml-1 mr-2 items-center object-cover w-[25px] h-[25px]  rounded-full ring-2 ring-teal-500 shadow-md">
             <RouterLink to="/teacherprofile">Profile</RouterLink>
           </li>
           <li v-if="authStore.userRole" class="font-dm mb-2 hover:bg-blue-100 p-3 rounded-md flex items-center">
@@ -94,9 +106,15 @@ if (token && userRole && id) {
           </li>
 
 
+
+
         </ul>
+
+
       </div>
     </div>
-</nav>
 
-<RouterView /></template>
+  </nav>
+
+  <RouterView />
+</template>
